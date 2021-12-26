@@ -10,7 +10,7 @@ const Sectionodd = () => {
                 <Row>
                 <Col>
                     <div className="tnpcontainer">
-                        <div className="icon"><img src={icon} width="50" height="50" /></div>
+                        <div className="icon"><img src={icon} alt="icon" width="50" height="50" /></div>
                         <h4 className="a1">Summer/Winter Internship Programme</h4>
                         <h4 className="a2">
                             The Summer/Winter Internship programme conducted after
