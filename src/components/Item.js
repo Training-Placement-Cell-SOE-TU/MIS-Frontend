@@ -6,10 +6,11 @@ export default styled.div`
   align-items: center;
   height: 11.25rem;
   width: 100%;
-  background-color: #2b303a;
-  color: #fff;
+  background-color: #fff;
+  color: #0066ff;
+  border: none;
   margin: 0 15px;
-  font-size: 4em;
+  font-size: 2em;
   padding:0;
   margin:0.2rem;
 `;

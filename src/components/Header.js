@@ -8,8 +8,8 @@ const Header = () => {
     <header>
             <Navbar className= "navbaar"  variant="dark" expand="lg" collapseOnSelect>
             
-                <div className="logo"><img src={logo} alt="tulogo" width="60" height="60" /></div>
-                <Navbar.Brand  href="/" ><span className="logo" >Training and Placement Cell</span> <br/> </Navbar.Brand>
+                <div className="tulogo"><img src={logo} alt="tulogo" width="60" height="60" /></div>
+                <Navbar.Brand  href="/" ><span className="logo" >Training and Placement Cell</span> <br/> <span className="logo2" >School of Engineering,Tezpur University</span> </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className='mx-auto naav'>
@@ -18,7 +18,7 @@ const Header = () => {
                   <Nav.Link ><Link  to="projects" spy={true} smooth={false}><span className="navlnk">Latest Job Postings</span></Link></Nav.Link>
                   <Nav.Link ><Link  to="contact" spy={true} smooth={false}><span className="navlnk">News &amp; Notifications </span></Link></Nav.Link>
                   <Nav.Link ><Link  to="contact" spy={true} smooth={false}><span className="navlnk">About Us </span></Link></Nav.Link>
-                  <Nav.Link ><Link  to="contact" spy={true} smooth={false}><span className="navlnk">More </span></Link></Nav.Link>
+                  <Nav.Link ><Link  to="contact"> <span className="navlnk1">More </span></Link></Nav.Link>
 
 
 

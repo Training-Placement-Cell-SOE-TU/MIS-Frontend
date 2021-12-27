@@ -13,8 +13,8 @@ const Slider = () => {
     return (
         <>
       
-          <div className="act">
-            <span className="acttext">Upcoming Events</span>
+          <div className="slide">
+            <span className="slidetext">Upcoming Events</span>
             </div>
             <div className="slider">
         <Carousel breakPoints={breakPoints}>
