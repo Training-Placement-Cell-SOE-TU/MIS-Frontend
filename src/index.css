@@ -9,7 +9,7 @@
 /* -------BODY------- */
 main {
   min-height: 80vh;
-  background-color: #f5f7f8;
+  background-color: #fafafd;
 }
 
 /* -------SCROLLBAR------- */
@@ -33,21 +33,33 @@ footer {
 }
 
 .f1 {
-  color: #fff;
-  font-size: 16px;
+  color: rgb(238, 245, 255);
+  font-size: 13px;
   font-weight: 600;
 }
 
 .f2 {
-  color: #fff;
-  font-size: 8px;
+  color: rgb(238, 245, 255);
+  font-size: 9px;
   font-weight: 400;
 }
 
 .f3 {
-  color: #fff;
+  color: rgb(238, 245, 255);
   font-size: 12px;
   font-weight: 400;
+}
+
+.f4 {
+  color: rgb(238, 245, 255);
+  font-size: 11px;
+  font-weight: 400;
+}
+.row1 {
+  margin-bottom: 30px;
+}
+.row2 {
+  margin: 14px 0 14px 0;
 }
 
 /* -------NAVBAR(HEADER)------- */
@@ -55,7 +67,7 @@ footer {
   .navbaar {
     min-height: 20vh;
     padding: 12px 20px 12px 20px;
-    background-color: #f5f7f8;
+    background-color: #fafafd;
     z-index: 2;
   }
 
@@ -162,7 +174,9 @@ footer {
   .rec.rec-arrow {
     color: #0066ff;
     background-color: #f5f7f8;
+    border-radius: 30%;
   }
+
   .slide {
     text-align: center;
     color: #141414;
@@ -233,4 +247,8 @@ footer {
 
 .recruitrow1 {
   margin: 40px 0 40px 0;
+}
+
+.sec {
+  margin: 20px 0 20px 0;
 }

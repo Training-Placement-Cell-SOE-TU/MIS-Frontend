@@ -27,7 +27,7 @@ const Section3 = () => {
       from T&amp;P Cell."
       image={image1}
       />
-      <Sectioneven 
+      <Sectioneven
       icon={icon2}
       title="Pre-placement Grooming Programme"
       description="The Training&amp;Placement Cell organizes a series of Pre-placement Grooming Sessions 

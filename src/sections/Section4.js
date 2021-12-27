@@ -65,7 +65,7 @@ const Section4 = () => {
                       Large classrooms and Halls for Pre-Placement talks and written tests 
                       Fully equipped computer labs for online tests.
                       Air conditioned rooms for Group Discussions, Video Conferencing and Interviews.
-                      High Speed internet connection Facility &lpar;for submission of soft copies of resumes, mails for correspondence, etc.&rpar; 
+                      High Speed internet connection Facility (for submission of soft copies of resumes, mails for correspondence, etc.) 
                       Student Volunteers for prompt actions on the Placement Day. 
                       Guest house and lodging facilities.
                       Best of Hospitality amid lush green Campus.
@@ -86,10 +86,10 @@ const Section4 = () => {
                       icon={icon5}
                       title="Rigourous Admission Tests"
                       description="The students of the University are selected through a two-stage filtration system, 
-                      &lpar;a&rpar; Nation-wide written test and
-                      &lpar;b&rpar; Group discussion and personal interview.
+                      (a) Nation-wide written test and
+                      (b) Group discussion and personal interview.
                       The main objective of these tests is to select the right kind of calibre for the right programme.
-                      Joint Entrance Examination &lpar;JEE&rpar; like the IITs, NITs and other centrally funded technical institutions.
+                      Joint Entrance Examination (JEE) like the IITs, NITs and other centrally funded technical institutions.
                       "
           
                     />

@@ -6,7 +6,7 @@ function Sectionodd(props) {
         <section className="sctn_odd">
 
                 <Container >
-                <Row>
+                <Row className="sec">
 
                 <Col>
                     <div className="tnpcontainer">
@@ -20,7 +20,7 @@ function Sectionodd(props) {
                     </div>
                     </Col>
                     <Col>
-                        <img className="tnp1" src={props.image} alt="tnp1" width="280" height="240"/>
+                        <img className="tnp1" src={props.image} alt="tnp1" width="260" height="240"/>
                 </Col>
                     
             </Row>

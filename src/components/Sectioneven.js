@@ -6,7 +6,7 @@ function Sectioneven(props) {
         <section className="sctn_odd">
 
                 <Container >
-                <Row>
+                <Row className="sec">
                 <Col>
                         <img className="tnp2" src={props.image} alt="tnp1" width="280" height="240"/>
                     </Col>
