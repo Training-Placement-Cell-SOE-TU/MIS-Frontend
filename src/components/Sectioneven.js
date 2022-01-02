@@ -1,6 +1,7 @@
 import React from 'react'
 import {Container, Row, Col} from 'react-bootstrap'
 
+
 function Sectioneven(props) {
     return (
         <section className="sctn_odd">

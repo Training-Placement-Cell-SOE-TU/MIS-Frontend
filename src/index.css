@@ -130,6 +130,36 @@ footer {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .navbaar {
+    min-height: 10vh;
+    background-color: #fff;
+  }
+
+  .logo {
+    font-size: 20px;
+    letter-spacing: -1px;
+    color: #000;
+
+    padding-left: 10px;
+    font-weight: 600;
+  }
+
+  .tulogo {
+    padding-left: 10px;
+    display: none;
+  }
+
+  .logo2 {
+    font-size: 12px;
+    letter-spacing: -1px;
+    color: #000;
+    padding-left: 30px;
+    margin-top: -30px;
+    font-weight: 400;
+  }
+}
+
 /* -------SECTION 1 (S1)------- */
 @media screen and (min-width: 601px) {
   .sctn_one {
@@ -141,6 +171,9 @@ footer {
     margin-top: -60px;
   }
 
+  .tnp3 {
+    display: none;
+  }
   .stext1 {
     color: #141414;
     font-size: 30px;
@@ -159,17 +192,16 @@ footer {
 
 @media screen and (max-width: 600px) {
   .sctn_one {
-    min-height: 60vh;
+    min-height: 30vh;
   }
 
   .tnp1 {
-    height: 140px;
-    width: 300px;
+    display: none;
   }
 
   .cdiv1 {
     text-align: center;
-    margin-top: -60px;
+    margin-top: 100px;
   }
 
   .stext1 {
@@ -267,6 +299,142 @@ footer {
   .tnp2 {
     margin-top: 80px;
     margin-left: 160px;
+  }
+}
+
+/* -------SECTION 3(S2)------- */
+
+.recruitcon2 {
+  padding-top: 240px;
+}
+
+.recruitrow1 {
+  margin: 40px 0 40px 0;
+}
+
+.sec {
+  margin: 20px 0 20px 0;
+}
+
+/* ---------------NOT FOUND--------------------- */
+.notfound {
+  min-height: 80vh;
+}
+
+.nf1 {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.nftext {
+  font-size: 42px;
+}
+
+/* ------------------EVENTS------------------------ */
+
+.eventmain {
+  min-height: 80vh;
+}
+
+.event1 {
+  text-align: center;
+  color: #141414;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0 10px 0;
+}
+
+.event1text:hover {
+  border-bottom: 3px solid #0066ff;
+  transition: 0.1s ease-in-out;
+}
+/* ---------------- */
+/* ---------------- */
+/* ---------------- */
+/* SMALLER SCREENS */
+/* ---------------- */
+/* ---------------- */
+/* ---------------- */
+
+/* -------SECTION 2(S2)------- */
+
+@media screen and (max-width: 600px) {
+  .sctn_two {
+    min-height: 60vh;
+  }
+
+  .slider {
+    margin: 0 40px 0 40px;
+  }
+
+  .rec.rec-dot {
+    visibility: hidden;
+  }
+
+  .rec.rec-arrow {
+    color: #0066ff;
+    background-color: #f5f7f8;
+    border-radius: 30%;
+  }
+
+  .slide {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 40px 0 60px 0;
+  }
+
+  .slidetext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+/* -------SECTION 3(S2)------- */
+@media screen and (max-width: 600px) {
+  .act {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 40px 0 80px 0;
+  }
+
+  .acttext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+/* -------SECTION Odd()------- */
+
+@media screen and (max-width: 600px) {
+  .sctn_odd {
+    min-height: 60vh;
+  }
+
+  .a1 {
+    color: #1b1b1b;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 16px 0 16px 0;
+  }
+
+  .a2 {
+    color: #636363;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .tnp1 {
+    margin-top: 80px;
+  }
+  .tnpcontainer {
+    padding: 0 10px 0 10px;
+  }
+
+  .tnp2 {
+    display: none;
   }
 }
 
