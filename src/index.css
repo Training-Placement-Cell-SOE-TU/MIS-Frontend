@@ -348,6 +348,11 @@ footer {
   border-bottom: 3px solid #0066ff;
   transition: 0.1s ease-in-out;
 }
+
+.eventcontainer {
+  text-align: center;
+  justify-content: center;
+}
 /* ---------------- */
 /* ---------------- */
 /* ---------------- */
