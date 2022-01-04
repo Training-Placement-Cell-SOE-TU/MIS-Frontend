@@ -341,6 +341,11 @@ footer {
   min-height: 80vh;
 }
 
+.eventcon {
+  align-content: center;
+  text-align: center;
+}
+
 .event1 {
   text-align: center;
   color: #141414;
@@ -354,14 +359,18 @@ footer {
   transition: 0.1s ease-in-out;
 }
 
-.eventcontainer {
-  text-align: center;
-  justify-content: center;
-}
-
 /* ----------About---------- */
 .aboutcontainer {
   min-height: 80vh;
+}
+
+.abouttext {
+  padding: 20px 200px 20px 200px;
+  line-height: 2;
+  text-align: justify;
+  text-justify: inter-word;
+  color: #000;
+  font-weight: 400;
 }
 
 /* ----------Stories--------------- */
