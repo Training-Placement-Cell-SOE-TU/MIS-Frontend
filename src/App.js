@@ -11,6 +11,10 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Events from "./sections/Events"
 import NotFound from "./sections/NotFound"
+import About from "./sections/About";
+import Stories from "./sections/Stories";
+import People from "./sections/People";
+import Placement from "./sections/Placement";
 
 
 function App() {
@@ -21,6 +25,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/events" component={Events}/>
+          <Route path="/about" component={About}/>
+          <Route path="/stories" component={Stories}/>
+          <Route path="/people" component={People}/>
+          <Route path="/placements" component={Placement}/>
           <Route path="*" component={NotFound}/>
         </Switch>
         <Footer />

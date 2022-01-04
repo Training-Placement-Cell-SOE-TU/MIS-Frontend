@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, Nav} from 'react-bootstrap'
+import {Navbar, Nav, Dropdown} from 'react-bootstrap'
 import logo from './tu.png';
 
 const Header = () => {
@@ -17,7 +17,20 @@ const Header = () => {
                   <Nav.Link href="/jobs" ><span className="navlnk">Latest Job Postings</span></Nav.Link>
                   <Nav.Link href="/notifications" ><span className="navlnk">News &amp; Notifications </span></Nav.Link>
                   <Nav.Link href="/about" ><span className="navlnk">About Us </span></Nav.Link>
-                  <Nav.Link href="/more" ><span className="navlnk1">More </span></Nav.Link>
+                  <Dropdown>
+                    <Dropdown.Toggle  >
+                        <span className="more">More</span>
+                    </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="/">Home</Dropdown.Item>
+                        <Dropdown.Item href="/stories">Stories</Dropdown.Item>
+                        <Dropdown.Item href="/visitors">Visitors</Dropdown.Item>
+                        <Dropdown.Item href="/people">People</Dropdown.Item>
+                        <Dropdown.Item href="/admin">Admin Console</Dropdown.Item>
+
+                      </Dropdown.Menu>
+                  </Dropdown>
 
 
 
