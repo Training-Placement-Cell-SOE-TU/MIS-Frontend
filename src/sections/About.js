@@ -4,7 +4,7 @@ const About = () => {
     return (
         <section className="eventmain">
             <div className="event1">
-            <span className="event1text">About us</span>
+            <span className="event1text">About Us</span>
             </div>
             
             <div className='abouttext'>
@@ -88,10 +88,10 @@ We leave no stone unturned to groom our students, not only in their chosen disci
      liaison with our stakeholders.<br/> <br/>
 
 We eagerly look forward to host you at our world class University for internships and final campus placement 
-pro- cesses, already started from May 2018 for the batch of 2019. <br/> <br/>
+processes, already started from May 2018 for the batch of 2019. <br/> <br/>
 
 We invite all our esteemed recruiters to visit our campus and conduct the entire process in person. 
-We also have am- ple infrastructure to conduct mass online test, Skype interview, video-conferencing 
+We also have ample infrastructure to conduct mass online test, Skype interview, video-conferencing 
 and telephonic rounds. Please feel free to contact the “Training &amp; Placement Cell” should you require
  any further information /clarification. I wish the Campus recruitment programme a great success and 
  shall always look forward to a mutually beneficial relationship with the recruiters. <br/> <br/>

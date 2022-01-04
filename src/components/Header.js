@@ -15,7 +15,7 @@ const Header = () => {
                   <Nav.Link href="/events" ><span className="navlnk">Events</span></Nav.Link>
                   <Nav.Link href="/placements" ><span className="navlnk">Placements</span></Nav.Link>
                   <Nav.Link href="/jobs" ><span className="navlnk">Latest Job Postings</span></Nav.Link>
-                  <Nav.Link href="/notifications" ><span className="navlnk">News &amp; Notifications </span></Nav.Link>
+                  <Nav.Link href="/news" ><span className="navlnk">News &amp; Notifications </span></Nav.Link>
                   <Nav.Link href="/about" ><span className="navlnk">About Us </span></Nav.Link>
                   <Dropdown>
                     <Dropdown.Toggle  >

@@ -341,16 +341,21 @@ footer {
   min-height: 80vh;
 }
 
-.eventcon {
-  align-content: center;
-  text-align: center;
+.econcard {
+  padding: 20px 0 20px 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.econcard1 {
+  width: 40rem;
 }
 
 .event1 {
   text-align: center;
   color: #141414;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 21px;
+  font-weight: 500;
   margin: 10px 0 10px 0;
 }
 
@@ -371,12 +376,29 @@ footer {
   text-justify: inter-word;
   color: #000;
   font-weight: 400;
+  font-size: 15px;
+}
+
+/* ----------Job---------- */
+.jobscon {
+  display: inline;
 }
 
 /* ----------Stories--------------- */
 .storiescontainer {
   min-height: 80vh;
+  padding-bottom: 80px;
 }
+
+.crdcont {
+  padding: 0 20px 0 20px;
+}
+.storycrd {
+  width: 18rem;
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
 /* ---------------- */
 /* ---------------- */
 /* ---------------- */

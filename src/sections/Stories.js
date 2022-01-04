@@ -6,11 +6,11 @@ import eventimg1 from '../components/images/eventimg1.png'
 const Stories = () => {
     return (
         <section className="storiescontainer">
-            <Container>
+            
             <div className="event1">
                 <span className="event1text">Stories</span>
             </div>
-            </Container>
+            
             
             <Container>
                 <Row>

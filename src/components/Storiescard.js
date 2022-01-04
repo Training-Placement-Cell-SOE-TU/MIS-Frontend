@@ -1,11 +1,11 @@
 import React from 'react'
-import {Card } from "react-bootstrap"
+import {Container, Card } from "react-bootstrap"
 
 function Storiescard(props) {
     return (
-        <>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.img} />
+        <Container className="crdcont">
+            <Card className="storycrd">
+                <Card.Img src={props.img} />
                 <Card.Body>
                     <Card.Text>
                         {props.text}
@@ -13,7 +13,7 @@ function Storiescard(props) {
     
                 </Card.Body>
             </Card>
-        </>
+        </Container>
     )
 }
 

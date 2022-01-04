@@ -15,7 +15,8 @@ import About from "./sections/About";
 import Stories from "./sections/Stories";
 import People from "./sections/People";
 import Placement from "./sections/Placement";
-
+import Job from "./sections/Job";
+import News from "./sections/News";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
           <Route path="/stories" component={Stories}/>
           <Route path="/people" component={People}/>
           <Route path="/placements" component={Placement}/>
+          <Route path="/jobs" component={Job}/>
+          <Route path="/news" component={News}/>
+
           <Route path="*" component={NotFound}/>
         </Switch>
         <Footer />

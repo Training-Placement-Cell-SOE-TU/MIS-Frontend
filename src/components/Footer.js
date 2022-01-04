@@ -20,7 +20,7 @@ const Footer = () => {
                 </Col>
 
                 <Col>
-                    <Row className="row2"><span className='f3'>Events</span></Row>
+                    <Row className="row2"><span className='f3'><a href="/events"> Events</a></span></Row>
                     <Row className="row2"><span className='f3'>Placements</span></Row>
                     <Row className="row2"><span className='f3'>Latest Job Postings</span></Row>
                     <Row className="row2"><span className='f3'>News&amp;Notifications</span></Row>

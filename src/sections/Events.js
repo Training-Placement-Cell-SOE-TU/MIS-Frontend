@@ -10,8 +10,8 @@ const Events = () => {
             <div className="event1">
             <span className="event1text">Events</span>
             </div>
-
-            <Container className="eventcon">
+            
+            <Container>
                 <Col>
                     <Row>
                     <Eventcard
@@ -42,6 +42,8 @@ const Events = () => {
                     </Row>
                 </Col>
             </Container>
+            
+            
 
        
             
