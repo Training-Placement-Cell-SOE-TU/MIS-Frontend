@@ -17,6 +17,7 @@ import People from "./sections/People";
 import Placement from "./sections/Placement";
 import Job from "./sections/Job";
 import News from "./sections/News";
+import Visitor from "./sections/Visitor";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/placements" component={Placement}/>
           <Route path="/jobs" component={Job}/>
           <Route path="/news" component={News}/>
+          <Route path="/visitors" component={Visitor}/>
 
           <Route path="*" component={NotFound}/>
         </Switch>
