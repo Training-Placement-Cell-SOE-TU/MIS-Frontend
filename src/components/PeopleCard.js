@@ -1,20 +1,27 @@
 import React from 'react'
-import {Card} from "react-bootstrap"
+import {Container,Card} from "react-bootstrap"
 
 function PeopleCard(props) {
     return (
-        <div>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.img} />
-                <Card.Body>
-                    <Card.Title>{props.title} </Card.Title>
-                    <Card.Text>
-                        {props.text}
+        <Container className='peoplecon'>
+            <Card className="peoplebody border-0">
+                
+                <Card.Body className="peoplebody2">
+                <Card.Img className="peopleimg" variant="top" src={props.img} />
+                    <Card.Text className="ptext1">{props.title} </Card.Text>
+                    <Card.Text className="ptext2">
+                        {props.text1}
+                    </Card.Text>
+                    <Card.Text className="ptext2">
+                        {props.text2}
+                    </Card.Text>
+                    <Card.Text className="ptext2">
+                        {props.text3}
                     </Card.Text>
     
                 </Card.Body>
             </Card>
-        </div>
+        </Container>
     )
 }
 

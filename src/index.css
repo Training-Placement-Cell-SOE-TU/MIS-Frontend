@@ -440,6 +440,40 @@ footer {
   margin: 20px 0 20px 0;
 }
 
+/* ----------PEOPLE----------- */
+
+.peoplecon {
+  padding: 20px 0 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.peoplebody {
+  width: 18rem;
+}
+
+.peopleimg {
+  width: 100%;
+}
+
+.peoplebody2 {
+  border: solid #f5f7f8;
+  background-color: #f5f7f8;
+  border-radius: 20px;
+}
+
+.ptext1 {
+  padding-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+.ptext2 {
+  text-align: center;
+  line-height: 0.6;
+  font-size: 13px;
+}
 /* ---------------- */
 /* ---------------- */
 /* ---------------- */

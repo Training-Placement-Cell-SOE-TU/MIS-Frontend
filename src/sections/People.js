@@ -18,22 +18,28 @@ const People = () => {
                     <Col>
                     <PeopleCard
                             img={eventimg1}
-                            title="Title"
-                            text="lorem ipsum"
+                            title="Prof. Sarat Saharia"
+                            text1="Professor in charge"
+                            text2="Training &amp; Placement Cell,"
+                            text3="School of Engineering"
                         />
                     </Col>
                     <Col>
                     <PeopleCard
                             img={eventimg1}
-                            title="Title"
-                            text="lorem ipsum"
+                            title="Prof. Sarat Saharia"
+                            text1="Professor in charge"
+                            text2="Training &amp; Placement Cell,"
+                            text3="School of Engineering"
                         />
                     </Col>
                     <Col>
                     <PeopleCard
                             img={eventimg1}
-                            title="Title"
-                            text="lorem ipsum"
+                            title="Prof. Sarat Saharia"
+                            text1="Professor in charge"
+                            text2="Training &amp; Placement Cell,"
+                            text3="School of Engineering"
                         />
                     </Col>
                 </Row>
