@@ -339,6 +339,7 @@ footer {
 
 .eventmain {
   min-height: 80vh;
+  padding-bottom: 80px;
 }
 
 .econcard {
@@ -349,7 +350,7 @@ footer {
 }
 
 .econcard1 {
-  width: 36rem;
+  width: 34rem;
 }
 
 .eventbody {
@@ -365,6 +366,7 @@ footer {
   text-align: justify;
   text-justify: inter-word;
   padding: 20px;
+  font-size: 14px;
 }
 
 .etext3 {
