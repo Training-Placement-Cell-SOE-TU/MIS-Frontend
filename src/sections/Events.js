@@ -17,6 +17,7 @@ const Events = () => {
                     <Eventcard
                         title="Event's Name"
                         image={eventimg1}
+                        date="05/01/22"
                         text="IEEE Tezpur University, as part of IEEE day celebration brings for 
                             you an one day bootcamp on full stack development. Along with video tutorials,
                             work step by step on real world project and learn concepts from basics. Learn
@@ -31,6 +32,7 @@ const Events = () => {
                     <Eventcard
                         title="Event's Name"
                         image={eventimg1}
+                        date="05/01/22"
                         text="IEEE Tezpur University, as part of IEEE day celebration brings for 
                             you an one day bootcamp on full stack development. Along with video tutorials,
                             work step by step on real world project and learn concepts from basics. Learn

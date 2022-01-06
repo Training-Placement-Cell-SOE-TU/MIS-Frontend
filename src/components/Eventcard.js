@@ -4,11 +4,12 @@ import {Container, Card} from 'react-bootstrap'
 function Eventcard(props) {
     return (
         <Container className="econcard">
-            <Card className='econcard1'>
-                <Card.Body>
-                    <Card.Title> {props.title} </Card.Title>
+            <Card className='econcard1 border-0'>
+                <Card.Body className="eventbody">
+                    <Card.Title className="etext1"> {props.title} </Card.Title>
+                    <Card.Text className="etext3">{props.date}  </Card.Text>
                     <Card.Img variant="top" src={props.image} />
-                    <Card.Text>{props.text}  </Card.Text>
+                    <Card.Text className="etext2">{props.text}  </Card.Text>
                 </Card.Body>
             </Card>
 

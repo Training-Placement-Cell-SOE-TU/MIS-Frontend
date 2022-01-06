@@ -343,14 +343,34 @@ footer {
 
 .econcard {
   padding: 20px 0 20px 0;
-  text-align: justify;
-  text-justify: inter-word;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .econcard1 {
-  width: 40rem;
+  width: 36rem;
 }
 
+.eventbody {
+  border: solid #f5f7f8;
+  background-color: #f5f7f8;
+  border-radius: 20px;
+}
+.etext1 {
+  text-align: center;
+}
+
+.etext2 {
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 20px;
+}
+
+.etext3 {
+  text-align: center;
+  padding-bottom: 20px;
+}
 .event1 {
   text-align: center;
   color: #141414;
@@ -380,8 +400,29 @@ footer {
 }
 
 /* ----------Job---------- */
+
 .jobscon {
-  display: inline;
+  padding: 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.jobscon1 {
+  width: 60%;
+  border: 0em;
+}
+
+.jobbody {
+  display: flex;
+  border: solid #f5f7f8;
+  background-color: #f5f7f8;
+  border-radius: 30px;
+}
+
+.jobbtn {
+  position: relative;
+  right: 0;
 }
 
 /* ----------Stories--------------- */

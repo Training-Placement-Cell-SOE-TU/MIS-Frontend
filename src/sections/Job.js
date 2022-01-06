@@ -7,11 +7,20 @@ const Job = () => {
             <div className="event1">
             <span className="event1text">Latest Job Postings</span>
             </div>
-            <Jobcard
+
+<Jobcard
             title="News"
-            date="01/01/2022"
+            date="01/01/22"
             btn="Know More"
             />
+
+            <Jobcard
+            title="News"
+            date="01/01/22"
+            btn="Know More"
+            />
+
+            
             
         </section>
     )
