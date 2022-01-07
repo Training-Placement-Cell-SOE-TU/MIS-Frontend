@@ -5,6 +5,30 @@ import logo from './tu.png';
 const Header = () => {
   return (
     <header>
+      <style type="text/css">
+                            {`
+                                .btn-flat {
+                                            background-color:#0066ff;
+                                            color: white;
+                                            border-radius:20px;
+                                            font-size: 12px;
+      
+                                            }
+
+                                            .btn-flat:hover {
+                                                background-color:#0066ff;
+                                                color: white;
+                                                border-radius:20px;
+                                                font-size: 12px;
+          
+                                                }
+
+                                .btn-l {
+                                            padding: 8px 14px;
+                                            
+                                            }
+                                `}
+                        </style>
             <Navbar className= "navbaar"  variant="dark" expand="lg" collapseOnSelect>
             
                 <div className="tulogo"> <a href="/"><img src={logo} alt="tulogo" width="60" height="60" /></a></div>
@@ -18,8 +42,8 @@ const Header = () => {
                   <Nav.Link href="/news" ><span className="navlnk">News &amp; Notifications </span></Nav.Link>
                   <Nav.Link href="/about" ><span className="navlnk">About Us </span></Nav.Link>
                   <Dropdown>
-                    <Dropdown.Toggle  >
-                        <span className="more">More</span>
+                    <Dropdown.Toggle variant='flat' size="l">
+                        More
                     </Dropdown.Toggle>
 
                       <Dropdown.Menu>

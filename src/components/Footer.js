@@ -10,7 +10,7 @@ const Footer = () => {
 
                     
                 <Col>
-                    <Row className="row1"><span className="f1">Training and Placement Cell </span><br/> <span className="f2">School of Engineering, Tezpur University</span></Row>
+                    <Row className="row1"><span className="f1"><a href="/" className='link1'> Training and Placement Cell </a></span><br/> <span className="f2">School of Engineering, Tezpur University</span></Row>
                     <Row className="row2"><span className='f4'>T&amp;P Cell,Deans Building,<br/>School of Engineering,<br/>03712-273258 
                     <br/>pijush@tezu.ernet.in,<br/>tuplacement1@gmail.com <br/>tuplacement2@gmail.com</span>
                     </Row>
