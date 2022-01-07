@@ -10,13 +10,21 @@ const Job = () => {
 
 <Jobcard
             title="News"
+            link="http://www.tezu.ernet.in/event/2021/TPCell_Workshop_DrDeepakVohra.pdf"
             date="01/01/22"
             btn="Know More"
             />
 
             <Jobcard
             title="News"
+            link="http://www.tezu.ernet.in/event/2021/TPCell_Workshop_DrDeepakVohra.pdf"
             date="01/01/22"
+            btn="Know More"
+            />
+
+<Jobcard
+            title="News"
+            date="05/01/2022"
             btn="Know More"
             />
 

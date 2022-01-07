@@ -7,7 +7,7 @@
 }
 
 /* -------BODY------- */
-main {
+.home {
   min-height: 80vh;
   background-color: #fff;
 }
@@ -30,6 +30,11 @@ main {
 footer {
   min-height: 30vh;
   background-color: #0066ff;
+}
+
+.link1 {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 .f1 {
@@ -408,22 +413,47 @@ footer {
 /* ----------Job---------- */
 
 .jobscon {
-  padding: 20px;
+  padding: 10px;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .jobscon1 {
-  width: 60%;
-  border: 0em;
+  width: 70%;
 }
 
+.link {
+  color: #000;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #0066ff;
+}
 .jobbody {
-  display: flex;
   border: solid #f5f7f8;
   background-color: #f5f7f8;
   border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jobtext1 {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 10px 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+.jobtext2 {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 10px 0 0;
 }
 
 .jobbtn {
@@ -463,18 +493,43 @@ footer {
   padding: 10px 10px 0 0;
 }
 /* ----------Stories--------------- */
+
 .storiescontainer {
   min-height: 80vh;
   padding-bottom: 80px;
 }
-
-.crdcont {
-  padding: 0 20px 0 20px;
+.storycon {
+  padding: 20px 0 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.storycrd {
+
+.storybody {
   width: 18rem;
+}
+
+.storyimg {
+  width: 100%;
+}
+
+.storybody2 {
+  border: solid #f5f7f8;
+  background-color: #f5f7f8;
+  border-radius: 20px;
+}
+
+.storytext1 {
+  padding-top: 20px;
   text-align: center;
-  margin: 20px 0 20px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.storytext2 {
+  text-align: center;
+  line-height: 0.6;
+  font-size: 13px;
+  padding-bottom: 20px;
 }
 
 /* ----------PEOPLE----------- */

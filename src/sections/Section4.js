@@ -14,7 +14,7 @@ const Section4 = () => {
 
   return (
     <>
-    <div className="home">
+    <div className="home1">
         <div className="act">
             <span className="acttext">Why Recruit ?</span>
             </div>

@@ -6,14 +6,14 @@ import Slider from "./Section2"
 
 const Home = () => {
     return (
-        <>
+        <section className='home'>
            
            <Section1/>
            <Slider/>
            <Section3/>
            <Section4/>
          
-        </>
+        </section>
     )
 }
 

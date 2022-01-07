@@ -23,7 +23,7 @@ const Header = () => {
                     </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="/">Home</Dropdown.Item>
+                        <Dropdown.Item href="http://www.tezu.ernet.in/" target="_blank"> TU Home</Dropdown.Item>
                         <Dropdown.Item href="/stories">Stories</Dropdown.Item>
                         <Dropdown.Item href="/visitors">Visitors</Dropdown.Item>
                         <Dropdown.Item href="/people">People</Dropdown.Item>
