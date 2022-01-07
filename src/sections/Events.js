@@ -1,6 +1,6 @@
 import React from 'react'
 import Eventcard from '../components/Eventcard'
-import eventimg1 from '../components/images/eventimg1.png'
+import eventimg1 from '../components/images/eventimg1.jpg'
 import {Container, Row, Col} from "react-bootstrap"
 
 

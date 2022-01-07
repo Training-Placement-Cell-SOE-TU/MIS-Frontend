@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container,Col,Row} from "react-bootstrap"
 import PeopleCard from '../components/PeopleCard'
-import eventimg1 from '../components/images/eventimg1.png'
+import eventimg1 from '../components/images/eventimg1.jpg'
 
 const People = () => {
     return (

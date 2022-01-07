@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Row ,Col} from "react-bootstrap"
 import Storiescard from '../components/Storiescard'
-import eventimg1 from '../components/images/eventimg1.png' 
+import eventimg1 from '../components/images/eventimg1.jpg' 
 
 const Stories = () => {
     return (
