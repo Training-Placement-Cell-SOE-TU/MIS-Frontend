@@ -7,7 +7,6 @@ import icon7 from '../components/images/SmallIcons-07.png'
 import icon8 from '../components/images/SmallIcons-08.png'
 import icon9 from '../components/images/SmallIcons-09.png'
 import icon10 from '../components/images/SmallIcons-10.png'
-import Sectionodd from '../components/Sectionodd';
 
 const Section4 = () => {
   
