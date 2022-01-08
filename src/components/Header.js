@@ -8,37 +8,45 @@ const Header = () => {
       <style type="text/css">
                             {`
                                 .btn-flat {
-                                            background-color:#0066ff;
-                                            color: white;
+                                            background-color:#fff;
+                                            color: #0066ff;
                                             border-radius:20px;
                                             font-size: 12px;
+                                            font-weight:500;
       
                                             }
 
-                                            .btn-flat:hover {
-                                                background-color:#0066ff;
-                                                color: white;
+                                              .btn-flat:hover {
+                                                background-color:#fff;
+                                                color: #0066ff;
+                                                text-decoration:none;
                                                 border-radius:20px;
                                                 font-size: 12px;
           
                                                 }
-
-                                                .btn-flat1 {
-                                                  background-color:#0066ff;
-                                                  color: white;
-                                                  border-radius:6px;
-                                                  font-size: 12px;
+                                                .btn-l {
+                                                  padding: 11px 12px;
                                                   
-            
                                                   }
-      
-                                                  .btn-flat1:hover {
-                                                      background-color:#0066ff;
-                                                      color: white;
-                                                      border-radius:6px;
-                                                      font-size: 12px;
-                
-                                                      }
+                                                  .btn-flat1 {
+                                                    background-color:#fff;
+                                                    color: #0066ff;
+                                                    border-radius:20px;
+                                                    font-size: 14px;
+                                                    font-weight:600;
+              
+                                                    }
+        
+                                                      .btn-flat1:hover {
+                                                        background-color:#fff;
+                                                        color: #0066ff;
+                                                        text-decoration:none;
+                                                        border-radius:20px;
+                                                        
+                  
+                                                        }
+                                               
+
 
                                 .btn-ol {
                                             padding: 8px 12px;
@@ -66,7 +74,7 @@ const Header = () => {
                           More
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
+                        <Dropdown.Menu align="end">
                         <Dropdown.Item href="http://www.tezu.ernet.in/" target="_blank"> TU Home</Dropdown.Item>
                         <Dropdown.Item href="/stories">Stories</Dropdown.Item>
                         <Dropdown.Item href="/visitors">Visitors</Dropdown.Item>

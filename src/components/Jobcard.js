@@ -15,7 +15,7 @@ function Jobcard(props) {
 
                         <style type="text/css">
                             {`
-                                .btn-flat {
+                                .btn-flat2 {
                                             background-color:#0066ff;
                                             color: white;
                                             border-radius:20px;
@@ -23,7 +23,7 @@ function Jobcard(props) {
       
                                             }
 
-                                            .btn-flat:hover {
+                                            .btn-flat2:hover {
                                                 background-color:#0066ff;
                                                 color: white;
                                                 border-radius:20px;
@@ -31,13 +31,13 @@ function Jobcard(props) {
           
                                                 }
 
-                                .btn-l {
+                                .btn-la {
                                             padding: 10px 20px;
                                             
                                             }
                                 `}
                         </style>
-                <Button variant="flat" size="l" className="jobbtn"><a className="jlink" href={props.link} target="_blank" rel="noreferrer">{props.btn}</a></Button>
+                <Button variant="flat2" size="la" className="jobbtn"><a className="jlink" href={props.link} target="_blank" rel="noreferrer">{props.btn}</a></Button>
                 </Card.Body>
             </Card>
             

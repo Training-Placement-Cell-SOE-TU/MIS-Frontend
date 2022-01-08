@@ -22,7 +22,7 @@ const Section4 = () => {
 
     </div>
       {/* ------------------BIG SCREENS--------------- */}
-    <span className='s4con1'>
+    <span className='sfourcon1'>
     <Container >
       <Row>
         <Col className="recruitcon1">
@@ -179,12 +179,6 @@ const Section4 = () => {
 
                   </Row>
           
-        </Col>
-
-
-
-
-        <Col className="recruitcon4">
                   <Row className="recruitrow3">
                     <Recruit1
                       icon={icon5}
@@ -219,9 +213,11 @@ const Section4 = () => {
                     />
 
                   </Row>
-
-
         </Col>
+
+
+
+        
       </Row>
     </Container>
     </span>
