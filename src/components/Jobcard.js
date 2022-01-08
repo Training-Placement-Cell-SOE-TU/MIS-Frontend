@@ -37,7 +37,7 @@ function Jobcard(props) {
                                             }
                                 `}
                         </style>
-                <Button variant="flat" size="l" className="jobbtn">{props.btn}</Button>
+                <Button variant="flat" size="l" className="jobbtn"><a className="jlink" href={props.link} target="_blank">{props.btn}</a></Button>
                 </Card.Body>
             </Card>
             

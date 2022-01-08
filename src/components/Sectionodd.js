@@ -5,7 +5,8 @@ function Sectionodd(props) {
     return (
         <section className="sctn_odd">
 
-                <Container >
+<span className='bigscreens1'>
+<Container >
                 <Row className="sec">
 
                 <Col>
@@ -25,6 +26,29 @@ function Sectionodd(props) {
                     
             </Row>
             </Container>
+</span>
+                
+
+<span className='smallscreens1'>
+<Container >
+                <Row className="sec">
+
+                <Col>
+                    <div className="tnpcontainer">
+                        <div className="icon"><img src={props.icon} alt="icon" width="50" height="50" /></div>
+                        <h4 className="a1">{props.title}</h4>
+                        <h4 className="a2">
+                           {props.description}
+                        
+                        </h4>                        
+
+                    </div>
+                    </Col>
+         
+                    
+            </Row>
+            </Container>
+</span>
         </section>
     )
 }

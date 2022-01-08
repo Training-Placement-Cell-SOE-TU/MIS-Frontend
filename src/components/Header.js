@@ -41,7 +41,7 @@ const Header = () => {
                                                       }
 
                                 .btn-ol {
-                                            padding: 4px 10px;
+                                            padding: 8px 12px;
                                             
                                             }
                                 `}
@@ -91,13 +91,11 @@ const Header = () => {
                       <Navbar.Brand  href="/" ><span className="logo" >T&amp;P Cell</span> <br/> <span className="logo2" >SoE, Tezpur University</span> </Navbar.Brand>
                       <Nav className='mx-auto naav'>
                       <Dropdown>
-                        <span className="hb" >
+                        
                         <Dropdown.Toggle variant='flat1' size="ol" >
-                      <div className="hbmenu"></div>
-                      <div className="hbmenu"></div>
-                      <div className="hbmenu"></div>
+                        More
                       </Dropdown.Toggle>
-                        </span>
+                        
                       
 
                       <Dropdown.Menu align="end">

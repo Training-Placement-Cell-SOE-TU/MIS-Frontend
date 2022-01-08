@@ -234,6 +234,14 @@
     min-height: 60vh;
   }
 
+  .smallscreens1 {
+    display: none;
+  }
+
+  .smallscreens2 {
+    display: none;
+  }
+
   .a1 {
     color: #1b1b1b;
     font-size: 18px;
@@ -261,17 +269,22 @@
 }
 
 /* -------SECTION 3(S2)------- */
+@media screen and (min-width: 601px) {
+  .recruitcon2 {
+    padding-top: 240px;
+  }
 
-.recruitcon2 {
-  padding-top: 240px;
-}
+  .recruitrow1 {
+    margin: 40px 0 40px 0;
+  }
 
-.recruitrow1 {
-  margin: 40px 0 40px 0;
-}
+  .sec {
+    margin: 20px 0 20px 0;
+  }
 
-.sec {
-  margin: 20px 0 20px 0;
+  .sfourcon2 {
+    display: none;
+  }
 }
 
 /* ---------------NOT FOUND--------------------- */
@@ -379,6 +392,15 @@
 
 .link:hover {
   color: #0066ff;
+}
+
+.jlink {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.jlink:hover {
+  color: #ffffff;
 }
 .jobbody {
   border: solid #f5f7f8;
@@ -600,7 +622,7 @@
   .event1 {
     text-align: center;
     color: #141414;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 500;
     margin: 10px 0 10px 0;
   }
@@ -762,5 +784,250 @@
     color: #0040a0;
     border-bottom: 3px solid #0066ff;
     transition: 0.1s ease-in-out;
+  }
+}
+
+/* ----------Job(small)---------- */
+@media screen and (max-width: 600px) {
+  .jobscon {
+    padding: 10px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .jobscon1 {
+    width: 90%;
+  }
+
+  .link {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .link:hover {
+    color: #0066ff;
+  }
+
+  .jlink {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+
+  .jlink:hover {
+    color: #ffffff;
+  }
+  .jobbody {
+    border: solid #f5f7f8;
+    background-color: #f5f7f8;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .jobtext1 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 10px 0 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
+  }
+
+  .jobtext2 {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 10px 0 0;
+  }
+
+  .jobbtn {
+    position: relative;
+    right: 0;
+  }
+}
+
+/* ----------About(small)---------- */
+@media screen and (max-width: 600px) {
+  .aboutcontainer {
+    min-height: 80vh;
+  }
+
+  .abouttext {
+    padding: 10px 30px;
+    line-height: 2;
+    text-align: justify;
+    text-justify: inter-word;
+    color: #000;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+
+/* ----------Visitor(small)---------- */
+@media screen and (max-width: 600px) {
+  .viscon {
+    padding: 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .viscon1 {
+    width: 90%;
+  }
+
+  .visbody {
+    display: flex;
+    border: solid #f5f7f8;
+    background-color: #f5f7f8;
+    border-radius: 30px;
+
+    overflow: hidden;
+  }
+
+  .vistext1 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 10px 0 20px;
+  }
+
+  .vistext2 {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 10px 0 0;
+  }
+}
+
+/* --------HOME SECTION(small)--------- */
+/* -------SECTION 1 (S1)------- */
+@media screen and (max-width: 600px) {
+  .sctn_one {
+    min-height: 50vh;
+  }
+
+  .cdiv1 {
+    text-align: center;
+  }
+  .tnp3 {
+    margin-top: 40px;
+  }
+  .tnp1 {
+    display: none;
+  }
+  .stext1 {
+    color: #141414;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-top: 10px;
+  }
+  .stext2 {
+    color: #141414;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+}
+
+/* -------SECTION 2(S2)------- */
+@media screen and (max-width: 600px) {
+  .sctn_two {
+    min-height: 60vh;
+  }
+
+  .slider {
+    padding: 0 20px;
+  }
+
+  .rec.rec-dot {
+    visibility: hidden;
+  }
+
+  .rec.rec-arrow {
+    color: #0066ff;
+    background-color: #f5f7f8;
+    border-radius: 30%;
+  }
+
+  .slide {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 20px 0 30px 0;
+  }
+
+  .slidetext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+/* -------SECTION 3(S2)------- */
+@media screen and (max-width: 600px) {
+  .act {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 40px 0 60px 0;
+  }
+
+  .acttext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+/* -------SECTION Odd and Even(small)------- */
+
+@media screen and (max-width: 600px) {
+  .sctn_odd {
+    min-height: 60vh;
+  }
+
+  .bigscreens1 {
+    display: none;
+  }
+
+  .bigscreens2 {
+    display: none;
+  }
+  .a1 {
+    color: #1b1b1b;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 16px 0 16px 0;
+  }
+
+  .a2 {
+    color: #636363;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .tnpcontainer {
+    padding: 0 30px;
+  }
+}
+
+/* -------SECTION 3(S2)------- */
+@media screen and (max-width: 600px) {
+  .recruitcon4 {
+    padding: 0 30px;
+  }
+  .recruitcon3 {
+    padding: 0 30px;
+  }
+
+  .recruitrow3 {
+    padding: 0 30px;
+  }
+
+  .sfourcon1 {
+    display: none;
   }
 }
