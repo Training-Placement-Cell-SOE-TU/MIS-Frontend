@@ -32,6 +32,9 @@ const Placement = () => {
                 </div>
             </div>
 
+
+{/* ------------------BIG SCREENS----------------------- */}
+
 <div className='tablecon1'>
 <div className='tablecon'>
             <Table striped bordered hover size="sm">
@@ -78,7 +81,78 @@ const Placement = () => {
 
 </div>
             
+            {/* ------------------SMALL SCREENS----------------------- */}
            
+            <div className='tablecon2'>
+<div className='tablecon3'>
+            <Table striped bordered hover size="sm">
+  
+  <tbody>
+  <tr>
+      <td>S No.</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      
+    </tr>
+    <tr>
+    <td>Organization Name</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      
+      
+    </tr>
+    <tr>
+    <td>No. of Students Selected</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      
+      
+      
+    </tr>
+    <tr>
+    <td>Designation Offered</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      
+     
+      
+    </tr>
+
+    <tr>
+    <td>Selected from Disciplines</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      
+     
+      
+    </tr>
+    
+  </tbody>
+</Table>
+            </div>
+
+</div>
+
         </section>
     )
 }

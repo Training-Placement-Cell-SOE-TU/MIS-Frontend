@@ -70,17 +70,27 @@ const Footer = () => {
 
                     <Col> 
                     <Row className="row2"><span className='f3'><a href="/events" className='link1'> Events</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="/placements" className='link1'> Placements</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="/jobs" className='link1'> Latest Job Postings</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="/news" className='link1'> News&amp;Notifications</a></span></Row>
-                    <Row className='row2'><span className='f3'><a href="/about" className='link1'> About Us</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="http://www.tezu.ernet.in/" className='link1'>TU Home</a></span></Row>
                     <Row className="row2"><span className='f3'><a href="/people" className='link1'> People</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="/visitors" className='link1'> Visitors</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="/stories" className='link1'> Stories</a></span></Row>
-                    <Row className="row2"><span className='f3'><a href="/admin" className='link1'> Admin Console</a></span></Row>
-                    </Col>
+                    <Row className="row2"><span className='f3'><a href="http://www.tezu.ernet.in/" className='link1'>TU Home</a></span></Row>
+                    <Row className="row2"><span className='f3'><a href="/placements" className='link1'> Placements</a></span></Row>
                     
+                    <Row className="row2"><span className='f3'><a href="/news" className='link1'> News &amp; Notifications</a></span></Row>
+
+                    
+                    
+                    
+                    </Col>
+                    <Col> 
+                    <Row className="row2"><span className='f3'><a href="/stories" className='link1'> Stories</a></span></Row>
+                    <Row className="row2"><span className='f3'><a href="/visitors" className='link1'> Visitors</a></span></Row>
+                    <Row className='row2'><span className='f3'><a href="/about" className='link1'> About Us</a></span></Row>
+                    <Row className="row2"><span className='f3'><a href="/admin" className='link1'> Admin Console</a></span></Row>
+                    <Row className="row2"><span className='f3'><a href="/jobs" className='link1'> Latest Job Postings</a></span></Row>
+                    
+                    
+                    
+
+                    </Col>
                     
                     
 
