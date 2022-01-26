@@ -1,0 +1,161 @@
+/* -------NAVBAR(HEADER)------- */
+@media screen and (min-width: 601px) {
+  .navbaar {
+    min-height: 20vh;
+    padding: 12px 20px 12px 20px;
+    background-color: #fff;
+    z-index: 2;
+  }
+
+  .nav2con {
+    display: none;
+  }
+
+  .f5 {
+    color: #000;
+    font-size: 8px;
+    font-weight: 400;
+  }
+
+  .logo {
+    font-size: 20px;
+    letter-spacing: -1px;
+    color: #000;
+
+    padding-left: 30px;
+    font-weight: 600;
+  }
+
+  .logo2 {
+    font-size: 11px;
+
+    color: #000;
+    padding-left: 30px;
+    margin-top: -30px;
+    font-weight: 500;
+  }
+
+  .tulogo {
+    padding-left: 30px;
+  }
+  br {
+    line-height: 0.2;
+  }
+
+  .navlnk {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 6px 0 6px;
+  }
+
+  .navlnk1 {
+    color: #0066ff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 6px 0 6px;
+  }
+
+  .navlnk:hover {
+    color: #000;
+    border-bottom: 3px solid #0066ff;
+    font-weight: 500;
+    transition: 0.1s ease-in-out;
+  }
+
+  .navlnk1:hover {
+    color: #0040a0;
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+/* ------------NAVBAR(small screens)----------- */
+
+@media screen and (max-width: 600px) {
+  .nav1con {
+    display: none;
+  }
+
+  .nav2con {
+    width: 100%;
+  }
+
+  .navbaar2 {
+    min-height: 20vh;
+    padding: 12px 0;
+    background-color: #fff;
+    z-index: 2;
+  }
+
+  .sidetoside {
+    display: flex;
+  }
+
+  .f5 {
+    color: #000;
+    font-size: 8px;
+    font-weight: 400;
+  }
+
+  .logo {
+    font-size: 20px;
+    letter-spacing: -1px;
+    color: #000;
+    padding-left: 14px;
+    font-weight: 600;
+  }
+  .logo2 {
+    font-size: 12px;
+    color: #000;
+    padding-left: 14px;
+    font-weight: 500;
+  }
+
+  .tulogo {
+    padding-left: 24px;
+  }
+  br {
+    line-height: 0.2;
+  }
+
+  .hb {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+  }
+
+  .hbmenu {
+    width: 20px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    margin: 4px 0;
+  }
+
+  .navlnk {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 6px 0 6px;
+  }
+
+  .navlnk1 {
+    color: #0066ff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 6px 0 6px;
+  }
+
+  .navlnk:hover {
+    color: #000;
+    border-bottom: 3px solid #0066ff;
+    font-weight: 500;
+    transition: 0.1s ease-in-out;
+  }
+
+  .navlnk1:hover {
+    color: #0040a0;
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}

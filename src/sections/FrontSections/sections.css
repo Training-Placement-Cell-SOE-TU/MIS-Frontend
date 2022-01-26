@@ -1,0 +1,180 @@
+/* -------SECTION 1 (S1)------- */
+@media screen and (min-width: 601px) {
+  .sctn_one {
+    min-height: 60vh;
+  }
+
+  .cdiv1 {
+    text-align: center;
+    margin-top: -60px;
+  }
+
+  .tnp3 {
+    display: none;
+  }
+  .stext1 {
+    color: #141414;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-top: 10px;
+  }
+  .stext2 {
+    color: #141414;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-bottom: 100px;
+  }
+}
+
+/* -------SECTION 2(S2)------- */
+@media screen and (min-width: 601px) {
+  .sctn_two {
+    min-height: 60vh;
+  }
+
+  .slider {
+    margin: 0 40px 0 40px;
+  }
+
+  .rec.rec-dot {
+    visibility: hidden;
+  }
+
+  .rec.rec-arrow {
+    color: #0066ff;
+    background-color: #f5f7f8;
+    border-radius: 30%;
+  }
+
+  .slide {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 40px 0 60px 0;
+  }
+
+  .slidetext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+/* -------SECTION 3(S2)------- */
+@media screen and (min-width: 601px) {
+  .act {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 40px 0 80px 0;
+  }
+
+  .acttext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+/* -------SECTION 3(S2)------- */
+@media screen and (min-width: 601px) {
+  .recruitcon2 {
+    padding-top: 240px;
+  }
+
+  .recruitrow1 {
+    margin: 40px 0 40px 0;
+    padding: 0 50px;
+  }
+
+  .sec {
+    margin: 20px 0 20px 0;
+  }
+
+  .sfourcon2 {
+    display: none;
+  }
+
+  .a3 {
+    color: #1b1b1b;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 16px 0 16px 0;
+  }
+
+  .a4 {
+    color: #636363;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .tnpcontainer1 {
+    padding: 0 10px;
+  }
+}
+
+/* --------HOME SECTION(small)--------- */
+/* -------SECTION 1 (S1)------- */
+@media screen and (max-width: 600px) {
+  .sctn_one {
+    min-height: 50vh;
+  }
+
+  .cdiv1 {
+    text-align: center;
+  }
+  .tnp3 {
+    margin-top: 40px;
+  }
+  .tnp1 {
+    display: none;
+  }
+  .stext1 {
+    color: #141414;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-top: 10px;
+  }
+  .stext2 {
+    color: #141414;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+}
+
+/* -------SECTION 2(S2)------- */
+@media screen and (max-width: 600px) {
+  .sctn_two {
+    min-height: 60vh;
+  }
+
+  .slider {
+    padding: 0 20px;
+  }
+
+  .rec.rec-dot {
+    visibility: hidden;
+  }
+
+  .rec.rec-arrow {
+    color: #0066ff;
+    background-color: #f5f7f8;
+    border-radius: 30%;
+  }
+
+  .slide {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 20px 0 30px 0;
+  }
+
+  .slidetext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}

@@ -1,0 +1,67 @@
+/* ----------Visitor---------- */
+@media screen and (min-width: 601px) {
+  .viscon {
+    padding: 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .viscon1 {
+    width: 60%;
+  }
+
+  .visbody {
+    display: flex;
+    border: solid #f5f7f8;
+    background-color: #f5f7f8;
+    border-radius: 30px;
+  }
+
+  .vistext1 {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 10px 0 20px;
+  }
+
+  .vistext2 {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 10px 0 0;
+  }
+}
+
+/* ----------Visitor(small)---------- */
+@media screen and (max-width: 600px) {
+  .viscon {
+    padding: 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .viscon1 {
+    width: 90%;
+  }
+
+  .visbody {
+    display: flex;
+    border: solid #f5f7f8;
+    background-color: #f5f7f8;
+    border-radius: 30px;
+
+    overflow: hidden;
+  }
+
+  .vistext1 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 10px 0 20px;
+  }
+
+  .vistext2 {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 10px 0 0;
+  }
+}

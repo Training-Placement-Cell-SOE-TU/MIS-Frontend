@@ -1,0 +1,56 @@
+/* -------Recruit------- */
+@media screen and (max-width: 600px) {
+  .act {
+    text-align: center;
+    color: #141414;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 40px 0 60px 0;
+  }
+
+  .acttext:hover {
+    border-bottom: 3px solid #0066ff;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+/* -------Recruit(small)------- */
+@media screen and (max-width: 600px) {
+  .recruitcon4 {
+    padding: 0 30px;
+  }
+  .recruitcon3 {
+    padding: 0 30px;
+  }
+
+  .recruitrow3 {
+    padding: 0 30px;
+  }
+
+  .sfourcon1 {
+    display: none;
+  }
+
+  .tnpcontainer1 {
+    padding: 0 10px;
+  }
+
+  .sctn_recruit {
+    min-height: 60vh;
+  }
+
+  .a3 {
+    color: #1b1b1b;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 16px 0 16px 0;
+  }
+
+  .a4 {
+    color: #636363;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
