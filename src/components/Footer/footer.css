@@ -1,0 +1,113 @@
+/* -------FOOTER------- */
+@media screen and (min-width: 601px) {
+  footer {
+    min-height: 30vh;
+    background-color: #0066ff;
+  }
+  .smallscreenfooter {
+    display: none;
+  }
+
+  .link1 {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+
+  .link1:hover {
+    color: rgb(255, 255, 255);
+  }
+
+  .f1 {
+    color: rgb(238, 245, 255);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .f2 {
+    color: rgb(238, 245, 255);
+    font-size: 9.5px;
+    font-weight: 400;
+  }
+
+  .f3 {
+    color: rgb(238, 245, 255);
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .f4 {
+    color: rgb(238, 245, 255);
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .row1 {
+    margin-bottom: 30px;
+  }
+  .row2 {
+    margin: 14px 0 14px 0;
+  }
+}
+
+/* -------FOOTER(small)------- */
+@media screen and (max-width: 600px) {
+  footer {
+    min-height: 60vh;
+    background-color: #0066ff;
+  }
+
+  .bigscreenfooter {
+    display: none;
+  }
+
+  .link1 {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+
+  .link1:hover {
+    color: rgb(255, 255, 255);
+  }
+
+  .firstrow {
+    padding-bottom: 20px;
+    text-align: left;
+  }
+
+  .secondrow {
+    padding-bottom: 30px;
+    text-align: left;
+  }
+  .thirdrow {
+    text-align: left;
+  }
+  .f1 {
+    color: rgb(238, 245, 255);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .f2 {
+    color: rgb(238, 245, 255);
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .f3 {
+    color: rgb(238, 245, 255);
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 0;
+  }
+
+  .f4 {
+    color: rgb(238, 245, 255);
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .row1 {
+    margin-bottom: 30px;
+  }
+  .row2 {
+    margin: 14px 0 14px 0;
+  }
+}
