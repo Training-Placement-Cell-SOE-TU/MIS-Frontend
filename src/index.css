@@ -20,6 +20,14 @@
   border-radius: 50px;
 }
 
+button:focus {
+  outline: none;
+}
+
+.btn:focus {
+  outline: none;
+}
+
 /* ----------------Form------------------ */
 @media screen and (min-width: 601px) {
   .formcon {

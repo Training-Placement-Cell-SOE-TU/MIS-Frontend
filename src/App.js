@@ -20,10 +20,9 @@ import Job from "./sections/Job/Job";
 import News from "./sections/News/News";
 import Visitor from "./sections/Visitor/Visitor";
 import Form from "./sections/Form/Form"
+import StudentProfile from "./sections/Users/Student/StudentProfile/StudentProfile";
+
 function App() {
-
-
- 
  
   return (
 
@@ -40,6 +39,7 @@ function App() {
           <Route path="/news" component={News}/>
           <Route path="/visitors" component={Visitor}/>
           <Route path="/admin" component={Form}/>
+          <Route path="/student-profile" component={StudentProfile}/>
           
 
           <Route path="*" component={NotFound}/>
