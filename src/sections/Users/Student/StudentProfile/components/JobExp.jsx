@@ -98,17 +98,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Job = () => {
+const Job = ({ expeirence, about }) => {
     const classes = useStyles();
 
     return(
         <div className={classes.jobBox}>
             <div className={classes.jobHeader}>
-                <div style={{ alignSelf: 'center' }}>Experience</div>
+                <div style={{ alignSelf: 'center' }}>{expeirence}</div>
                 <div style={{ alignSelf: 'center' }}><ClearIcon style={{fontSize: '20px', color: '#424242', cursor: 'pointer'}} /></div>
             </div>
             <div className={classes.jobBody}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                {about}
             </div>
         </div>
     )
@@ -136,9 +136,11 @@ export default function JobExp() {
             </div>
             <div className={classes.detailsBox}>
                 <div className='row'>
-                    <div className='col-lg-3'><Job /></div>
-                    <div className='col-lg-3'><Job /></div>
-                    <div className='col-lg-3'><Job /></div>
+                    <div className='col-lg-3'><Job expeirence='Research Intern' about='Topic: Analysis of different deep learning architectures for multi-class classification of cervical cancer
+                    For the study : transfer learning was used at first where I have use fine tuning on different models available.' /></div>
+                    <div className='col-lg-3'><Job about="The project will be web based. The users will have to register (if not registered), or login (if already registered) to get into the system. The users will be provided with a document editor to create text documents and save them to their Library." expeirence='SDE intern' /></div>
+                    <div className='col-lg-3'><Job expeirence='Software Engineer' about='Working on an amazing project that involves sharing CO2 emission data among companies.
+                    Working in an agile team.' /></div>
                     <div className='col-lg-3'><AddJob /></div>
                 </div>
             </div>

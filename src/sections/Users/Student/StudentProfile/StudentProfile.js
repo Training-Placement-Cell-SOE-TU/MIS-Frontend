@@ -71,7 +71,7 @@ export default function StudentProfile() {
                     <div className='profile-box'>
                         <center>
                             <div className='avatar'>
-                                <img alt="Remy Sharp" className='img-fluid' src='https://source.unsplash.com/random/500×500/?fruit' style={{width: '200px', height: 'auto'}} />
+                                <img alt="Remy Sharp" className='img-fluid' src='https://i.ibb.co/N7mPS1p/me-fi-min.png' style={{width: '200px', height: 'auto'}} />
                             </div>
                         </center>
                         <div className={classes.editBtn}>
@@ -80,11 +80,11 @@ export default function StudentProfile() {
                             </IconButton>
                         </div>
                         <div className='general'>
-                            <div className='student-name'>Student Name</div>
+                            <div className='student-name'>Rittik Dasgupta</div>
                             <div>ECB20020</div>
                             <div>Electronics and Comunication Engineering Department</div>
                             <div>+91 9087564321</div>
-                            <div className='email'>student@gmail.com</div>
+                            <div className='email'>ecb20020@tezu.ac.in</div>
                         </div>
                     </div>
                 </div>

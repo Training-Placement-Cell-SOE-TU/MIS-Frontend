@@ -46,16 +46,16 @@ export default function AdditionalInfo() {
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>Category: </p>
+                    <p>Category: Genral</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Minortiy: </p>
+                    <p>Minortiy: No</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Handicap: </p>
+                    <p>Handicap: No</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Date of Birth: </p>
+                    <p>Date of Birth: 12 January 2002</p>
                 </div>
             </div>
         </div>

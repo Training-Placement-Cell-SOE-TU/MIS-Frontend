@@ -73,14 +73,16 @@ export default function AddressInfo() {
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p className={classes.address}>Permanent Address <span className={classes.addressText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span> </p>
+                    <p className={classes.address}>Permanent Address <span className={classes.addressText}>
+                        Near Central Jail, Jail Road, Joraht, Assam, Pin - 785004
+                    </span></p>
 
                     <p>
                         Is Permanent address your present Address ? <Checkbox />
                     </p>
 
                     <p className={classes.address}>Present Address <span className={classes.addressText}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        Near Central Jail, Jail Road, Joraht, Assam, Pin - 785004
                     </span></p>
                 </div>
             </div>

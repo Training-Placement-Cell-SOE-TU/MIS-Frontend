@@ -1,8 +1,12 @@
 import React from 'react'
 import {Container, Row, Col } from 'react-bootstrap'
-import './footer.css'
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import './footer.css';
 
 const Footer = () => {
+    const location = useLocation();
+    if(location.pathname.includes('/admin-console')) return null;
+
     return (
         <footer>
            

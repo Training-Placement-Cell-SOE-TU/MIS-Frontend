@@ -106,10 +106,10 @@ export default function Certifications() {
                 }
                 
                 <span className={classes.badge}>
-                    <div>Add Skill <AddIcon style={{fontSize: '20px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
+                    <div>Add Skill <AddIcon style={{fontSize: '16px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
                 </span>
                 <span className={classes.badge}>
-                    <div>Upload Certificate (PDF) <BackupOutlinedIcon style={{fontSize: '20px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
+                    <div>Upload Certificate (PDF) <BackupOutlinedIcon style={{fontSize: '16px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
                 </span>
                 <span className={classes.badge}>
                     <div>Save</div>

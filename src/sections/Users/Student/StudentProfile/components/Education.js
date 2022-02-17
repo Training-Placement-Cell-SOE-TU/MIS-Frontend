@@ -66,22 +66,22 @@ export default function Education() {
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>Metric Percentage: </p>
+                    <p>Metric Percentage: 92.4</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Year of Passing Matric: </p>
+                    <p>Year of Passing Matric: 2017</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Higher Secondary Percentage: </p>
+                    <p>Higher Secondary Percentage: 94</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Year of HS: </p>
+                    <p>Year of HS: 2019</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>SGPA: </p>
+                    <p>SGPA: 8.5</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>CGPA: </p>
+                    <p>CGPA: 8.2</p>
                 </div>
             </div>
         </div>
