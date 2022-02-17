@@ -1,8 +1,13 @@
 import React from 'react'
 import {Navbar, Nav, Dropdown} from 'react-bootstrap'
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import logo from "../tu.png"
 import './header.css'
+
 const Header = () => {
+  const location = useLocation();
+  if(location.pathname.includes('/admin-console')) return null;
+
   return (
     <header>
       <style type="text/css">

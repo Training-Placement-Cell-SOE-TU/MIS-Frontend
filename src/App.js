@@ -20,10 +20,14 @@ import Job from "./sections/Job/Job";
 import News from "./sections/News/News";
 import Visitor from "./sections/Visitor/Visitor";
 import Form from "./sections/Form/Form"
+import StudentProfile from "./sections/Users/Student/StudentProfile/StudentProfile";
+import Admin from "./sections/Users/Admin/Admin";
+import Students from "./sections/Users/Admin/Students/Students";
+import Companies from "./sections/Users/Admin/Companies/Companies";
+import Settings from "./sections/Users/Admin/Settings/Settings";
+
+
 function App() {
-
-
- 
  
   return (
 
@@ -40,6 +44,11 @@ function App() {
           <Route path="/news" component={News}/>
           <Route path="/visitors" component={Visitor}/>
           <Route path="/admin" component={Form}/>
+          <Route path="/student-profile" component={StudentProfile}/>
+          <Route path="/admin-console/dashboard" component={Admin}/>
+          <Route path="/admin-console/students" component={Students}/>
+          <Route path="/admin-console/companies" component={Companies}/>
+          <Route path="/admin-console/settings" component={Settings}/>
           
 
           <Route path="*" component={NotFound}/>
