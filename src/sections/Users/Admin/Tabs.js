@@ -4,6 +4,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import WorkIcon from '@material-ui/icons/Work';
 
 export const tabs = [
     {
@@ -25,6 +26,13 @@ export const tabs = [
         title: 'Companies',
         icon: <>
             <BusinessIcon />
+        </>
+    },
+    {
+        path: '/admin-console/training',
+        title: 'Training',
+        icon: <>
+            <WorkIcon />
         </>
     },
     {

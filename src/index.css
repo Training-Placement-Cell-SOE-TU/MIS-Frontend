@@ -7,7 +7,7 @@
 }
 
 /* -------SCROLLBAR------- */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -18,7 +18,7 @@
 ::-webkit-scrollbar-thumb {
   background-color: #292929;
   border-radius: 50px;
-}
+} */
 
 button:focus {
   outline: none;

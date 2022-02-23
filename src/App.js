@@ -25,7 +25,7 @@ import Admin from "./sections/Users/Admin/Admin";
 import Students from "./sections/Users/Admin/Students/Students";
 import Companies from "./sections/Users/Admin/Companies/Companies";
 import Settings from "./sections/Users/Admin/Settings/Settings";
-
+import Training from "./sections/Users/Admin/Training/Training";
 
 function App() {
  
@@ -49,6 +49,7 @@ function App() {
           <Route path="/admin-console/students" component={Students}/>
           <Route path="/admin-console/companies" component={Companies}/>
           <Route path="/admin-console/settings" component={Settings}/>
+          <Route path="/admin-console/training" component={Training}/>
           
 
           <Route path="*" component={NotFound}/>
