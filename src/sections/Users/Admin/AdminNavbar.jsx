@@ -92,10 +92,10 @@ function AdminNavbar(props) {
             <div>
                 <center>
                     <div className={classes.avatar}>
-                        <img alt="Remy Sharp" className='img-fluid' src='https://i.ibb.co/N7mPS1p/me-fi-min.png' style={{width: '200px', height: 'auto'}} />
+                        <img alt="Tezpur University" className='img-fluid' src={require('../../../components/tu.png')} style={{width: '200px', height: 'auto'}} />
                     </div>
 
-                    <Typography variant='h6' className={classes.username}>Rittik Dasgupta</Typography>
+                    <Typography variant='h6' className={classes.username}>Admin profile</Typography>
                 </center>
             </div>
             <List>
