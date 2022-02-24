@@ -30,7 +30,7 @@ export const tabs = [
     },
     {
         path: '/admin-console/training',
-        title: 'Training',
+        title: 'Trainings',
         icon: <>
             <WorkIcon />
         </>
