@@ -25,7 +25,8 @@ import Admin from "./sections/Users/Admin/Admin";
 import Students from "./sections/Users/Admin/Students/Students";
 import Companies from "./sections/Users/Admin/Companies/Companies";
 import Settings from "./sections/Users/Admin/Settings/Settings";
-
+import Training from "./sections/Users/Admin/Training/Training";
+import Trainings from "./sections/Users/Visitor/Trainings/Trainings"
 
 function App() {
  
@@ -34,7 +35,7 @@ function App() {
     <Router>
         <Header />
         <Switch>
-          <Route path="/" exact component={Home} />
+          {/* <Route path="/" exact component={Home} />
           <Route path="/events" component={Events}/>
           <Route path="/about" component={About}/>
           <Route path="/stories" component={Stories}/>
@@ -44,16 +45,17 @@ function App() {
           <Route path="/news" component={News}/>
           <Route path="/visitors" component={Visitor}/>
           <Route path="/admin" component={Form}/>
-          <Route path="/student-profile" component={StudentProfile}/>
+          <Route path="/student-profile" component={StudentProfile}/> */}
+          <Route path="/trainings" component={Trainings}/>
           <Route path="/admin-console/dashboard" component={Admin}/>
           <Route path="/admin-console/students" component={Students}/>
           <Route path="/admin-console/companies" component={Companies}/>
           <Route path="/admin-console/settings" component={Settings}/>
+          <Route path="/admin-console/training" component={Training}/>
           
-
           <Route path="*" component={NotFound}/>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       
     </Router>
     
