@@ -95,6 +95,7 @@ function Training(props) {
     const [shift, setShift] = useState(null);
 
     const [snackOpen, setSnackOpen] = useState(false);
+    const [isCreateTrainingDialog , setIsCreateTrainingDialog] = useState(true);
 
     const handleSnackClose = (event, reason) => {
         if (reason === 'clickaway') return;
@@ -103,7 +104,25 @@ function Training(props) {
 
     const handleTrainingModalOpen = () => {
         setOpenTrainingModal(true);
+        setIsCreateTrainingDialog(true);
     };
+
+    const handleOpenUpdateTrainingModel = (training_number) => {
+        
+        setOpenTrainingModal(true);
+        
+        setCurrentTrainingId(trainings[training_number].id);
+        setTitle(trainings[training_number].training_name);
+        setDesc(trainings[training_number].training_desc);
+        setTrainer(trainings[training_number].trainer_name);
+        setTrainerDesc(trainings[training_number].trainer_desc);
+        setVenue(trainings[training_number].training_venue);
+        setStart(trainings[training_number].training_start_date);
+        setEnd(trainings[training_number].training_end_date);
+        setTime(trainings[training_number].training_time);
+        setIsCreateTrainingDialog(false);
+
+    }
 
     const handleTrainingModalClose = () => {
         setOpenTrainingModal(false);
@@ -120,6 +139,7 @@ function Training(props) {
     const handleAttdModalOpen = (training_id) => {
         setOpenAttdModal(true);
         setCurrentTrainingId(training_id);
+
     };
 
     const handleAttdModalClose = () => {
@@ -143,7 +163,7 @@ function Training(props) {
 
         console.log(data);
 
-        axios.post('http://192.168.82.202:3000/training/add', data)
+        axios.post('http://192.168.43.5:5000/training/add', data)
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -194,10 +214,47 @@ function Training(props) {
         setStartDate(date);
     };
 
+    const handleUpdateTraining = (e) => {
+        e.preventDefault();
+
+        const data = {
+            "training_id": currTrainingId,
+            "training_name": title,
+            "training_desc": desc,
+            "training_venue": venue,
+            "training_start_date": start,
+            "training_end_date": end,
+            "training_time": time,
+            "trainer_name": trainer,
+            "trainer_desc": trainerDesc
+        }
+        console.log(data);
+
+        axios.post('http://192.168.43.5:5000/training/update', data)
+        .then(response => {
+            console.log(response);
+            setSnackOpen(true);
+        })
+        .catch(e => {
+            console.log(e.message);
+        })
+        .finally(() => {
+            setOpenTrainingModal(false);
+            setTitle(null);
+            setDesc(null);
+            setTrainer(null);
+            setTrainerDesc(null);
+            setVenue(null);
+            setStart(null);
+            setEnd(null);
+            setTime(null);
+        })
+    }
+
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get('http://192.168.82.202:3000/training/all')
+            axios.get('http://192.168.43.5:5000/training/all')
             .then(response => {
                 response = response.data;
                 console.log(response.result);
@@ -231,6 +288,8 @@ function Training(props) {
                                 return (
                                     <TrainingCard
                                     key={idx}
+                                    training_number = {idx}
+                                    handleOpenUpdateTrainingModel={handleOpenUpdateTrainingModel}
                                     handleAttdModalOpen={handleAttdModalOpen}
                                     training_id={training.training_id}
                                     training_name={training.training_name}
@@ -278,7 +337,7 @@ function Training(props) {
                                     display: 'block',
                                     textAlign: 'center'
                                 }}>
-                                    <form onSubmit={handleCreateTraining} autoComplete='off' className={classes.modalForm}>
+                                    <form onSubmit={isCreateTrainingDialog ? handleCreateTraining : handleUpdateTraining } autoComplete='off' className={classes.modalForm}  >
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" placeholder="Session Title" variant="outlined" value={title} onChange={e => setTitle(e.target.value)} />
                                         </div>
@@ -324,6 +383,7 @@ function Training(props) {
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Timing" value={time} onChange={e => setTime(e.target.value)} />
                                         </div>
 
+                                        {isCreateTrainingDialog ?
                                         <Button
                                             variant='outlined'
                                             type='submit'
@@ -333,6 +393,17 @@ function Training(props) {
                                         >
                                             Create Training
                                         </Button>
+                                        :
+                                        <Button variant='outlined'
+                                            type='submit'
+                                            style={{
+                                                marginRight: '1.2rem'
+                                            }}
+                                        >
+                                            Update Training
+                                        </Button>
+                                        }
+
                                     </form>
                                 </div>
                             </div>

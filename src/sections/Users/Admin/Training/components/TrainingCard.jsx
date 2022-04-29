@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     cardContainer: {
@@ -14,33 +15,33 @@ const useStyles = makeStyles((theme) => ({
         // paddingRight: '10%'
     },
     root: {
-      display: 'flex',
-      background: '#f7f7f7'
-    //   width: '70%'
+        display: 'flex',
+        background: '#f7f7f7'
+        //   width: '70%'
     },
     details: {
-      display: 'flex',
-      flexDirection: 'column',
+        display: 'flex',
+        flexDirection: 'column',
     },
     content: {
-      flex: '1 0 auto',
+        flex: '1 0 auto',
     },
     cover: {
-      width: '50%',
+        width: '50%',
     },
     controls: {
-      display: 'flex',
-      alignItems: 'center',
-      paddingLeft: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
     },
     playIcon: {
-      height: 38,
-      width: 38,
+        height: 38,
+        width: 38,
     },
     attdBtn: {
-      textTransform: 'none',
-      marginTop: '1rem'
+        textTransform: 'none',
+        marginTop: '1rem'
     },
     cardTitle: {
         fontWeight: 'bold',
@@ -66,7 +67,19 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         fontSize: '0.8rem'
     },
+    updateBtn: {
+        textTransform: 'none',
+        marginTop: '1rem',
+        marginLeft: '1rem'
+    },
+    deleteBtn : {
+        textTransform: 'none',
+        marginTop: '1rem',
+        marginLeft: '1rem',
+        backgroundColor: '#ff6b6b'
+    },
 }));
+
 
 export default function TrainingCard(props) {
     const classes = useStyles();
@@ -95,6 +108,25 @@ export default function TrainingCard(props) {
 
                         <Button variant="contained" color="secondary" className={classes.attdBtn} onClick={() => props.handleAttdModalOpen(props.training_id)}>
                             Take Attendance
+                        </Button>
+
+                        <Button variant="contained" color="secondary" className={classes.updateBtn} onClick={() => props.handleOpenUpdateTrainingModel(props.training_number) }>
+                            Update Training
+                        </Button>
+
+                        <Button variant="contained" color="secondary" className={classes.deleteBtn} onClick={() => {
+                            console.log(props.training_id);
+                            axios.delete("http://192.168.43.5:5000/training/delete", {
+                                data:{
+                                    training_id: props.training_id
+                                }
+                            }).then(res => {
+                                console.log(res);
+                            }).catch(err => {
+                                console.log(err);
+                            })
+                        }}>
+                            Delete Training
                         </Button>
                     </CardContent>
                 </div>
