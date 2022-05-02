@@ -31,6 +31,7 @@ import { id } from 'date-fns/locale';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const drawerWidth = 240;
+const ipAddress = "172.30.192.1";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -111,7 +112,8 @@ function Training(props) {
         
         setOpenTrainingModal(true);
         
-        setCurrentTrainingId(trainings[training_number].id);
+        console.log("========== \n" , trainings[training_number])
+        setCurrentTrainingId(trainings[training_number].training_id);
         setTitle(trainings[training_number].training_name);
         setDesc(trainings[training_number].training_desc);
         setTrainer(trainings[training_number].trainer_name);
@@ -163,7 +165,7 @@ function Training(props) {
 
         console.log(data);
 
-        axios.post('http://192.168.43.5:5000/training/add', data)
+        axios.post(`http://${ipAddress}:5000/training/add`, data)
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -193,7 +195,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.post('http://192.168.82.202:3000/training/add/attendance', data)
+        axios.post(`http://${ipAddress}:3000/training/add/attendance`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -230,7 +232,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.post('http://192.168.43.5:5000/training/update', data)
+        axios.put(`http://${ipAddress}:5000/training/update/training`,data )
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -254,7 +256,7 @@ function Training(props) {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get('http://192.168.43.5:5000/training/all')
+            axios.get(`http://${ipAddress}:5000/training/all`)
             .then(response => {
                 response = response.data;
                 console.log(response.result);

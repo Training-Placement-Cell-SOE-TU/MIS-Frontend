@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 
+const ipAddress = "172.30.192.1"
+
 const useStyles = makeStyles((theme) => ({
     cardContainer: {
         marginBottom: '2rem',
@@ -116,15 +118,20 @@ export default function TrainingCard(props) {
 
                         <Button variant="contained" color="secondary" className={classes.deleteBtn} onClick={() => {
                             console.log(props.training_id);
-                            axios.delete("http://192.168.43.5:5000/training/delete", {
-                                data:{
+                            axios.delete(`http://${ipAddress}:5000/training/delete`, {
+                                data : {
                                     training_id: props.training_id
-                                }
-                            }).then(res => {
+                                },
+                                headers: { "Authorization": "*" , 
+                                "Content-Type": "application/json",
+                                "Access-Control-Allow-Origin": "*" }
+                            }
+                            ).then(res => {
                                 console.log(res);
                             }).catch(err => {
                                 console.log(err);
                             })
+                            
                         }}>
                             Delete Training
                         </Button>
