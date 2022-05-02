@@ -96,6 +96,7 @@ export default function TrainingCard(props) {
                         <Button variant="contained" color="secondary" className={classes.attdBtn} onClick={() => props.handleAttdModalOpen(props.training_id)}>
                             Take Attendance
                         </Button>
+
                     </CardContent>
                 </div>
             </Card>

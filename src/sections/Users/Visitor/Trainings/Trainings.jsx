@@ -132,7 +132,7 @@ function Trainings(props) {
 
         console.log(data);
 
-        axios.post('http://192.168.43.215:3000/training/register/student', data)
+        axios.post('http://192.168.43.5:5000/training/register/student', data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -149,7 +149,7 @@ function Trainings(props) {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get('http://192.168.43.215:3000/training/all')
+            axios.get('http://192.168.43.5:5000/training/all')
             .then(response => {
                 response = response.data;
                 console.log(response.result);
