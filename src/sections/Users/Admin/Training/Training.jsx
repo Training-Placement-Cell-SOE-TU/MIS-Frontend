@@ -277,22 +277,7 @@ function Training(props) {
     }
 
     useEffect(() => {
-        const fetch = () => {
-            setLoading(true);
-            axios.get(`http://${ipAddress}:5000/training/all`)
-            .then(response => {
-                response = response.data;
-                console.log(response.result);
-                setTrainings(response.result)
-            })
-            .catch(e => {
-                console.log(e.message);
-            })
-            .finally(() => {
-                setLoading(false);
-            })
-        }
-        fetch();
+        updateTrainingState();
     }, [])
 
     return(
