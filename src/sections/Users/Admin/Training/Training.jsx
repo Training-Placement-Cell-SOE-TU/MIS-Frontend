@@ -31,7 +31,7 @@ import { id } from 'date-fns/locale';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const drawerWidth = 240;
-const ipAddress = "172.30.192.1";
+const ipAddress = "10.55.3.138";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -183,6 +183,7 @@ function Training(props) {
             setStart(null);
             setEnd(null);
             setTime(null);
+            updateTrainingState();
         })
     }
 
@@ -235,7 +236,6 @@ function Training(props) {
         axios.put(`http://${ipAddress}:5000/training/update/training`,data )
         .then(response => {
             console.log(response);
-            setSnackOpen(true);
         })
         .catch(e => {
             console.log(e.message);
@@ -250,26 +250,34 @@ function Training(props) {
             setStart(null);
             setEnd(null);
             setTime(null);
+            updateTrainingState();
         })
     }
 
+    const updateTrainingState = () => {
+
+            const fetch = () => {
+                setLoading(true);
+                axios.get(`http://${ipAddress}:5000/training/all`)
+                .then(response => {
+                    response = response.data;
+                    console.log(response.result);
+                    setTrainings(response.result)
+                })
+                .catch(e => {
+                    console.log(e.message);
+                })
+                .finally(() => {
+                    setLoading(false);
+                })
+            }
+            fetch();
+        
+
+    }
+
     useEffect(() => {
-        const fetch = () => {
-            setLoading(true);
-            axios.get(`http://${ipAddress}:5000/training/all`)
-            .then(response => {
-                response = response.data;
-                console.log(response.result);
-                setTrainings(response.result)
-            })
-            .catch(e => {
-                console.log(e.message);
-            })
-            .finally(() => {
-                setLoading(false);
-            })
-        }
-        fetch();
+        updateTrainingState();
     }, [])
 
     return(
@@ -298,6 +306,7 @@ function Training(props) {
                                     training_desc={training.training_desc}
                                     training_start_date={training.training_start_date}
                                     training_end_date={training.training_end_date}
+                                    updateTrainingState ={updateTrainingState}
                                     />
                                 )
                             })
@@ -490,6 +499,9 @@ function Training(props) {
             </>
         </AdminNavbar>
     );
+
+
+
 }
 
 export default Training;

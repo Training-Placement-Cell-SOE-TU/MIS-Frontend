@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 
-const ipAddress = "172.30.192.1"
+const ipAddress = "10.55.3.138"
 
 const useStyles = makeStyles((theme) => ({
     cardContainer: {
@@ -128,10 +128,10 @@ export default function TrainingCard(props) {
                             }
                             ).then(res => {
                                 console.log(res);
+                                props.updateTrainingState();
                             }).catch(err => {
                                 console.log(err);
-                            })
-                            
+                            })   
                         }}>
                             Delete Training
                         </Button>
