@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 
-const ipAddress = "10.55.3.138"
+const ipAddress = "127.0.0.1"
+const port = "7000"
 
 const useStyles = makeStyles((theme) => ({
     cardContainer: {
@@ -80,12 +81,27 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '1rem',
         backgroundColor: '#ff6b6b'
     },
+    saveDataBtn : {
+        textTransform: 'none',
+        marginTop: '1rem',
+        marginLeft: '1rem',
+        backgroundColor: 'green'
+    },
 }));
 
 
 export default function TrainingCard(props) {
     const classes = useStyles();
     const theme = useTheme();
+
+    const headers = { "Authorization": "*" , 
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*" 
+            }
+
+    const data = {
+        training_id : props.training_id
+    }
 
     return (
         <div className={classes.cardContainer}>
@@ -118,14 +134,7 @@ export default function TrainingCard(props) {
 
                         <Button variant="contained" color="secondary" className={classes.deleteBtn} onClick={() => {
                             console.log(props.training_id);
-                            axios.delete(`http://${ipAddress}:5000/training/delete`, {
-                                data : {
-                                    training_id: props.training_id
-                                },
-                                headers: { "Authorization": "*" , 
-                                "Content-Type": "application/json",
-                                "Access-Control-Allow-Origin": "*" }
-                            }
+                            axios.delete(`http://${ipAddress}:${port}/training/delete`, {data, headers}
                             ).then(res => {
                                 console.log(res);
                                 props.updateTrainingState();
@@ -135,6 +144,21 @@ export default function TrainingCard(props) {
                         }}>
                             Delete Training
                         </Button>
+
+                        <Button variant="contained" color="secondary" className={classes.saveDataBtn} onClick={() => {
+                            console.log(props.training_id)
+                    
+                            axios.post(`http://${ipAddress}:${port}/training/student/data`, data, headers)
+                            .then(response => {
+                                console.log(response)
+                            })
+                            .catch(e => {
+                                console.log(e.message)
+                            })
+                        }}>
+                            Save Data As Excel
+                        </Button>
+
                     </CardContent>
                 </div>
             </Card>

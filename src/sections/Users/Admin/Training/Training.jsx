@@ -31,7 +31,9 @@ import { id } from 'date-fns/locale';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const drawerWidth = 240;
-const ipAddress = "10.55.3.138";
+
+const ipAddress = "127.0.0.1";
+const port = "7000"
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -165,7 +167,7 @@ function Training(props) {
 
         console.log(data);
 
-        axios.post(`http://${ipAddress}:5000/training/add`, data)
+        axios.post(`http://${ipAddress}:${port}/training/add`, data)
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -196,7 +198,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.post(`http://${ipAddress}:3000/training/add/attendance`, data)
+        axios.post(`http://${ipAddress}:${port}/training/add/attendance`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -233,7 +235,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.put(`http://${ipAddress}:5000/training/update/training`,data )
+        axios.put(`http://${ipAddress}:${port}/training/update/training`,data )
         .then(response => {
             console.log(response);
         })
@@ -258,7 +260,7 @@ function Training(props) {
 
             const fetch = () => {
                 setLoading(true);
-                axios.get(`http://${ipAddress}:5000/training/all`)
+                axios.get(`http://${ipAddress}:${port}/training/all`)
                 .then(response => {
                     response = response.data;
                     console.log(response.result);
