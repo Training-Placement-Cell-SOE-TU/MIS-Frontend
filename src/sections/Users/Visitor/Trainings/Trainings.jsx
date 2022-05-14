@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import TrainingCard from './components/TrainingCard';
-import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import { Button, Backdrop, Icon, TextField, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
@@ -18,11 +18,15 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { id } from 'date-fns/locale';
 import LinearProgress from '@material-ui/core/LinearProgress';
+
+const ipAddress = "127.0.0.1"
+const port = "7000"
 
 const drawerWidth = 240;
 
@@ -132,7 +136,7 @@ function Trainings(props) {
 
         console.log(data);
 
-        axios.post('http://192.168.43.5:5000/training/register/student', data)
+        axios.post(`http://${ipAddress}:${port}/training/register/student`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -149,7 +153,7 @@ function Trainings(props) {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get('http://192.168.43.5:5000/training/all')
+            axios.get(`http://${ipAddress}:${port}/training/all`)
             .then(response => {
                 response = response.data;
                 console.log(response.result);
@@ -183,6 +187,7 @@ function Trainings(props) {
                                         key={idx}
                                         handleRegisterModal={handleRegisterModal}
                                         training_id={training.training_id}
+                                        trainer_name={training.trainer_name}
                                         training_name={training.training_name}
                                         training_desc={training.training_desc}
                                         training_start_date={training.training_start_date}
@@ -197,6 +202,7 @@ function Trainings(props) {
                 </>
             }
 
+            {loading ? <CircularProgress /> :
             <>
                 <Modal
                     aria-labelledby="transition-modal-title"
@@ -270,7 +276,7 @@ function Trainings(props) {
                                                 marginRight: '1.2rem'
                                             }}
                                         >
-                                            Create Training
+                                            Register
                                         </Button>
                                     </form>
                                 </div>
@@ -279,6 +285,7 @@ function Trainings(props) {
                     </Fade>
                 </Modal>
             </>
+}
 
             <>
                 <Snackbar
