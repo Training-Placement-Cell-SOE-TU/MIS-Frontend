@@ -79,7 +79,7 @@ export default function TrainingCard(props) {
                     <CardContent className={classes.content}>
 
                         <Typography className={classes.cardTitle}>
-                            {props.training_name.toUpperCase()}
+                            {props.training_name.toUpperCase()} --- {props.trainer_name.toUpperCase()}
                         </Typography>
 
                         <Typography variant="subtitle2" color="textSecondary" className={classes.startDate}>
