@@ -15,8 +15,9 @@ import axios from "axios"
 
 const theme = createTheme();
 
-const ipAddress = "127.0.0.1"
-const port = "7000"
+
+const ipAddress = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
 
 const genderList = [
   {
