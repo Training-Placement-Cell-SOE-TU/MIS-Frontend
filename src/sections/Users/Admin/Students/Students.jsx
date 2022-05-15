@@ -27,6 +27,7 @@ import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core';
 import StudentCard from './components/StudentCard';
 import AdminNavbar from '../AdminNavbar';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -126,11 +127,29 @@ function Students(props) {
     console.log(history.location.pathname);
 
     const [search, setSearch] = useState('');
-    const [year, setYear] = useState('');
+    const [year, setYear] = useState(0);
+    const [branch , setBranch] = useState(0)
 
     const handleYearChange = (event) => {
         setYear(event.target.value);
     };
+
+    
+    const handleBranchChange = (event) => {
+        setBranch(event.target.value);
+    };
+
+    const [data , setData] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://${process.env.REACT_APP_IP+":"+process.env.REACT_APP_PORT}/admin/all_student`)
+        .then(res => {
+            console.log(res.data);
+            setData(res.data);
+        })
+        .catch(err => console.log(err));
+    }, []);
+
 
     return (
         <AdminNavbar tab='Students'>
@@ -164,10 +183,12 @@ function Students(props) {
                         <Select
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
+                            defaultValue={year}
                             value={year}
                             onChange={handleYearChange}
                             label="Age"
                         >
+                        <MenuItem value={0} selected={true}>All</MenuItem>
                         <MenuItem value={2020}>2020</MenuItem>
                         <MenuItem value={2021}>2021</MenuItem>
                         <MenuItem value={2022}>2022</MenuItem>
@@ -179,38 +200,23 @@ function Students(props) {
 
                 <div className={classes.filter}>
                     <FormControl variant='filled' className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-outlined-label">Batch</InputLabel>
+                        <InputLabel id="demo-simple-select-outlined-label">Branch</InputLabel>
                         <Select
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
-                            value={year}
-                            onChange={handleYearChange}
+                            value={branch}
+                            onChange={handleBranchChange}
                             label="Age"
                         >
-                        <MenuItem value={2020}>2020</MenuItem>
-                        <MenuItem value={2021}>2021</MenuItem>
-                        <MenuItem value={2022}>2022</MenuItem>
-                        <MenuItem value={2023}>2023</MenuItem>
-                        <MenuItem value={2024}>2024</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
 
-                <div className={classes.filter}>
-                    <FormControl variant='filled' className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-outlined-label">Batch</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-outlined-label"
-                            id="demo-simple-select-outlined"
-                            value={year}
-                            onChange={handleYearChange}
-                            label="Age"
-                        >
-                        <MenuItem value={2020}>2020</MenuItem>
-                        <MenuItem value={2021}>2021</MenuItem>
-                        <MenuItem value={2022}>2022</MenuItem>
-                        <MenuItem value={2023}>2023</MenuItem>
-                        <MenuItem value={2024}>2024</MenuItem>
+                        <MenuItem value={0} selected={true}>All</MenuItem>
+                        <MenuItem value={1} >B.Tech. CE</MenuItem>
+                        <MenuItem value={2}>B.Tech. CSE</MenuItem>
+                        <MenuItem value={3}>B.Tech. ECE</MenuItem>
+                        <MenuItem value={4}>B.Tech. EE</MenuItem>
+                        <MenuItem value={5}>B.Tech. FET</MenuItem>
+                        <MenuItem value={6}>M.Tech. IT</MenuItem>
+                        <MenuItem value={7}>M.Tech. ME</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -219,13 +225,28 @@ function Students(props) {
             </div>
 
             <div className={classes.studentGrp}>
-                <StudentCard />
-                <StudentCard />
-                <StudentCard />
-                <StudentCard />
-                <StudentCard />
-                <StudentCard />
-                <StudentCard />
+                        <StudentCard 
+                            key = {100}
+                            data = {{
+                                batch: "Batch",
+                                branch: "Branch",
+                                email: "Email",
+                                fname: "Name",
+                                gender: "Gender",
+                                lname: " ",
+                                roll_no: "Roll Number"
+                            }}
+                            noExtras = {true}
+                        />
+                        {/* create a student card for each student */}
+                        {Object.keys(data).map(key => {
+                            return (
+                                <StudentCard
+                                    key={key}
+                                    data = {data[key]}
+                                    />
+                            )
+                        })}
             </div>
         </AdminNavbar>
     );
