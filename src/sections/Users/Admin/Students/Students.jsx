@@ -120,6 +120,23 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+function studentCardGe(data , year , branch , branch_list){
+    let newData = data;
+    
+    if(year != 0){ newData = newData.filter(obj => obj.batch == year)}
+    if(branch != 0){ newData = newData.filter(obj => obj.branch == branch_list[branch]) }
+
+    return Object.keys(newData).map(key => {
+        return (
+            <StudentCard
+                key={key}
+                data = {newData[key]}/>
+        )
+    })
+}
+
+
 function Students(props) {
     const classes = useStyles();
 
@@ -131,21 +148,49 @@ function Students(props) {
     const [branch , setBranch] = useState(0)
 
     const handleYearChange = (event) => {
-        setYear(event.target.value);
+        setYear(parseInt(event.target.value));
     };
 
     
     const handleBranchChange = (event) => {
-        setBranch(event.target.value);
+        console.log(event.target.value);
+        setBranch(parseInt(event.target.value));
     };
 
     const [data , setData] = useState([]);
+    const [branch_list , setBranchList] = useState({});
+    const [year_list , setYearList] = useState({});
 
     useEffect(() => {
         axios.get(`http://${process.env.REACT_APP_IP+":"+process.env.REACT_APP_PORT}/admin/all_student`)
         .then(res => {
-            console.log(res.data);
             setData(res.data);
+
+            //get unique branch list and add to branch_list
+            let count =  1;
+            let branch_li = {
+                0 : 'All'
+            }
+            Object.keys(res.data).forEach(key => {
+                if(!(res.data[key].branch in branch_li)){
+                    branch_li[count] = res.data[key].branch;
+                    count++;
+                }
+            })
+            setBranchList(branch_li);
+
+            //get unique year list and add to year_list
+            let year_li = {
+                0 : 'All'
+            }
+
+            Object.keys(res.data).forEach(key => {
+                if(!(res.data[key].batch in year_li)){
+                    year_li[res.data[key].batch] = res.data[key].batch;
+                }
+            })
+            setYearList(year_li);
+
         })
         .catch(err => console.log(err));
     }, []);
@@ -188,12 +233,14 @@ function Students(props) {
                             onChange={handleYearChange}
                             label="Age"
                         >
-                        <MenuItem value={0} selected={true}>All</MenuItem>
-                        <MenuItem value={2020}>2020</MenuItem>
-                        <MenuItem value={2021}>2021</MenuItem>
-                        <MenuItem value={2022}>2022</MenuItem>
-                        <MenuItem value={2023}>2023</MenuItem>
-                        <MenuItem value={2024}>2024</MenuItem>
+
+                        { Object.keys(year_list).map(key => {
+                            return (
+                                <MenuItem value={key}>{year_list[key]}</MenuItem>
+                            )
+                        }
+                        )}
+
                         </Select>
                     </FormControl>
                 </div>
@@ -209,19 +256,16 @@ function Students(props) {
                             label="Age"
                         >
 
-                        <MenuItem value={0} selected={true}>All</MenuItem>
-                        <MenuItem value={1} >B.Tech. CE</MenuItem>
-                        <MenuItem value={2}>B.Tech. CSE</MenuItem>
-                        <MenuItem value={3}>B.Tech. ECE</MenuItem>
-                        <MenuItem value={4}>B.Tech. EE</MenuItem>
-                        <MenuItem value={5}>B.Tech. FET</MenuItem>
-                        <MenuItem value={6}>M.Tech. IT</MenuItem>
-                        <MenuItem value={7}>M.Tech. ME</MenuItem>
+                        {
+                            Object.keys(branch_list).map(key => {
+                                return (
+                                    <MenuItem key={key} value={key}>{branch_list[key]}</MenuItem>
+                                )
+                            })
+                        }
                         </Select>
                     </FormControl>
                 </div>
-
-                <Button variant='contained' color='primary'>Filter</Button>
             </div>
 
             <div className={classes.studentGrp}>
@@ -239,14 +283,9 @@ function Students(props) {
                             noExtras = {true}
                         />
                         {/* create a student card for each student */}
-                        {Object.keys(data).map(key => {
-                            return (
-                                <StudentCard
-                                    key={key}
-                                    data = {data[key]}
-                                    />
-                            )
-                        })}
+                    {
+                            studentCardGe(data , year , branch , branch_list)
+                    }
             </div>
         </AdminNavbar>
     );
