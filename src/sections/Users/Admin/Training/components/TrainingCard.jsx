@@ -152,6 +152,8 @@ export default function TrainingCard(props) {
                             axios.post(`http://${ipAddress}:${port}/training/student/data`, data, headers)
                             .then(response => {
                                 console.log(response)
+                                // open url in new tab
+                                window.open(`http://${ipAddress}:${port}/training/student/data/`, '_blank');
                             })
                             .catch(e => {
                                 console.log(e.message)
