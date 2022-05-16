@@ -22,14 +22,14 @@ const theme = createTheme();
 
 export default function SignIn() {
 
-    const [userId, setUserId] = useState(null)
+    const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const data = {
-            "user_id": userId,
+            "email": email,
             "password": password
         }
 
@@ -69,11 +69,11 @@ export default function SignIn() {
                 fullWidth
                 id="email"
                 label="Email Address"
-                name="user_id"
-                value={userId}
+                name="email"
+                value={email}
                 autoComplete="email"
                 autoFocus
-                onChange={e => setUserId(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 />
                 <TextField
                 margin="normal"
@@ -102,7 +102,7 @@ export default function SignIn() {
                     </Link>
                 </Grid>
                 <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href={`http://${ipAddress}:3000/student-signup`} variant="body2">
                     {"Don't have an account? Sign Up"}
                     </Link>
                 </Grid>
