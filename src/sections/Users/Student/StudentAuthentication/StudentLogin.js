@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useHistory } from "react-router-dom";
 
 import axios from 'axios'
 
@@ -20,10 +21,14 @@ const port = "7000"
 
 const theme = createTheme();
 
+var headers
+
 export default function SignIn() {
+    let history = useHistory()
 
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
+    const [token, setToken] = useState("")
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -38,6 +43,8 @@ export default function SignIn() {
         axios.post(`http://${ipAddress}:${port}/student/login`, data)
         .then(response => {
             console.log(response);
+            setToken(localStorage.setItem('access-token', response.data.token))
+            headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
         })
         .catch(e => {
             console.log(e.message);

@@ -1,5 +1,5 @@
 import './StudentProfile.scss';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
@@ -14,9 +14,15 @@ import Certifications from './components/Certifications';
 import AddressInfo from './components/Address';
 import ScoreCard from './components/ScoreCard';
 import AdditionalInfo from './components/Aditional';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import SocialInfo from './components/SocialInfo';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        padding: '30px'
+    },
     editBtn: {
         display: 'flex',
         flexDirection: 'row-reverse'
@@ -62,45 +68,82 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const ipAddress = "127.0.0.1"
+const port = "7000"
+
 export default function StudentProfile() {
+
+    const [loading, setLoading] = useState(false);
+    const [profile, setProfile] = useState(null)
+
+    let { roll } = useParams();
+    var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
+
+    useEffect(() => {
+        const fetch = () => {
+            setLoading(true);
+            axios.get(`http://${ipAddress}:${port}/student/${roll}`, headers)
+            .then(response => {
+                response = response.data;
+                console.log(response);
+                setProfile(response)
+            })
+            .catch(e => {
+                console.log(e.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+        }
+        fetch();
+    }, [])
+
+
     const classes = useStyles();
     return (
         <section className='student-profile'>
-            <div className='row'>
-                <div className='col-lg-4'>
-                    <div className='profile-box'>
-                        <center>
-                            <div className='avatar'>
-                                <img alt="Remy Sharp" className='img-fluid' src='https://i.ibb.co/N7mPS1p/me-fi-min.png' style={{width: '200px', height: 'auto'}} />
+            {
+                loading ?
+                <LinearProgress /> :
+                <>
+                    <div className='row'>
+                        <div className='col-lg-4'>
+                            <div className='profile-box'>
+                                <center>
+                                    <div className='avatar'>
+                                        <img alt="Remy Sharp" className='img-fluid' src='https://i.ibb.co/N7mPS1p/me-fi-min.png' style={{width: '200px', height: 'auto'}} />
+                                    </div>
+                                </center>
+                                <div className={classes.editBtn}>
+                                    <IconButton className={classes.iconBtn}>
+                                        <EditIcon className={classes.editIcon}/>
+                                    </IconButton>
+                                </div>
+                                <div className='general'>
+                                    {/* {console.log(profile)} */}
+                                    <div className='student-name'>{profile.fname}</div>
+                                    <div>{roll}</div>
+                                    <div>Electronics and Comunication Engineering Department</div>
+                                    <div>+91 9087564321</div>
+                                    <div className='email'>ecb20020@tezu.ac.in</div>
+                                </div>
                             </div>
-                        </center>
-                        <div className={classes.editBtn}>
-                            <IconButton className={classes.iconBtn}>
-                                <EditIcon className={classes.editIcon}/>
-                            </IconButton>
                         </div>
-                        <div className='general'>
-                            <div className='student-name'>Rittik Dasgupta</div>
-                            <div>ECB20020</div>
-                            <div>Electronics and Comunication Engineering Department</div>
-                            <div>+91 9087564321</div>
-                            <div className='email'>ecb20020@tezu.ac.in</div>
+                        <div className='col-lg-8 details-main-container'>
+                            <div className='row details-container'>
+                                <Skills />
+                                <Education />
+                                <JobExp />
+                                <Certifications />
+                                <AddressInfo />
+                                <ScoreCard />
+                                <AdditionalInfo />
+                                <SocialInfo />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className='col-lg-8 details-main-container'>
-                    <div className='row details-container'>
-                        <Skills />
-                        <Education />
-                        <JobExp />
-                        <Certifications />
-                        <AddressInfo />
-                        <ScoreCard />
-                        <AdditionalInfo />
-                        <SocialInfo />
-                    </div>
-                </div>
-            </div>
+                </>
+            }
         </section>
     );
 }
