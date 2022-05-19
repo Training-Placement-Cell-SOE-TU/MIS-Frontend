@@ -50,7 +50,7 @@ function App() {
           <Route path="/admin" component={Form}/>
           <Route path="/student-signup" component={StudentSignUp}/>
           <Route path="/student-login" component={StudentLogin}/>
-          <Route path="/student-profile" component={StudentProfile}/>
+          <Route path="/student/:roll" component={StudentProfile}/>
           <Route path="/trainings" component={Trainings}/>
           <Route path="/admin-console/dashboard" component={Admin}/>
           <Route path="/admin-console/students" component={Students}/>
