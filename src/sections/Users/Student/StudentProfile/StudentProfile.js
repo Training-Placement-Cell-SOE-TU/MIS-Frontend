@@ -74,7 +74,7 @@ const port = "7000"
 export default function StudentProfile() {
 
     const [loading, setLoading] = useState(false);
-    const [profile, setProfile] = useState(null)
+    const [profile, setProfile] = useState({})
 
     let { roll } = useParams();
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
@@ -121,11 +121,11 @@ export default function StudentProfile() {
                                 </div>
                                 <div className='general'>
                                     {/* {console.log(profile)} */}
-                                    <div className='student-name'>{profile.fname}</div>
+                                    <div className='student-name'>{profile.fname} {profile.lname}</div>
                                     <div>{roll}</div>
-                                    <div>Electronics and Comunication Engineering Department</div>
-                                    <div>+91 9087564321</div>
-                                    <div className='email'>ecb20020@tezu.ac.in</div>
+                                    <div>{profile.branch}</div>
+                                    <div>{profile.phone}</div>
+                                    <div className='email'>{profile.email}</div>
                                 </div>
                             </div>
                         </div>
