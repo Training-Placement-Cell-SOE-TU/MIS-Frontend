@@ -10,7 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 const useStyles = makeStyles({
     card: {
         '&:hover': {
-            boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.219)',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.219)',
         },
         // border: '1px solid black',
         display: 'flex',
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
         cursor: 'pointer',
         transition: '0.2s ease all',
         backgroundColor: '#e8e8e8',
-        marginBottom: '2rem'
+        marginBottom: '0.5rem'
     },
     body: {
         display: 'flex',
@@ -29,33 +29,46 @@ const useStyles = makeStyles({
         alignSelf: 'center',
         width: '80%'
     },
-    text: {
-        alignSelf: 'center'
+    sections: {
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: '1fr 2fr 1fr 1fr 2fr',
+        paddingTop:'8px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: '10px'
     },
     actionGrp: {
         alignSelf: 'center'
     }
 })
 
-export default function StudentCard() {
+export default function StudentCard(props) {
     const classes = useStyles();
     return(
-        <div className={classes.card}>
+        <div className={classes.card}
+        style={props.noExtras ? {height : '60px' , marginBottom : '0.5rem'} : {}}
+        >
             <div className={classes.body}>
                 <div>
-                    <Checkbox
+                     <Checkbox
                         defaultChecked
                         color="primary"
                         inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
                 </div>
-                <Typography className={classes.text}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                </Typography>
+                {console.log(props)}
+                <div className={classes.sections}>
+                    <div>{props.data.roll_no}</div>
+                    <div>{props.data.fname +" "+ props.data.lname}</div>
+                    <div>{props.data.batch}</div>
+                    <div>{props.data.branch}</div>
+                    <div>{props.data.email}</div>
+                </div>
             </div>
             <div className={classes.actionGrp}>
                 <IconButton>
-                    <EditIcon style={{ color: 'black' }} />
+                    <EditIcon style={props.noExtras ? {opacity : '0.3'} : {color: 'black'}} />
                 </IconButton>
 
                 <IconButton>
@@ -67,7 +80,7 @@ export default function StudentCard() {
                 </IconButton>
 
                 <IconButton>
-                    <PersonIcon style={{ color: 'black' }} />
+                    <PersonIcon style={props.noExtras ? {opacity : '0.3'} : {color: 'black'}}/>
                 </IconButton>
             </div>
         </div>

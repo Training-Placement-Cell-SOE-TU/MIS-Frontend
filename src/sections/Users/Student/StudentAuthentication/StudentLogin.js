@@ -16,8 +16,8 @@ import { useHistory } from "react-router-dom";
 
 import axios from 'axios'
 
-const ipAddress = "127.0.0.1"
-const port = "7000"
+const ipAddress = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
 
 const theme = createTheme();
 

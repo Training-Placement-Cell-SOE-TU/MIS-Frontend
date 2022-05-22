@@ -7,8 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 
-const ipAddress = "127.0.0.1"
-const port = "7000"
+
+const ipAddress = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
 
 const useStyles = makeStyles((theme) => ({
     cardContainer: {
@@ -151,6 +152,8 @@ export default function TrainingCard(props) {
                             axios.post(`http://${ipAddress}:${port}/training/student/data`, data, headers)
                             .then(response => {
                                 console.log(response)
+                                // open url in new tab
+                                window.open(`http://${ipAddress}:${port}/training/student/data/`, '_blank');
                             })
                             .catch(e => {
                                 console.log(e.message)
