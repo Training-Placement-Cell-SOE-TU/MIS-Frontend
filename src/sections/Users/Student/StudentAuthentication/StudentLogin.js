@@ -24,7 +24,6 @@ const theme = createTheme();
 var headers
 
 export default function SignIn() {
-    let history = useHistory()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
