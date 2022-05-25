@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Redirect } from 'react-router-dom';
 
 import axios from "axios"
 
@@ -40,15 +41,16 @@ export default function SignUp() {
 
   const date = new Date()
 
-  const [gender, setGender] = React.useState(null);
-  const [fname, setFname] = React.useState(null)
-  const [lname, setLname] = React.useState(null)
-  const [email, setEmail] = React.useState(null)
-  const [rollNo, setRollNo] = React.useState(null)
+  const [gender, setGender] = React.useState("");
+  const [fname, setFname] = React.useState("")
+  const [lname, setLname] = React.useState("")
+  const [email, setEmail] = React.useState("")
+  const [rollNo, setRollNo] = React.useState("")
   const [batch, setBatch] = React.useState(date.getFullYear())
-  const [branch, setBranch] = React.useState(null)
-  const [phone, setPhone] = React.useState(null)
-  const [password, setPassword] = React.useState(null)
+  const [branch, setBranch] = React.useState("")
+  const [phone, setPhone] = React.useState("")
+  const [password, setPassword] = React.useState("")
+  const [isSigned, setIsSigned] = React.useState(false)
 
 
 
@@ -76,20 +78,12 @@ export default function SignUp() {
     .catch(e => {
         console.log(e.message);
     }).finally(() => {
-      setFname(null)
-      setLname(null)
-      setEmail(null)
-      setRollNo(null)
-      setBatch(null)
-      setGender(null)
-      setBranch(null)
-      setPhone(null)
-      setPassword(null)
+      setIsSigned(true)
     })
-
   };
 
   return (
+    (!isSigned ) ? 
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -228,5 +222,6 @@ export default function SignUp() {
         </Box>
       </Container>
     </ThemeProvider>
+    : <Redirect to="/student-login" />
   );
 }

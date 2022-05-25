@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import axios from 'axios'
 
@@ -26,9 +26,11 @@ var headers
 export default function SignIn() {
     let history = useHistory()
 
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [token, setToken] = useState("")
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [rollNo, setRollNo] = useState("")
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,13 +47,19 @@ export default function SignIn() {
             console.log(response);
             setToken(localStorage.setItem('access-token', response.data.token))
             headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
+            setRollNo(response.data.roll_no)
         })
         .catch(e => {
             console.log(e.message);
+        }).finally(() => {
+            setIsLoggedIn(true)
         })
     };
 
     return (
+        <>
+        { isLoggedIn ?
+            <Redirect to={"/student/"+rollNo} /> :
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -118,5 +126,7 @@ export default function SignIn() {
             </Box>
         </Container>
         </ThemeProvider>
+        }
+        </>
     );
 }
