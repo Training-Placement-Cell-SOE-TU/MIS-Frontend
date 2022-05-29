@@ -30,6 +30,7 @@ import Companies from "./sections/Users/Admin/Companies/Companies";
 import Settings from "./sections/Users/Admin/Settings/Settings";
 import Training from "./sections/Users/Admin/Training/Training";
 import Trainings from "./sections/Users/Visitor/Trainings/Trainings"
+import AdminLogin from "./sections/Users/Admin/AdminAuthentication/AdminLogin.js"
 
 function App() {
  
