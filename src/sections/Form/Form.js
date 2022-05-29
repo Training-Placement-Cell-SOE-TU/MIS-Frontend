@@ -40,7 +40,9 @@ const Form = props => {
     axios.post(`http://${ipAddress}:${port}/admin/login`, data)
     .then(response => {
         console.log(response);
-        setToken(localStorage.setItem('admin-access-token', response.data.token))
+        setToken(
+            localStorage.setItem('admin-access-token', response.data.token)
+        )
         headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
     })
     .catch(e => {
@@ -55,15 +57,13 @@ const Form = props => {
   const [password, setPassword] = useState("")
   const [token, setToken] = useState("")
 
-  function login() {
-    setLoggedIn(true);
-    props.parentCallback(true);
-    return <Redirect to="/admin-console/dashboard" />;
-  }
 
-
+  if(localStorage.getItem('admin-access-token')){
+    return <Redirect to="/admin-console/dashboard" />
+}
 
   return (
+
     <div className="formcon">
       {loggedIn && <Redirect to="/admin-console/dashboard" />}
       <ThemeProvider theme={theme}>
@@ -120,11 +120,6 @@ const Form = props => {
                 <Grid item xs>
                     <Link href="#" variant="body2">
                     Forgot password?
-                    </Link>
-                </Grid>
-                <Grid item>
-                    <Link href='/signup' variant="body2">
-                    {"Don't have an account? Sign Up"}
                     </Link>
                 </Grid>
                 </Grid>
