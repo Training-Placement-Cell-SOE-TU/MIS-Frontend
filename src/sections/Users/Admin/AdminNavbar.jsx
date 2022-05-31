@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { tabs } from './Tabs';
+import { Redirect } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -115,8 +116,9 @@ function AdminNavbar(props) {
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
-
+    const isLoggedIn = localStorage.getItem('admin-access-token');
     return (
+         isLoggedIn ?
         <div className={classes.root}>
         {/* <CssBaseline /> */}
         <AppBar position="fixed" className={classes.appBar}>
@@ -174,6 +176,7 @@ function AdminNavbar(props) {
 
         </main>
         </div>
+        : <Redirect to='/admin/' />
     );
 }
 

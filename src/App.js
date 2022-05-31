@@ -30,7 +30,7 @@ import Companies from "./sections/Users/Admin/Companies/Companies";
 import Settings from "./sections/Users/Admin/Settings/Settings";
 import Training from "./sections/Users/Admin/Training/Training";
 import Trainings from "./sections/Users/Visitor/Trainings/Trainings"
-import AdminLogin from "./sections/Users/Admin/AdminAuthentication/AdminLogin.js"
+import AdminLogout from "./sections/Users/Admin/logout"
 
 function App() {
  
@@ -58,6 +58,7 @@ function App() {
           <Route path="/admin-console/companies" component={Companies}/>
           <Route path="/admin-console/settings" component={Settings}/>
           <Route path="/admin-console/training" component={Training}/>
+          <Route path="/admin-console/logout" component={AdminLogout}/>
           
           <Route path="*" component={NotFound}/>
         </Switch>

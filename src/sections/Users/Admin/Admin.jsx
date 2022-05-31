@@ -76,6 +76,7 @@ function Admin(props) {
     const classes = useStyles();
     
     return(
+        
         <AdminNavbar tab='Dashboard'>
             <Typography paragraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

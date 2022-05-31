@@ -50,7 +50,7 @@ export const tabs = [
         </>
     },
     {
-        path: '/',
+        path: '/admin-console/logout',
         title: 'Log Out',
         icon: <>
             <ExitToAppIcon />
