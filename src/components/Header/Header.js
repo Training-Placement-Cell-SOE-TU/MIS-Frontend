@@ -1,13 +1,33 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import {Navbar, Nav, Dropdown} from 'react-bootstrap'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import Link from 'react-scroll/modules/components/Link'
 import logo from "../tu.png"
 import './header.css'
 
 const Header = () => {
+
+  const data = {
+    name : "Yoda Yo",
+    profilePic:"https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+  }
+
+  const ipAddress = process.env.REACT_APP_IP;
+  const port = process.env.REACT_APP_PORT;
+  const [registered , setRegistered] = React.useState(false);
+  const [overUserImg , setOverUserImg] = React.useState(false);
+
+  useEffect(() => {
+    if(localStorage.getItem("access-token")){
+      setRegistered(true);
+    }
+
+    axios.get(`http://${ipAddress}:${port}/user/profile`, {})
+  });
+
   const location = useLocation();
   if(location.pathname.includes('/admin-console')) return null;
-
   return (
     <header>
       <style type="text/css">
@@ -91,6 +111,7 @@ const Header = () => {
                         
                         </Navbar>
 
+
                         </span>
             
 
@@ -129,7 +150,27 @@ const Header = () => {
                       </Navbar>
 
                       </span>
-           
+
+                      {!registered ? <div class="top_side_registration">
+                      <span className="rightBtn loginBtn" ><a href="/student-login">Login</a> </span>
+                      <span className="rightBtn registerBtn"><a href="/student-signup">Register</a></span>
+                      </div>
+                      :
+                      <div class="top_side_registered" 
+                      onMouseEnter={() => setOverUserImg(true)}
+                      onMouseLeave={() => setOverUserImg(false)} >
+                        {overUserImg && <span className="userName logoutName" onClick={
+                          () => {
+                            localStorage.removeItem('access-token');
+                            setRegistered(false);
+                          }
+                        }>Logout</span>}
+                        {!overUserImg && <span className='userName'>{data.name}</span>}
+                        <a href="/profile"><img src={data.profilePic} alt={data.name} /></a>
+                      </div>
+                    }
+                      
+
             
           </header>
   )
