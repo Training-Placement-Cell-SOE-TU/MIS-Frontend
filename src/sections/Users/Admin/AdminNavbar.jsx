@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     avatar: {
-        width: '200px',
-        height: '200px',
+        width: '140px',
+        height: '160px',
         overflow: 'hidden',
         borderRadius: '50%',
     },
@@ -93,7 +93,7 @@ function AdminNavbar(props) {
             <div>
                 <center>
                     <div className={classes.avatar}>
-                        <img alt="Tezpur University" className='img-fluid' src={require('../../../components/tu.png')} style={{width: '200px', height: 'auto'}} />
+                        <img alt="Tezpur University" className='img-fluid' src={require('../../../components/tu.png')} style={{width: '140px', height: 'auto'}} />
                     </div>
 
                     <Typography variant='h6' className={classes.username}>Admin profile</Typography>

@@ -31,6 +31,7 @@ import Settings from "./sections/Users/Admin/Settings/Settings";
 import Training from "./sections/Users/Admin/Training/Training";
 import Trainings from "./sections/Users/Visitor/Trainings/Trainings"
 import AdminLogout from "./sections/Users/Admin/logout"
+import DataCollect from "./sections/Users/Admin/DataCollect/DataCollect";
 
 function App() {
  
@@ -59,6 +60,7 @@ function App() {
           <Route path="/admin-console/settings" component={Settings}/>
           <Route path="/admin-console/training" component={Training}/>
           <Route path="/admin-console/logout" component={AdminLogout}/>
+          <Route path="/admin-console/DataCollect" component={DataCollect}/>
           
           <Route path="*" component={NotFound}/>
         </Switch>
