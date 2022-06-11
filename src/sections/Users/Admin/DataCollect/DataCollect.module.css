@@ -1,0 +1,79 @@
+.EmptyState{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center;
+    height: 70vh;
+}
+
+.EmptyMsg{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center;
+}
+
+.EmptyBtn{
+    border: 2px solid #000;
+    color : #000;
+    padding: 12px 20px;
+    margin: 10px 15px;
+    cursor: pointer;
+}
+
+.EmptyBtn:hover{
+    background-color: #0066ffa1;
+    border: 2px solid #0066ffa1;
+    color: #fff;
+}
+
+.formatOfData{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formsChild{
+    width: 70%;
+    padding: 10px 20px;
+}
+
+.formBox{
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 2px 4px 6px rgba(123, 168, 255, 0.25);
+    border-radius: 4px;
+    border-left: 4px solid #0066fa;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+}
+
+.spanIcon{
+    font-size: 1.5rem;
+    margin-right: 25px;
+}
+
+.actionIconContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin-top:15px;
+}
+
+.actionIcons{
+    font-size: large;
+    color: #444;
+    opacity: 0.8;
+    margin: 10px 15px;
+    cursor: pointer;
+}
+
+.actionIcons:hover{
+    color: #000;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}

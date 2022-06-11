@@ -5,6 +5,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import WorkIcon from '@material-ui/icons/Work';
+import DataIcon from '@material-ui/icons/DataUsage';
 
 export const tabs = [
     {
@@ -20,6 +21,14 @@ export const tabs = [
         icon: <>
             <SupervisorAccountIcon />
         </>
+    },
+    {
+        path : '/admin-console/DataCollect',
+        title : 'Student Data',
+        icon : <>
+            <DataIcon />
+        </>
+
     },
     {
         path: '/admin-console/companies',
