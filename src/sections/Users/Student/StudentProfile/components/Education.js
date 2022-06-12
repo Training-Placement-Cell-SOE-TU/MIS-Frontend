@@ -1,7 +1,12 @@
 import './Education.scss'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import Modal from '@material-ui/core/Modal';
+import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
+import CloseIcon from '@material-ui/icons/Close';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     editBtn: {
@@ -16,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '1rem',
         fontWeight: 'bold',
         fontSize: '1.2rem'
+    },
+    textField: {
+        width: '500px'
     },
     iconBtn: {
         backgroundColor: 'rgb(233, 233, 233)',
@@ -42,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         whiteSpace: 'nowrap',
         verticalAlign: 'baseline',
-        borderRadius: '.40rem',
     },
     badgeText: {
         display: 'flex',
@@ -50,40 +57,183 @@ const useStyles = makeStyles((theme) => ({
     },
     fieldBox: {
         fontWeight: '500'
+    },
+    InfoModal: {
+        backgroundColor: 'white',
+        width: '70%',
+        height: '70%',
+        border: '1px solid black',
+        overflowY: 'scroll'
+    },
+    closeCont: {
+        display: 'flex',
+        flexDirection: 'row-reverse',
     }
 }));
 
-export default function Education() {
+const ipAddress = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
+
+export default function Education(props) {
     const classes = useStyles();
+
+    const [currStudentId, setCurrStudentId] = useState("")
+
+
+    const [metricPercent, setMetricPercent] = useState(0);
+    const [metricYOP, setMetricYOP] = useState(0);
+    const [hsPercent, setHsPercent] = useState(0);
+    const [hsYOP, setHsYOP] = useState(0);
+
+    const [openAddInfoModal, setOpenAddInfoModal] = useState(false);
+
+    var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
+
+    const handleAddInfoClose = () => {
+        setOpenAddInfoModal(false);
+
+        setMetricPercent(0);
+        setMetricYOP(0);
+        setHsPercent(0);
+        setHsYOP(0);
+    }
+
+    const handleUpdateAddInfo = (e) => {
+        e.preventDefault();
+
+        const data = {
+            "student_id": currStudentId,
+            "matric_pcnt": metricPercent,
+            "yop_matric": metricYOP,
+            "hs_pcnt": hsPercent,
+            "yop_hs": hsYOP,
+            "sgpa": [0, 0, 0],
+            "cgpa": 7.2
+        }
+
+        console.log(data);
+
+        axios.put(`http://${ipAddress}:${port}/student/update/educational`,data, headers )
+        .then(response => {
+            console.log(response);
+        })
+        .catch(e => {
+            console.log(e.message);
+        }).finally(() => {
+            setOpenAddInfoModal(false);
+            setHsYOP(0);
+            setHsPercent(0);
+            setMetricYOP(0);
+            setMetricPercent(0);
+        })
+    }
+
+    const handleOpenUpdateAddInfo = () => {
+        setOpenAddInfoModal(true);
+
+        setCurrStudentId(props.profile.student_id);
+        setMetricPercent(props.profile.matric_pcnt);
+        setMetricYOP(props.profile.yop_matric);
+        setHsPercent(props.profile.hs_pcnt);
+        setHsYOP(props.profile.yop_hs);
+        
+    }
 
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
                 <div className={classes.credHeader}>Educational Info</div>
-                <IconButton className={classes.iconBtn}>
+                <IconButton className={classes.iconBtn} onClick={handleOpenUpdateAddInfo}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>Metric Percentage: 92.4</p>
+                    <p>10th or equivalent: {props.profile.matric_pcnt}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Year of Passing Matric: 2017</p>
+                    <p>10th Year of Passing: {props.profile.yop_matric}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Higher Secondary Percentage: 94</p>
+                    <p>Higher Secondary Percentage: {props.profile.hs_pcnt}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Year of HS: 2019</p>
+                    <p>Year of HS: {props.profile.yop_hs}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>SGPA: 8.5</p>
+                    <p>SGPA: {props.profile.sgpa}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>CGPA: 8.2</p>
+                    <p>CGPA: {props.profile.cgpa}</p>
                 </div>
             </div>
+            <>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    open={openAddInfoModal}
+                    onClose={handleAddInfoClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 200,
+                    }}
+                >
+                    <Fade in={openAddInfoModal}>
+
+                        <div className={classes.InfoModal}>
+                        <div className={classes.closeCont}>
+                                <IconButton onClick={handleAddInfoClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </div>
+
+                            <div style={{
+                                padding: '20px',
+                            }}>
+                                <div style={{
+                                    display: 'block',
+                                    textAlign: 'center'
+                                }}>
+                                    <form onSubmit={handleUpdateAddInfo } autoComplete='off' className={classes.modalForm}  >
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Metric Percent" variant="outlined" value={metricPercent} onChange={e => setMetricPercent(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Metric Year Of Passing" value={metricYOP} onChange={e => setMetricYOP(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="HS Percent" value={hsPercent} onChange={e => setHsPercent(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="HS Year of Passing" value={hsYOP} onChange={e => setHsYOP(e.target.value)} />
+                                        </div>
+                                        <Button
+                                            variant='outlined'
+                                            type='submit'
+                                            style={{
+                                                marginRight: '1.2rem'
+                                            }}
+                                        >
+                                            Save
+                                        </Button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </Fade>
+                </Modal>
+            </>
         </div>
+        
     );
 }
