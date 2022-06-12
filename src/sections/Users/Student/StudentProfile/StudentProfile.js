@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         whiteSpace: 'nowrap',
         verticalAlign: 'baseline',
-        borderRadius: '.40rem',
     },
     badgeText: {
         display: 'flex',
@@ -136,6 +135,11 @@ export default function StudentProfile() {
         setFname(null)
         setLname(null)
         setBranch(null)
+        setRollNo(null)
+        setBatch(null)
+        setGender(null)
+        setEmail(null)
+        setPhone(null)
     }
 
     const handleUpdatePersonalInfo = (e) => {
@@ -170,7 +174,7 @@ export default function StudentProfile() {
             setGender(null);
             setEmail(null);
             setPhone(null);
-            updatePersonalInfo()
+            updateInfoState()
         })
     }
 
@@ -188,7 +192,7 @@ export default function StudentProfile() {
         setPhone(profile.phone)
     }
 
-    const updatePersonalInfo = () => {
+    const updateInfoState = () => {
 
         const fetch = () => {
             setLoading(true);
@@ -213,7 +217,7 @@ export default function StudentProfile() {
 
     const classes = useStyles();
     return (
-        <section className='student-profile'>+9
+        <section className='student-profile'>
             {
                 loading ?
                 <LinearProgress /> :
@@ -227,8 +231,8 @@ export default function StudentProfile() {
                                     </div>
                                 </center>
                                 <div className={classes.editBtn}>
-                                    <IconButton className={classes.iconBtn}>
-                                        <EditIcon className={classes.editIcon} onClick={handleOpenUpdatePersonalInfo}/>
+                                    <IconButton className={classes.iconBtn} onClick={handleOpenUpdatePersonalInfo}>
+                                        <EditIcon className={classes.editIcon}/>
                                     </IconButton>
                                 </div>
                                 <div className='general'>
@@ -244,7 +248,10 @@ export default function StudentProfile() {
                         <div className='col-lg-8 details-main-container'>
                             <div className='row details-container'>
                                 <Skills />
-                                <Education />
+                                <Education 
+                                    profile={profile}
+                                    updateInfoState={updateInfoState}
+                                />
                                 <JobExp />
                                 <Certifications />
                                 <AddressInfo />

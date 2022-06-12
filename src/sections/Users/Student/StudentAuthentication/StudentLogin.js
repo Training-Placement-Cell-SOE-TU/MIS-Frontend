@@ -47,18 +47,17 @@ export default function SignIn() {
             setToken(localStorage.setItem('access-token', response.data.token))
             headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
             setRollNo(response.data.roll_no)
+            setIsLoggedIn(true)
         })
         .catch(e => {
             console.log(e.message);
-        }).finally(() => {
-            setIsLoggedIn(true)
         })
     };
 
     return (
         <>
         { isLoggedIn ?
-            <Redirect to={"/student/"+rollNo} /> :
+            <Redirect push to={"/student/"+rollNo} /> :
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
