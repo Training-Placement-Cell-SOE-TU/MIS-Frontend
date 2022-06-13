@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import useForm from "./useForm";
-import validate from "./LoginFormValidationRules";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -26,9 +24,16 @@ const ipAddress = process.env.REACT_APP_IP;
 const port = process.env.REACT_APP_PORT;
 
 const Form = props => {
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [token, setToken] = useState("")
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    console.log(ipAddress)
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
     const data = {
         "email": email,
@@ -43,29 +48,18 @@ const Form = props => {
         setToken(
             localStorage.setItem('admin-access-token', response.data.token)
         )
-        headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
+        headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("admin-access-token")}`}}
+        setLoggedIn(true)
     })
     .catch(e => {
         console.log(e.message);
-    }).finally(() => {
-        setLoggedIn(true)
     })
 };
-
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [token, setToken] = useState("")
-
-
-  if(localStorage.getItem('admin-access-token')){
-    return <Redirect to="/admin-console/dashboard" />
-}
 
   return (
 
     <div className="formcon">
-      {loggedIn && <Redirect to="/admin-console/dashboard" />}
+      {loggedIn && <Redirect push to="/admin-console/dashboard/" />}
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />

@@ -1,22 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
+
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { tabs } from '../Tabs';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import SearchIcon from '@material-ui/icons/Search';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -31,9 +17,18 @@ import axios from 'axios';
 
 const drawerWidth = 240;
 
+const ipAddress = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+    },
+    saveDataBtn : {
+        textTransform: 'none',
+        marginTop: '1rem',
+        marginLeft: '1rem',
+        backgroundColor: 'green'
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
@@ -267,7 +262,17 @@ function Students(props) {
                     </FormControl>
                 </div>
             </div>
-
+            <Button variant="contained" color="secondary" className={classes.saveDataBtn} onClick={() => {
+                axios.post(`http://${ipAddress}:${port}/admin/student/data`)
+                .then(response => {
+                    console.log(response)
+                    window.open(`http://${ipAddress}:${port}/admin/student/data`, '_blank')
+                }).catch(e => {
+                    console.log(e.message)
+                })
+            }}>
+                Save Data As Excel
+            </Button>
             <div className={classes.studentGrp}>
                         <StudentCard 
                             key = {100}
