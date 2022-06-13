@@ -3,7 +3,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AdminNavbar from "../AdminNavbar";
 import "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
 import Style from "./DataCollect.module.css";
-import { Divider, Switch, TextField } from "@mui/material";
+import { Button, Divider, Switch, TextField } from "@mui/material";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -21,19 +21,29 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 
 import Delete from "@material-ui/icons/Delete";
 import Copy from '@mui/icons-material/ContentCopy';
+import { Input } from "@material-ui/core";
+import { set } from "date-fns";
 
 const drawerWidth = 240;
 let data = {};
 
 let inputType = {
-    0 : {name : "Short Answer" , icon : <ShortTextIcon /> , Selected :true},
-    1 : {name : "Paragraph" , icon : <SegmentIcon /> , Selected :false},
-    2 : {name : "Multiple Choices" , icon : <RadioButtonCheckedIcon /> , Selected :false},
-    3 : {name : "Checkbox" , icon : <CheckBoxIcon /> , Selected :false},
-    4 : {name : "Dropdown" , icon : <ArrowDropDownCircleIcon /> , Selected :false},
-    5 : {name : "File Upload" , icon : <CloudUploadIcon /> , Selected :false},
-    6 : {name : "Date" , icon : <CalendarMonthIcon /> , Selected :false},
-    7 : {name : "Time" , icon : <AccessTimeFilledIcon /> , Selected :false}
+    0 : {name : "Short Answer" , icon : <ShortTextIcon /> , 
+    responseType:<Input type="text" defaultValue="Response" disabled/>},
+    1 : {name : "Paragraph" , icon : <SegmentIcon /> , 
+    responseType:<Input type="textarea" defaultValue="Response" disabled/>},
+    2 : {name : "Multiple Choices" , icon : <RadioButtonCheckedIcon /> , 
+    responseType:<Input type="text" defaultValue="Option"/> , multipleInput:true},
+    3 : {name : "Checkbox" , icon : <CheckBoxIcon /> ,
+     responseType:<Input type="text" defaultValue="Option"/> ,  multipleInput:true},
+    4 : {name : "Dropdown" , icon : <ArrowDropDownCircleIcon /> , 
+    responseType:<Input type="text" defaultValue="Option"/> ,  multipleInput:true},
+    5 : {name : "File Upload" , icon : <CloudUploadIcon /> , 
+    responseType:<Input type="file" defaultValue="file" disabled/> },
+    6 : {name : "Date" , icon : <CalendarMonthIcon />, 
+    responseType:<Input type="date" value="13-06-2022" />},
+    7 : {name : "Time" , icon : <AccessTimeFilledIcon  /> , 
+    responseType:<Input type="time" defaultValue="12:30" disabled/>},
 }
 
 const useStyles = makeStyles((theme) => ({}));
@@ -42,6 +52,7 @@ function DataCollect(props) {
   const classes = useStyles();
   const [emptyState, setEmptyState] = useState(true);
   const [i, seti] = useState(0);
+  const [update , setUpdate] = useState(true);
 
   function checkData() {
     if (Object.keys(data).length > 0) {
@@ -93,21 +104,28 @@ function DataCollect(props) {
                     </div>
 
                     <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
                         <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        label="Input Type">
-                            {Object.keys(inputType).map((key) => {
+                        id="simple-select"
+                        labelId="demo-helper-label"
+                        label="Type"
+                        defaultValue={data[key].type}
+                        onChange={(event)=>{
+                          console.log(event.target.value)
+                          data[key].type = event.target.value
+                          setUpdate(!update);                          
+                        }}>
+                            {Object.keys(inputType).map((key2) => {
                                 return (
-                                    <MenuItem value={key} selected={inputType[key].Selected}>
-                                        <span className={Style.spanIcon}>{inputType[key].icon}</span>
-                                        <span className={Style.spanLabel}>{inputType[key].name}</span>
+                                  <MenuItem key={key2} value={key2} selected={key2 === data[key].type}>
+                                          <span className={Style.spanIcon}>{inputType[key2].icon}</span>
+                                          <span className={Style.spanLabel}>{inputType[key2].name}</span>
                                     </MenuItem>
-                            )
-                            })}
+                                )
+                            })
+                            }
                         </Select>
                     </FormControl>
-
 
                     <TextField
                       id="standard-basic"
@@ -116,11 +134,20 @@ function DataCollect(props) {
                       defaultValue={data[key].description}
                     />
 
+                   
+
                     <div className={Style.actionIconContainer}>
                     <Delete className={Style.actionIcons}/>
                     <Copy className={Style.actionIcons}/>
                     <span>| Required</span><Switch {..."required"} />
                     </div>
+                    {inputType[data[key].type].responseType}
+                    <div className={Style.blank}></div>
+                    <div className={Style.blank}></div>
+                    <div className={Style.blank}></div>
+                    {(inputType[data[key].type].multipleInput) && 
+                      <Button variant="contained" >Add More Option</Button>
+                    }
 
                   </div>
                 );
@@ -133,7 +160,7 @@ function DataCollect(props) {
             className={Style.EmptyBtn}
             onClick={() => {
               data[i] = {
-                type: "Short Answer",
+                type: 0,
                 title: "",
                 description: "",
                 required: true,
