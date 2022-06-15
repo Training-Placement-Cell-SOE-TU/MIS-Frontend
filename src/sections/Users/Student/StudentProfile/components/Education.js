@@ -41,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         fontWeight: '500',
         borderRadius: '5px',
-        marginRight: '0.5rem',
-        marginBottom: '0.5rem',
+        marginRight: 'null.5rem',
+        marginBottom: 'null.5rem',
         display: 'inline-block',
         padding: '10px',
-        fontSize: '0.8rem',
+        fontSize: 'null.8rem',
         lineHeight: '1',
         textAlign: 'center',
         whiteSpace: 'nowrap',
@@ -80,10 +80,13 @@ export default function Education(props) {
     const [currStudentId, setCurrStudentId] = useState("")
 
 
-    const [metricPercent, setMetricPercent] = useState(0);
-    const [metricYOP, setMetricYOP] = useState(0);
-    const [hsPercent, setHsPercent] = useState(0);
-    const [hsYOP, setHsYOP] = useState(0);
+    const [metricPercent, setMetricPercent] = useState(null);
+    const [metricYOP, setMetricYOP] = useState(null);
+    const [hsPercent, setHsPercent] = useState(null);
+    const [hsYOP, setHsYOP] = useState(null);
+    const [cgpa, setCGPA] = useState(null);
+    const [jeeScore, setJeeScore] = useState(null);
+    const [jeeAIR, setJeeAIR] = useState(null);
 
     const [openEducationInfoModal, setOpenEducationalInfo] = useState(false);
 
@@ -92,10 +95,13 @@ export default function Education(props) {
     const handleEducationInfoClose = () => {
         setOpenEducationalInfo(false);
 
-        setMetricPercent(0);
-        setMetricYOP(0);
-        setHsPercent(0);
-        setHsYOP(0);
+        setMetricPercent(null);
+        setMetricYOP(null);
+        setHsPercent(null);
+        setHsYOP(null);
+        setCGPA(null);
+        setJeeScore(null);
+        setJeeAIR(null);
     }
 
     const handleUpdateEducationalInfo = (e) => {
@@ -107,10 +113,10 @@ export default function Education(props) {
             "yop_matric": metricYOP,
             "hs_pcnt": hsPercent,
             "yop_hs": hsYOP,
-            "sgpa": [0, 0, 0],
-            "cgpa": 7.2,
-            "jee_score": 70.2,
-            "jee_air": 111111
+            "sgpa": [0,0,0],
+            "cgpa": cgpa,
+            "jee_score": jeeScore,
+            "jee_air": jeeAIR
         }
 
         console.log(data);
@@ -123,10 +129,13 @@ export default function Education(props) {
             console.log(e.message);
         }).finally(() => {
             setOpenEducationalInfo(false);
-            setHsYOP(0);
-            setHsPercent(0);
-            setMetricYOP(0);
-            setMetricPercent(0);
+            setHsYOP(null);
+            setHsPercent(null);
+            setMetricYOP(null);
+            setMetricPercent(null);
+            setCGPA(null);
+            setJeeScore(null);
+            setJeeAIR(null);
         })
     }
 
@@ -138,7 +147,9 @@ export default function Education(props) {
         setMetricYOP(props.profile.yop_matric);
         setHsPercent(props.profile.hs_pcnt);
         setHsYOP(props.profile.yop_hs);
-        
+        setCGPA(props.profile.cgpa);
+        setJeeScore(props.profile.jee_score);
+        setJeeAIR(props.profile.jee_air);
     }
 
     return(
@@ -162,9 +173,9 @@ export default function Education(props) {
                 <div className={classes.fieldBox}>
                     <p>Year of HS: {props.profile.yop_hs}</p>
                 </div>
-                <div className={classes.fieldBox}>
+                {/* <div className={classes.fieldBox}>
                     <p>SGPA: {props.profile.sgpa}</p>
-                </div>
+                </div> */}
                 <div className={classes.fieldBox}>
                     <p>CGPA: {props.profile.cgpa}</p>
                 </div>
@@ -224,6 +235,19 @@ export default function Education(props) {
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="HS Year of Passing" value={hsYOP} onChange={e => setHsYOP(e.target.value)} />
                                         </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="CGPA" value={cgpa} onChange={e => setCGPA(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="JEE Score" value={jeeScore} onChange={e => setJeeScore(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="JEE AIR" value={jeeAIR} onChange={e => setJeeAIR(e.target.value)} />
+                                        </div>
+
                                         <Button
                                             variant='outlined'
                                             type='submit'
