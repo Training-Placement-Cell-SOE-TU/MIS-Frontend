@@ -101,6 +101,7 @@ export default function StudentProfile() {
     const [gender, setGender] = useState(null)
     const [email, setEmail] = useState(null)
     const [phone, setPhone] = useState(null)
+    const [currentSem, setCurrentSem] = useState(null)
 
     const [personalInfo, setPersonalInfo] = useState(null)
 
@@ -140,6 +141,7 @@ export default function StudentProfile() {
         setGender(null)
         setEmail(null)
         setPhone(null)
+        setCurrentSem(null)
     }
 
     const handleUpdatePersonalInfo = (e) => {
@@ -154,7 +156,8 @@ export default function StudentProfile() {
             "batch": batch,
             "gender": gender,
             "email": email,
-            "phone": phone
+            "phone": phone,
+            "current_sem": currentSem
         }
         console.log(data);
 
@@ -174,6 +177,7 @@ export default function StudentProfile() {
             setGender(null);
             setEmail(null);
             setPhone(null);
+            setCurrentSem(null)
             updateInfoState()
         })
     }
@@ -190,6 +194,7 @@ export default function StudentProfile() {
         setGender(profile.gender)
         setEmail(profile.email)
         setPhone(profile.phone)
+        setCurrentSem(profile.current_sem)
     }
 
     const updateInfoState = () => {
@@ -240,6 +245,7 @@ export default function StudentProfile() {
                                     <div className='student-name'>{profile.fname} {profile.lname}</div>
                                     <div>{roll}</div>
                                     <div>{profile.branch}</div>
+                                    <div>{profile.current_sem} Semester</div>
                                     <div>{profile.phone}</div>
                                     <div className='email'>{profile.email}</div>
                                 </div>
@@ -254,9 +260,13 @@ export default function StudentProfile() {
                                 />
                                 <JobExp />
                                 <Certifications />
-                                <AddressInfo />
+                                <AddressInfo 
+                                    permanent_address={profile.permanent_address}
+                                />
                                 <ScoreCard />
-                                <AdditionalInfo />
+                                <AdditionalInfo 
+                                    profile={profile}
+                                />
                                 <SocialInfo />
                             </div>
                         </div>
@@ -311,11 +321,15 @@ export default function StudentProfile() {
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Trainer Description" value={batch} onChange={e => setBatch(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Batch" value={batch} onChange={e => setBatch(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Venue" value={branch} onChange={e => setBranch(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Branch" value={branch} onChange={e => setBranch(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Current Semester" value={currentSem} onChange={e => setCurrentSem(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>

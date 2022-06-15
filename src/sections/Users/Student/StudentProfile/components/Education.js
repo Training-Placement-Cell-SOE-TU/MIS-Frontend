@@ -85,12 +85,12 @@ export default function Education(props) {
     const [hsPercent, setHsPercent] = useState(0);
     const [hsYOP, setHsYOP] = useState(0);
 
-    const [openAddInfoModal, setOpenAddInfoModal] = useState(false);
+    const [openEducationInfoModal, setOpenEducationalInfo] = useState(false);
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
-    const handleAddInfoClose = () => {
-        setOpenAddInfoModal(false);
+    const handleEducationInfoClose = () => {
+        setOpenEducationalInfo(false);
 
         setMetricPercent(0);
         setMetricYOP(0);
@@ -98,7 +98,7 @@ export default function Education(props) {
         setHsYOP(0);
     }
 
-    const handleUpdateAddInfo = (e) => {
+    const handleUpdateEducationalInfo = (e) => {
         e.preventDefault();
 
         const data = {
@@ -108,7 +108,9 @@ export default function Education(props) {
             "hs_pcnt": hsPercent,
             "yop_hs": hsYOP,
             "sgpa": [0, 0, 0],
-            "cgpa": 7.2
+            "cgpa": 7.2,
+            "jee_score": 70.2,
+            "jee_air": 111111
         }
 
         console.log(data);
@@ -120,7 +122,7 @@ export default function Education(props) {
         .catch(e => {
             console.log(e.message);
         }).finally(() => {
-            setOpenAddInfoModal(false);
+            setOpenEducationalInfo(false);
             setHsYOP(0);
             setHsPercent(0);
             setMetricYOP(0);
@@ -128,8 +130,8 @@ export default function Education(props) {
         })
     }
 
-    const handleOpenUpdateAddInfo = () => {
-        setOpenAddInfoModal(true);
+    const handleOpenEducationalUpdate = () => {
+        setOpenEducationalInfo(true);
 
         setCurrStudentId(props.profile.student_id);
         setMetricPercent(props.profile.matric_pcnt);
@@ -143,7 +145,7 @@ export default function Education(props) {
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
                 <div className={classes.credHeader}>Educational Info</div>
-                <IconButton className={classes.iconBtn} onClick={handleOpenUpdateAddInfo}>
+                <IconButton className={classes.iconBtn} onClick={handleOpenEducationalUpdate}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
@@ -166,6 +168,12 @@ export default function Education(props) {
                 <div className={classes.fieldBox}>
                     <p>CGPA: {props.profile.cgpa}</p>
                 </div>
+                <div className={classes.fieldBox}>
+                    <p>JEE Score: {props.profile.jee_score}</p>
+                </div>
+                <div className={classes.fieldBox}>
+                    <p>JEE AIR: {props.profile.jee_air}</p>
+                </div>
             </div>
             <>
                 <Modal
@@ -176,19 +184,19 @@ export default function Education(props) {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}
-                    open={openAddInfoModal}
-                    onClose={handleAddInfoClose}
+                    open={openEducationInfoModal}
+                    onClose={handleEducationInfoClose}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
                         timeout: 200,
                     }}
                 >
-                    <Fade in={openAddInfoModal}>
+                    <Fade in={openEducationInfoModal}>
 
                         <div className={classes.InfoModal}>
                         <div className={classes.closeCont}>
-                                <IconButton onClick={handleAddInfoClose}>
+                                <IconButton onClick={handleEducationInfoClose}>
                                     <CloseIcon />
                                 </IconButton>
                             </div>
@@ -200,7 +208,7 @@ export default function Education(props) {
                                     display: 'block',
                                     textAlign: 'center'
                                 }}>
-                                    <form onSubmit={handleUpdateAddInfo } autoComplete='off' className={classes.modalForm}  >
+                                    <form onSubmit={handleUpdateEducationalInfo } autoComplete='off' className={classes.modalForm}  >
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" placeholder="Metric Percent" variant="outlined" value={metricPercent} onChange={e => setMetricPercent(e.target.value)} />
                                         </div>
