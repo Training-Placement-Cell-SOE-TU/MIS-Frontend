@@ -37,6 +37,60 @@ const genderList = [
   }
 ]
 
+const branchList = [
+  {
+    value: "Electronics And Communication Engineering",
+    label: "ECE"
+  },
+
+  {
+    value: "Computer Science And Engineering",
+    label: "CSE"
+  },
+
+  {
+    value: "Mechanical Engineering",
+    label: "ME"
+  },
+
+  {
+    value: "Civil Engineering",
+    label: "CE"
+  },
+
+  {
+    value: "Food And Engineering Technology",
+    label: "FET"
+  },
+
+  {
+    value: "Electrical Engineering",
+    label: "EE"
+  }
+]
+
+const programmeList = [
+  {
+    value: "B.Tech",
+    label: "B.Tech"
+  },
+
+  {
+    value: "MCA",
+    label: "MCA"
+  },
+
+  {
+    value: "M.Tech",
+    label: "M.Tech"
+  },
+
+  {
+    value: "B.Sc",
+    label: "B.Sc"
+  }
+]
+
 export default function SignUp() {
 
   const date = new Date()
@@ -50,6 +104,8 @@ export default function SignUp() {
   const [branch, setBranch] = React.useState("")
   const [phone, setPhone] = React.useState("")
   const [password, setPassword] = React.useState("")
+  const [programme, setProgramme] = React.useState("")
+
   const [isSigned, setIsSigned] = React.useState(false)
 
 
@@ -66,7 +122,8 @@ export default function SignUp() {
       "gender": gender,
       "email": email,
       "phone": phone,
-      "password": password
+      "password": password,
+      "programme": programme
     }
 
     console.log(data)
@@ -183,10 +240,34 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="branch"
+                  select
                   label="Branch"
                   name="branch"
+                  value={branch}
                   onChange={e => setBranch(e.target.value)}
-                />
+                >
+                  {branchList.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="programme"
+                  select
+                  label="Programme"
+                  value={programme}
+                  onChange={e => setProgramme(e.target.value)}
+                >
+                  {programmeList.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Grid>
               <Grid item xs={12}>
                 <TextField

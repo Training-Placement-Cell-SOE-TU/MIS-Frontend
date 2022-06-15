@@ -1,7 +1,14 @@
 import './Education.scss'
-import React from 'react';
+import React, { useState } from 'react';
 import { Avatar, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import axios from 'axios';
+import Modal from '@material-ui/core/Modal';
+import TextField from '@material-ui/core/TextField';
+import { Backdrop } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Close';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
     editBtn: {
@@ -16,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '1rem',
         fontWeight: 'bold',
         fontSize: '1.2rem'
+    },
+    InfoModal: {
+        backgroundColor: 'white',
+        width: '70%',
+        height: '70%',
+        border: '1px solid black',
+        overflowY: 'scroll'
     },
     iconBtn: {
         backgroundColor: 'rgb(233, 233, 233)',
@@ -33,31 +47,151 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AdditionalInfo() {
+const ipAddress = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
+
+export default function AdditionalInfo(props) {
     const classes = useStyles();
+
+    const [category, setCategory] = useState(null);
+    const [minority, setMinority] = useState(null);
+    const [handicap, setHandicap] = useState(null);
+    const [dateOfBirth, setDateOfBirth] = useState(null);
+
+    const [openAddInfoModal, setOpenAddInfoModal] = useState(false);
+
+    var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
+
+    const handleAddInfoClose = () => {
+        setOpenAddInfoModal(false);
+
+        setCategory(null);
+        setMinority(false);
+        setHandicap(false);
+        setDateOfBirth(null);
+    }
+
+    const handleUpdateAddInfo = (e) => {
+        e.preventDefault();
+
+        const data = {
+            "student_id": props.profile.student_id,
+            "category": category,
+            "minority": minority === "Yes" ? true : false,
+            "handicap": handicap === "Yes" ? true : false,
+            "dob": dateOfBirth
+        }
+        
+        console.log(data)
+
+        axios.put(`http://${ipAddress}:${port}/student/update/additional`,data, headers )
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        }).finally(() => {
+            handleAddInfoClose();
+        })
+    }
+
+    const handleOpenAddUpdate = () => {
+        setOpenAddInfoModal(true);
+
+        setCategory(props.profile.category);
+        setMinority(props.profile.minority ? "Yes" : "No");
+        setHandicap(props.profile.handicap ? "Yes" : "No");
+        setDateOfBirth(props.profile.dob);
+    }
 
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
                 <div className={classes.credHeader}>Additional Info</div>
-                <IconButton className={classes.iconBtn}>
+                <IconButton className={classes.iconBtn} onClick={handleOpenAddUpdate}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>Category: Genral</p>
+                    <p>Category: {(props.profile.category)}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Minortiy: No</p>
+                    <p>Minority: {props.profile.minority ? "Yes" : "No"}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Handicap: No</p>
+                    <p>Handicap: {props.profile.handicap ? "Yes" : "No"}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Date of Birth: 12 January 2002</p>
+                    <p>Date of Birth: {props.profile.dob}</p>
                 </div>
             </div>
+            <>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    open={openAddInfoModal}
+                    onClose={handleAddInfoClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 200,
+                    }}
+                >
+                    <Fade in={openAddInfoModal}>
+
+                        <div className={classes.InfoModal}>
+                        <div className={classes.closeCont}>
+                                <IconButton onClick={handleAddInfoClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </div>
+
+                            <div style={{
+                                padding: '20px',
+                            }}>
+                                <div style={{
+                                    display: 'block',
+                                    textAlign: 'center'
+                                }}>
+                                    <form onSubmit={handleUpdateAddInfo } autoComplete='off' className={classes.modalForm}  >
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Category" variant="outlined" value={category} onChange={e => setCategory(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Minority" value={minority} onChange={e => setMinority(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Handicap" value={handicap} onChange={e => setHandicap(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Date Of Birth(dd/mm/yyyy)" value={dateOfBirth} onChange={e => setDateOfBirth(e.target.value)} />
+                                        </div>
+                                        <Button
+                                            variant='outlined'
+                                            type='submit'
+                                            style={{
+                                                marginRight: '1.2rem'
+                                            }}
+                                        >
+                                            Save
+                                        </Button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </Fade>
+                </Modal>
+            </>
         </div>
     );
 }

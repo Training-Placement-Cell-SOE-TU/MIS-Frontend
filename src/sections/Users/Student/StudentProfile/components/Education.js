@@ -41,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         fontWeight: '500',
         borderRadius: '5px',
-        marginRight: '0.5rem',
-        marginBottom: '0.5rem',
+        marginRight: 'null.5rem',
+        marginBottom: 'null.5rem',
         display: 'inline-block',
         padding: '10px',
-        fontSize: '0.8rem',
+        fontSize: 'null.8rem',
         lineHeight: '1',
         textAlign: 'center',
         whiteSpace: 'nowrap',
@@ -80,25 +80,31 @@ export default function Education(props) {
     const [currStudentId, setCurrStudentId] = useState("")
 
 
-    const [metricPercent, setMetricPercent] = useState(0);
-    const [metricYOP, setMetricYOP] = useState(0);
-    const [hsPercent, setHsPercent] = useState(0);
-    const [hsYOP, setHsYOP] = useState(0);
+    const [metricPercent, setMetricPercent] = useState(null);
+    const [metricYOP, setMetricYOP] = useState(null);
+    const [hsPercent, setHsPercent] = useState(null);
+    const [hsYOP, setHsYOP] = useState(null);
+    const [cgpa, setCGPA] = useState(null);
+    const [jeeScore, setJeeScore] = useState(null);
+    const [jeeAIR, setJeeAIR] = useState(null);
 
-    const [openAddInfoModal, setOpenAddInfoModal] = useState(false);
+    const [openEducationInfoModal, setOpenEducationalInfo] = useState(false);
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
-    const handleAddInfoClose = () => {
-        setOpenAddInfoModal(false);
+    const handleEducationInfoClose = () => {
+        setOpenEducationalInfo(false);
 
-        setMetricPercent(0);
-        setMetricYOP(0);
-        setHsPercent(0);
-        setHsYOP(0);
+        setMetricPercent(null);
+        setMetricYOP(null);
+        setHsPercent(null);
+        setHsYOP(null);
+        setCGPA(null);
+        setJeeScore(null);
+        setJeeAIR(null);
     }
 
-    const handleUpdateAddInfo = (e) => {
+    const handleUpdateEducationalInfo = (e) => {
         e.preventDefault();
 
         const data = {
@@ -107,8 +113,10 @@ export default function Education(props) {
             "yop_matric": metricYOP,
             "hs_pcnt": hsPercent,
             "yop_hs": hsYOP,
-            "sgpa": [0, 0, 0],
-            "cgpa": 7.2
+            "sgpa": [0,0,0],
+            "cgpa": cgpa,
+            "jee_score": jeeScore,
+            "jee_air": jeeAIR
         }
 
         console.log(data);
@@ -120,30 +128,35 @@ export default function Education(props) {
         .catch(e => {
             console.log(e.message);
         }).finally(() => {
-            setOpenAddInfoModal(false);
-            setHsYOP(0);
-            setHsPercent(0);
-            setMetricYOP(0);
-            setMetricPercent(0);
+            setOpenEducationalInfo(false);
+            setHsYOP(null);
+            setHsPercent(null);
+            setMetricYOP(null);
+            setMetricPercent(null);
+            setCGPA(null);
+            setJeeScore(null);
+            setJeeAIR(null);
         })
     }
 
-    const handleOpenUpdateAddInfo = () => {
-        setOpenAddInfoModal(true);
+    const handleOpenEducationalUpdate = () => {
+        setOpenEducationalInfo(true);
 
         setCurrStudentId(props.profile.student_id);
         setMetricPercent(props.profile.matric_pcnt);
         setMetricYOP(props.profile.yop_matric);
         setHsPercent(props.profile.hs_pcnt);
         setHsYOP(props.profile.yop_hs);
-        
+        setCGPA(props.profile.cgpa);
+        setJeeScore(props.profile.jee_score);
+        setJeeAIR(props.profile.jee_air);
     }
 
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
                 <div className={classes.credHeader}>Educational Info</div>
-                <IconButton className={classes.iconBtn} onClick={handleOpenUpdateAddInfo}>
+                <IconButton className={classes.iconBtn} onClick={handleOpenEducationalUpdate}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
@@ -160,11 +173,17 @@ export default function Education(props) {
                 <div className={classes.fieldBox}>
                     <p>Year of HS: {props.profile.yop_hs}</p>
                 </div>
-                <div className={classes.fieldBox}>
+                {/* <div className={classes.fieldBox}>
                     <p>SGPA: {props.profile.sgpa}</p>
-                </div>
+                </div> */}
                 <div className={classes.fieldBox}>
                     <p>CGPA: {props.profile.cgpa}</p>
+                </div>
+                <div className={classes.fieldBox}>
+                    <p>JEE Score: {props.profile.jee_score}</p>
+                </div>
+                <div className={classes.fieldBox}>
+                    <p>JEE AIR: {props.profile.jee_air}</p>
                 </div>
             </div>
             <>
@@ -176,19 +195,19 @@ export default function Education(props) {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}
-                    open={openAddInfoModal}
-                    onClose={handleAddInfoClose}
+                    open={openEducationInfoModal}
+                    onClose={handleEducationInfoClose}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
                         timeout: 200,
                     }}
                 >
-                    <Fade in={openAddInfoModal}>
+                    <Fade in={openEducationInfoModal}>
 
                         <div className={classes.InfoModal}>
                         <div className={classes.closeCont}>
-                                <IconButton onClick={handleAddInfoClose}>
+                                <IconButton onClick={handleEducationInfoClose}>
                                     <CloseIcon />
                                 </IconButton>
                             </div>
@@ -200,7 +219,7 @@ export default function Education(props) {
                                     display: 'block',
                                     textAlign: 'center'
                                 }}>
-                                    <form onSubmit={handleUpdateAddInfo } autoComplete='off' className={classes.modalForm}  >
+                                    <form onSubmit={handleUpdateEducationalInfo } autoComplete='off' className={classes.modalForm}  >
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" placeholder="Metric Percent" variant="outlined" value={metricPercent} onChange={e => setMetricPercent(e.target.value)} />
                                         </div>
@@ -216,6 +235,19 @@ export default function Education(props) {
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="HS Year of Passing" value={hsYOP} onChange={e => setHsYOP(e.target.value)} />
                                         </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="CGPA" value={cgpa} onChange={e => setCGPA(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="JEE Score" value={jeeScore} onChange={e => setJeeScore(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="JEE AIR" value={jeeAIR} onChange={e => setJeeAIR(e.target.value)} />
+                                        </div>
+
                                         <Button
                                             variant='outlined'
                                             type='submit'
