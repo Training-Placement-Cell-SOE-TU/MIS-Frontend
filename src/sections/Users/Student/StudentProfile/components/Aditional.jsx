@@ -77,8 +77,8 @@ export default function AdditionalInfo(props) {
         const data = {
             "student_id": props.profile.student_id,
             "category": category,
-            "minority": minority === "Yes" ? true : false,
-            "handicap": handicap === "Yes" ? true : false,
+            "minority": minority === "Yes" || "yes" ? true : false,
+            "handicap": handicap === "Yes" || "yes" ? true : false,
             "dob": dateOfBirth
         }
         
@@ -165,11 +165,11 @@ export default function AdditionalInfo(props) {
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Minority" value={minority} onChange={e => setMinority(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Minority(Yes/No)" value={minority} onChange={e => setMinority(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Handicap" value={handicap} onChange={e => setHandicap(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Handicap(Yes/No)" value={handicap} onChange={e => setHandicap(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>

@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Education from './components/Education';
 import Skills from './components/Skills';
 import JobExp from './components/JobExp';
+import HigherStudies from './components/HigherStudies';
 import Modal from '@material-ui/core/Modal';
 import Certifications from './components/Certifications';
 import AddressInfo from './components/Address';
@@ -20,6 +21,7 @@ import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import profilePic from "../StudentProfile/profile.jpeg"
 import axios from 'axios';
+import PlacementInfo from './components/Placement';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -197,6 +199,8 @@ export default function StudentProfile() {
         setCurrentSem(profile.current_sem)
     }
 
+    console.log(profile.higher_studies)
+
     const updateInfoState = () => {
 
         const fetch = () => {
@@ -216,7 +220,6 @@ export default function StudentProfile() {
             })
         }
         fetch();
-    
 
 }
 
@@ -269,6 +272,15 @@ export default function StudentProfile() {
                                     profile={profile}
                                 />
                                 <SocialInfo />
+                                <HigherStudies 
+                                    higher_studies={profile.higher_studies}
+                                    student_id = {profile.student_id}
+                                />
+                                <PlacementInfo 
+                                    student_id = {profile.student_id}
+                                    job_info = {profile.job_info}
+                                    internship_info = {profile.internship_info}
+                                />
                             </div>
                         </div>
                     </div>
