@@ -89,7 +89,7 @@ const port = process.env.REACT_APP_PORT;
 
 export default function StudentProfile() {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState({})
 
     const [currStudentId, setCurrStudentId] = useState("")
@@ -262,6 +262,7 @@ export default function StudentProfile() {
                                 <Certifications />
                                 <AddressInfo 
                                     permanent_address={profile.permanent_address}
+                                    student_id = {profile.student_id}
                                 />
                                 <ScoreCard />
                                 <AdditionalInfo 

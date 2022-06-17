@@ -88,14 +88,14 @@ const useStyles = makeStyles((theme) => ({
 const certificates = ["Machine Learning", "Boostrap", "NASA Research"];
 
 const scorecard = {
-  0: { name: "Sem 1", url: "" },
-  1: { name: "Sem 2", url: "" },
-  2: { name: "Sem 3", url: "" },
-  3: { name: "Sem 4", url: "" },
-  4: { name: "Sem 5", url: "" },
-  5: { name: "Sem 6", url: "" },
-  6: { name: "Sem 7", url: "" },
-  7: { name: "Sem 8", url: "" },
+  0: { name: "All Sem", url: "" },
+  // 1: { name: "Sem 2", url: "" },
+  // 2: { name: "Sem 3", url: "" },
+  // 3: { name: "Sem 4", url: "" },
+  // 4: { name: "Sem 5", url: "" },
+  // 5: { name: "Sem 6", url: "" },
+  // 6: { name: "Sem 7", url: "" },
+  // 7: { name: "Sem 8", url: "" },
 };
 
 const ScoreBadge = ({ sem }) => {
