@@ -65,12 +65,13 @@ const ipAddress = process.env.REACT_APP_IP;
 const port = process.env.REACT_APP_PORT;
 
 export default function AddressInfo(props) {
+    console.log(props)
     const classes = useStyles();
 
     const [currStudentId, setCurrStudentId] = useState("")
 
 
-    const [permanentAddress, setPermanentAddress] = useState(props.profile.permanent_address)
+    const [permanentAddress, setPermanentAddress] = useState(props.permanent_address)
     const [city, setCity] = useState(null)
     const [state, setState] = useState(null)
     const [country, setCountry] = useState(null)
@@ -79,8 +80,6 @@ export default function AddressInfo(props) {
     const [addressInfo, setAdressInfo] = useState(null)
     const [addressInfo2, setAdressInfo2] = useState(null)
     const [isPermanentEqualsPresent, setIsPermanentEqualsPresent] = useState(false)
-
-    console.log(permanentAddress)
 
     const [openAddressInfoModal, setOpenAddressInfoModal] = useState(false)
 
@@ -148,36 +147,33 @@ export default function AddressInfo(props) {
 
     }
 
-    console.log(props.profile.permanent_address)
-
     const handleOpenAddressUpdate = () => {
         setOpenAddressInfoModal(true)
 
-        setCurrStudentId(props.profile.student_id)
-        setCity(props.profile.permanent_address.city)
-        setState(props.profile.permanent_address.state)
-        setCountry(props.profile.permanent_address.country)
-        setPincode(props.profile.permanent_address.pincode)
-        setDistrict(props.profile.permanent_address.district)
-        setAdressInfo(props.profile.permanent_address.address_info)
-        setAdressInfo2(props.profile.permanent_address.address_info2)
-        setIsPermanentEqualsPresent(props.profile.is_permanent_equals_present)
+        setCurrStudentId(props.student_id)
+        setCity(props.permanent_address.city)
+        setState(props.permanent_address.state)
+        setCountry(props.permanent_address.country)
+        setPincode(props.permanent_address.pincode)
+        setDistrict(props.permanent_address.district)
+        setAdressInfo(props.permanent_address.address_info)
+        setAdressInfo2(props.permanent_address.address_info2)
+        setIsPermanentEqualsPresent(props.is_permanent_equals_present)
 
     }
 
-    console.log(props.profile)
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
                 <div className={classes.credHeader}>Address Info</div>
-                <IconButton className={classes.iconBtn} onClick={handleOpenAddressUpdate}>
+                <IconButton className={classes.iconBtn} onClick={()=>handleOpenAddressUpdate()}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
                     <p className={classes.address}>Permanent Address <span className={classes.addressText}>
-                        Near Central Jail, Jail Road, Joraht, {}, Pin - {permanentAddress.pincode}
+                    {permanentAddress.address_line_1}  {permanentAddress.address_line_2},  City-{permanentAddress.city} Dist-{permanentAddress.district} Country- {permanentAddress.country}, Pin - {permanentAddress.pincode}
                     </span></p>
 
                     <p>
@@ -185,7 +181,7 @@ export default function AddressInfo(props) {
                     </p>
 
                     <p className={classes.address}>Present Address <span className={classes.addressText}>
-                        Near Central Jail, Jail Road, Joraht, Assam, Pin - 785004
+                        
                     </span></p>
                 </div>
             </div>
