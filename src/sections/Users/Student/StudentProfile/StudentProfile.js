@@ -269,6 +269,7 @@ export default function StudentProfile() {
                                 />
                                 <ScoreCard 
                                     student_id={profile.student_id}
+                                    score={profile.score_cards.length>0 ? profile.score_cards[0].scorecard_link: null}
                                 />
                                 <AdditionalInfo 
                                     profile={profile}
