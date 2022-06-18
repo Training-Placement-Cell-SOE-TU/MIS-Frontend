@@ -282,6 +282,7 @@ export default function StudentProfile() {
                                     student_id = {profile.student_id}
                                     job_info = {profile.job_info}
                                     internship_info = {profile.internship_info}
+                                    job_type = {profile.job_type}
                                 />
                             </div>
                         </div>
