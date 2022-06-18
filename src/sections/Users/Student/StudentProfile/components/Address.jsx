@@ -2,6 +2,10 @@ import './Education.scss'
 import React, { useState } from 'react';
 import { Avatar, Checkbox, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import Modal from '@material-ui/core/Modal';
+import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
+import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
         whiteSpace: 'nowrap',
         verticalAlign: 'baseline',
     },
+    InfoModal: {
+        backgroundColor: 'white',
+        width: '70%',
+        height: '70%',
+        border: '1px solid black',
+        overflowY: 'scroll'
+    },
+
     badgeText: {
         display: 'flex',
         flexDirection: 'row',
@@ -57,6 +69,16 @@ const useStyles = makeStyles((theme) => ({
     addressText: {
         fontWeight: 'normal',
         fontStyle: 'italic'
+    },
+    closeCont: {
+        display: 'flex',
+        flexDirection: 'row-reverse',
+    },
+    modalForm: {
+        display: 'inline-block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'left'
     }
 }));
 
@@ -77,25 +99,31 @@ export default function AddressInfo(props) {
     const [country, setCountry] = useState(null)
     const [pincode, setPincode] = useState(null)
     const [district, setDistrict] = useState(null)
-    const [addressInfo, setAdressInfo] = useState(null)
-    const [addressInfo2, setAdressInfo2] = useState(null)
+    const [addressInfo, setAddressInfo] = useState(null)
+    const [addressInfo2, setAddressInfo2] = useState(null)
+
     const [isPermanentEqualsPresent, setIsPermanentEqualsPresent] = useState(false)
+    const [checked, setChecked] = useState(true)
+
+    const [presentCity, setPresentCity] = useState(null)
+    const [presentState, setPresentState] = useState(null)
+    const [presentCountry, setPresentCountry] = useState(null)
+    const [presentPincode, setPresentPincode] = useState(null)
+    const [presentDistrict, setPresentDistrict] = useState(null)
+    const [presentAddressInfo, setPresentAddressInfo] = useState(null)
+    const [presentAddressInfo2, setPresentAddressInfo2] = useState(null)
 
     const [openAddressInfoModal, setOpenAddressInfoModal] = useState(false)
+    const [openPresentAddressInfoModal, setOpenPresentAddressInfoModal] = useState(false)
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
     const handleAddressInfoClose = () => {
         setOpenAddressInfoModal(false)
+    }
 
-        setPermanentAddress(null)
-        setCity(null)
-        setState(null)
-        setCountry(null)
-        setPincode(null)
-        setDistrict(null)
-        setAdressInfo(null)
-        setAdressInfo2(null)
+    const handlePresentAddressInfoClose = () => {
+        setOpenAddressInfoModal(false)
     }
 
     const handleUpdateAddressInfo = (e) => {
@@ -109,18 +137,18 @@ export default function AddressInfo(props) {
                 "country": country,
                 "pincode": pincode,
                 "district": district,
-                "address_info": addressInfo,
-                "address_info2": addressInfo2
+                "address_line_1": addressInfo,
+                "address_line_2": addressInfo2
             },
             "is_permanent_equals_present": isPermanentEqualsPresent,
             "present_address": {
-                "city": "",
-                "state": "",
-                "country": "",
-                "pincode": "",
-                "district": "",
-                "address_info": "",
-                "address_info2": ""
+                "city": presentCity,
+                "state": presentState,
+                "country": presentCountry,
+                "pincode": presentPincode,
+                "district": presentDistrict,
+                "address_line_1": presentAddressInfo,
+                "address_line_2": presentAddressInfo2
             }
         }
 
@@ -133,16 +161,8 @@ export default function AddressInfo(props) {
         .catch(error => {
             console.log(error)
         }).finally(() => {
-            setOpenAddressInfoModal(false)
-
-            setPermanentAddress(null)
-            setCity(null)
-            setState(null)
-            setCountry(null)
-            setPincode(null)
-            setDistrict(null)
-            setAdressInfo(null)
-            setAdressInfo2(null)
+            handleAddressInfoClose()
+            handlePresentAddressInfoClose()
         })
 
     }
@@ -156,17 +176,30 @@ export default function AddressInfo(props) {
         setCountry(props.permanent_address.country)
         setPincode(props.permanent_address.pincode)
         setDistrict(props.permanent_address.district)
-        setAdressInfo(props.permanent_address.address_info)
-        setAdressInfo2(props.permanent_address.address_info2)
-        setIsPermanentEqualsPresent(props.is_permanent_equals_present)
-
+        setAddressInfo(props.permanent_address.address_line_1)
+        setAddressInfo2(props.permanent_address.address_line_2)
     }
+
+    const handleOpenPresentAddressUpdate = () => {
+        setOpenPresentAddressInfoModal(true)
+
+        setCurrStudentId(props.student_id)
+        setPresentCity(props.present_address.city)
+        setPresentState(props.present_address.state)
+        setPresentCountry(props.present_address.country)
+        setPresentPincode(props.present_address.pincode)
+        setPresentDistrict(props.present_address.district)
+        setPresentAddressInfo(props.present_address.address_line_1)
+        setPresentAddressInfo2(props.present_address.address_line_2)
+    }
+
+    isPermanentEqualsPresent ? console.log("true") : handleOpenPresentAddressUpdate()
 
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
                 <div className={classes.credHeader}>Address Info</div>
-                <IconButton className={classes.iconBtn} onClick={()=>handleOpenAddressUpdate()}>
+                <IconButton className={classes.iconBtn} onClick={()=> handleOpenAddressUpdate()}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
@@ -177,7 +210,14 @@ export default function AddressInfo(props) {
                     </span></p>
 
                     <p>
-                        Is Permanent address your present Address ? <Checkbox />
+                        Is Permanent address your present Address ? 
+                        <Checkbox 
+                            checked={checked}
+                            onChange={(e) => {
+                                setChecked(e.target.checked)
+                                setIsPermanentEqualsPresent(e.target.checked)
+                            }}
+                        />
                     </p>
 
                     <p className={classes.address}>Present Address <span className={classes.addressText}>
@@ -185,6 +225,164 @@ export default function AddressInfo(props) {
                     </span></p>
                 </div>
             </div>
+            <>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    open={openAddressInfoModal}
+                    onClose={handleAddressInfoClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 200,
+                    }}
+                >
+                    <Fade in={openAddressInfoModal}>
+
+                        <div className={classes.InfoModal}>
+                        <div className={classes.closeCont}>
+                                <IconButton onClick={handleAddressInfoClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </div>
+
+                            <div style={{
+                                padding: '20px',
+                            }}>
+                                <div style={{
+                                    display: 'block',
+                                    textAlign: 'center'
+                                }}>
+                                    <form onSubmit={handleUpdateAddressInfo } autoComplete='off' className={classes.modalForm}  >
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Address Line 1" variant="outlined" value={addressInfo} onChange={e => setAddressInfo(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Address Line 2" value={addressInfo2} onChange={e => setAddressInfo2(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="District" value={district} onChange={e => setDistrict(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Pincode" value={pincode} onChange={e => setPincode(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="State" value={state} onChange={e => setState(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)} />
+                                        </div>
+
+                                        <Button
+                                            variant='outlined'
+                                            type='submit'
+                                            style={{
+                                                marginRight: '1.2rem'
+                                            }}
+                                        >
+                                            Save
+                                        </Button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </Fade>
+                </Modal>
+            </>
+            <>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    open={openPresentAddressInfoModal}
+                    onClose={handlePresentAddressInfoClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 200,
+                    }}
+                >
+                    <Fade in={openPresentAddressInfoModal}>
+
+                        <div className={classes.InfoModal}>
+                        <div className={classes.closeCont}>
+                                <IconButton onClick={handlePresentAddressInfoClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </div>
+
+                            <div style={{
+                                padding: '20px',
+                            }}>
+                                <div style={{
+                                    display: 'block',
+                                    textAlign: 'center'
+                                }}>
+                                    <form onSubmit={handleUpdateAddressInfo } autoComplete='off' className={classes.modalForm}  >
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Address Line 1" variant="outlined" value={presentAddressInfo} onChange={e => setPresentAddressInfo(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Address Line 2" value={presentAddressInfo2} onChange={e => setPresentAddressInfo2(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="City" value={presentCity} onChange={e => setPresentCity(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="District" value={presentDistrict} onChange={e => setPresentDistrict(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Pincode" value={presentPincode} onChange={e => setPresentPincode(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="State" value={presentState} onChange={e => setPresentState(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Country" value={presentCountry} onChange={e => setPresentCountry(e.target.value)} />
+                                        </div>
+
+                                        <Button
+                                            variant='outlined'
+                                            type='submit'
+                                            style={{
+                                                marginRight: '1.2rem'
+                                            }}
+                                        >
+                                            Save
+                                        </Button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </Fade>
+                </Modal>
+            </>
         </div>
     );
 }
