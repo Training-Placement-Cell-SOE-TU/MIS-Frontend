@@ -8,7 +8,8 @@ import AddIcon from "@material-ui/icons/Add";
 import BackupOutlinedIcon from "@material-ui/icons/BackupOutlined";
 import { Button, Input } from "@mui/material";
 import uploadScoreCard from "../../../../../Services/storage";
-import { PropaneSharp } from "@mui/icons-material";
+import { PropaneSharp, WindowSharp } from "@mui/icons-material";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   editBtn: {
@@ -99,7 +100,7 @@ const scorecard = {
   // 7: { name: "Sem 8", url: "" },
 };
 
-const ScoreBadge = ({ sem , student_id }) => {
+const ScoreBadge = ({ url,sem , student_id }) => {
   const classes = useStyles();
   return (
     <div>
@@ -122,7 +123,12 @@ const ScoreBadge = ({ sem , student_id }) => {
       </label>
 
       <IconButton>
-        <VisibilityIcon color="disabled" style={{ cursor: "pointer" }} />
+        <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
+          onClick={() => {
+            console.log(url);
+            window.open( url, '_blank');
+          }}
+        />
       </IconButton>
     </div>
   );
@@ -130,6 +136,11 @@ const ScoreBadge = ({ sem , student_id }) => {
 
 export default function ScoreCard(props) {
   const classes = useStyles();
+
+  if(props.score){
+    console.log(props.score);
+    scorecard[0].url = props.score;
+  }
 
   return (
     <div className="col-lg-6 cred-box" style={{}}>
@@ -140,7 +151,7 @@ export default function ScoreCard(props) {
         {Object.keys(scorecard).map((index) => {
           return (
             <div key={index}>
-              <ScoreBadge sem={scorecard[index].name} student_id={props.student_id} />
+              <ScoreBadge key={index} url={scorecard[index].url} sem={scorecard[index].name} student_id={props.student_id} />
             </div>
           );
         })}

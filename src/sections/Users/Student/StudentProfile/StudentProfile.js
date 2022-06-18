@@ -21,7 +21,7 @@ import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import profilePic from "../StudentProfile/profile.jpeg"
 import axios from 'axios';
-import PlacementInfo from './components/Placement';
+import PlacementInfo from '../../../Placement/Placement';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -85,8 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 
 export default function StudentProfile() {
@@ -116,7 +115,8 @@ export default function StudentProfile() {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get(`http://${ipAddress}:${port}/student/${roll}`, headers)
+            console.log("making request to : ",`${baseurl}/student/${roll}`)
+            axios.get(`${baseurl}/student/${roll}`, headers)
             .then(response => {
                 response = response.data;
                 console.log(response);
@@ -163,7 +163,7 @@ export default function StudentProfile() {
         }
         console.log(data);
 
-        axios.put(`http://${ipAddress}:${port}/student/update/personal`,data, headers )
+        axios.put(`${baseurl}/student/update/personal`,data, headers )
         .then(response => {
             console.log(response);
         })
@@ -205,7 +205,7 @@ export default function StudentProfile() {
 
         const fetch = () => {
             setLoading(true);
-            axios.get(`http://${ipAddress}:${port}/student/${rollNo}`, headers)
+            axios.get(`${baseurl}/student/${rollNo}`, headers)
             .then(response => {
                 response = response.data;
                 console.log(response.result);
@@ -269,6 +269,7 @@ export default function StudentProfile() {
                                 />
                                 <ScoreCard 
                                     student_id={profile.student_id}
+                                    score={profile.score_cards.length>0 ? profile.score_cards[0].scorecard_link: null}
                                 />
                                 <AdditionalInfo 
                                     profile={profile}

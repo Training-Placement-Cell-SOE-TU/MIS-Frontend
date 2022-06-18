@@ -32,8 +32,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 const drawerWidth = 240;
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 
 const useStyles = makeStyles((theme) => ({
@@ -168,7 +167,7 @@ function Training(props) {
 
         console.log(data);
 
-        axios.post(`http://${ipAddress}:${port}/training/add`, data)
+        axios.post(`${baseurl}/training/add`, data)
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -199,7 +198,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.post(`http://${ipAddress}:${port}/training/add/attendance`, data)
+        axios.post(`${baseurl}/training/add/attendance`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -236,7 +235,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.put(`http://${ipAddress}:${port}/training/update/training`,data )
+        axios.put(`${baseurl}/training/update/training`,data )
         .then(response => {
             console.log(response);
         })
@@ -261,7 +260,7 @@ function Training(props) {
 
             const fetch = () => {
                 setLoading(true);
-                axios.get(`http://${ipAddress}:${port}/training/all`)
+                axios.get(`${baseurl}/training/all`)
                 .then(response => {
                     response = response.data;
                     console.log(response.result);

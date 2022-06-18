@@ -143,7 +143,7 @@ function Training(props) {
 
         console.log(data);
 
-        axios.post('http://192.168.82.202:3000/training/add', data)
+        axios.post('https://192.168.82.202:3000/training/add', data)
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -173,7 +173,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.post('http://192.168.82.202:3000/training/add/attendance', data)
+        axios.post('https://192.168.82.202:3000/training/add/attendance', data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -197,7 +197,7 @@ function Training(props) {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get('http://192.168.82.202:3000/training/all')
+            axios.get('https://192.168.82.202:3000/training/all')
             .then(response => {
                 response = response.data;
                 console.log(response.result);
