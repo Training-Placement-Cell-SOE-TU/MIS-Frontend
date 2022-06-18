@@ -122,7 +122,7 @@ export default function AddressInfo(props) {
     }
 
     const handlePresentAddressInfoClose = () => {
-        setOpenAddressInfoModal(false)
+        setOpenPresentAddressInfoModal(false)
     }
 
     const handleUpdateAddressInfo = (e) => {
@@ -192,7 +192,13 @@ export default function AddressInfo(props) {
         setPresentAddressInfo2(props.present_address.address_line_2)
     }
 
-    isPermanentEqualsPresent ? console.log("true") : handleOpenPresentAddressUpdate()
+    const handleChecked = (e) => {
+        setChecked(e.target.checked)
+        setIsPermanentEqualsPresent(e.target.checked)
+        if (!e.target.checked) {
+            handleOpenPresentAddressUpdate()
+        }
+    }
 
     return(
         <div className='col-lg-6 cred-box'>
@@ -212,10 +218,7 @@ export default function AddressInfo(props) {
                         Is Permanent address your present Address ? 
                         <Checkbox 
                             checked={checked}
-                            onChange={(e) => {
-                                setChecked(e.target.checked)
-                                setIsPermanentEqualsPresent(e.target.checked)
-                            }}
+                            onChange={handleChecked}
                         />
                     </p>
 
