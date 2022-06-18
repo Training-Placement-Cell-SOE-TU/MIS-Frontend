@@ -46,6 +46,7 @@ export default function SignIn() {
             setToken(localStorage.setItem('access-token', response.data.token))
             headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
             setRollNo(response.data.roll_no)
+            localStorage.setItem('student_roll', response.data.roll_no)
             setIsLoggedIn(true)
         })
         .catch(e => {

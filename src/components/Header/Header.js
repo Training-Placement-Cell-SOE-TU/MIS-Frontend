@@ -10,7 +10,7 @@ import profilePic from "../../sections/Users/Student/StudentProfile/profile.jpeg
 
 const Header = () => {
 
-  const data = {
+  let data = {
     name : "Yoda Yo",
     profilePic:profilePic,
   }
@@ -22,6 +22,8 @@ const Header = () => {
 
   useEffect(() => {
     if(localStorage.getItem("access-token")){
+      data["name"] = localStorage.getItem("student_roll");
+      console.log(data.name);
       setRegistered(true);
     }
 
@@ -167,8 +169,10 @@ const Header = () => {
                             setRegistered(false);
                           }
                         }>Logout</span>}
-                        {!overUserImg && <span className='userName'>{data.name}</span>}
-                        <a href="/profile"><img src={data.profilePic} alt={data.name} /></a>
+                        {!overUserImg && <span className='userName'>{
+                          localStorage.getItem("student_roll") ? localStorage.getItem("student_roll") : data.name
+                        }</span>}
+                        <a href={`/student/${localStorage.getItem("student_roll")}`}><img src={data.profilePic} alt={data.name} /></a>
                       </div>
                     }
                       

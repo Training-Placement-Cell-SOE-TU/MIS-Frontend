@@ -118,8 +118,8 @@ const useStyles = makeStyles((theme) => ({
 function studentCardGe(data , year , branch , branch_list){
     let newData = data;
     
-    if(year != 0){ newData = newData.filter(obj => obj.batch == year)}
-    if(branch != 0){ newData = newData.filter(obj => obj.branch == branch_list[branch]) }
+    if(year !== 0){ newData = newData.filter(obj => obj.batch === year)}
+    if(branch !== 0){ newData = newData.filter(obj => obj.branch === branch_list[branch]) }
 
     return Object.keys(newData).map(key => {
         return (
@@ -156,22 +156,22 @@ function Students(props) {
     const [year_list , setYearList] = useState({});
 
     useEffect(() => {
-        axios.get(`https://${process.env.REACT_APP_IP+":"+process.env.REACT_APP_PORT}/admin/all_student`)
+        axios.get(`${baseurl}/admin/all_student`)
         .then(res => {
             setData(res.data);
 
             //get unique branch list and add to branch_list
             let count =  1;
-            let branch_li = {
+            let branch_dict = {
                 0 : 'All'
             }
             Object.keys(res.data).forEach(key => {
-                if(!(res.data[key].branch in branch_li)){
-                    branch_li[count] = res.data[key].branch;
+                if(!(Object.values(branch_dict).includes(res.data[key].branch) )){
+                    branch_dict[count] = res.data[key].branch;
                     count++;
                 }
             })
-            setBranchList(branch_li);
+            setBranchList(branch_dict);
 
             //get unique year list and add to year_list
             let year_li = {
@@ -179,7 +179,7 @@ function Students(props) {
             }
 
             Object.keys(res.data).forEach(key => {
-                if(!(res.data[key].batch in year_li)){
+                if(!(Object.values(year_li).includes(res.data[key].batch) )){
                     year_li[res.data[key].batch] = res.data[key].batch;
                 }
             })
