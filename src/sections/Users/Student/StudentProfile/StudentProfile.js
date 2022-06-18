@@ -21,7 +21,7 @@ import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import profilePic from "../StudentProfile/profile.jpeg"
 import axios from 'axios';
-import PlacementInfo from '../../../Placement/Placement';
+import PlacementInfo from './components/Placement';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -266,6 +266,7 @@ export default function StudentProfile() {
                                 <AddressInfo 
                                     permanent_address={profile.permanent_address}
                                     student_id = {profile.student_id}
+                                    present_address={profile.present_address}
                                 />
                                 <ScoreCard 
                                     student_id={profile.student_id}
