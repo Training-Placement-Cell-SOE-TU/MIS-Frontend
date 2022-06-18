@@ -274,10 +274,10 @@ export default function StudentProfile() {
                                     profile={profile}
                                 />
                                 <SocialInfo />
-                                <HigherStudies 
+                                {/* <HigherStudies 
                                     higher_studies={profile.higher_studies}
                                     student_id = {profile.student_id}
-                                />
+                                /> */}
                                 <PlacementInfo 
                                     student_id = {profile.student_id}
                                     job_info = {profile.job_info}
