@@ -22,6 +22,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import profilePic from "../StudentProfile/profile.jpeg"
 import axios from 'axios';
 import PlacementInfo from './components/Placement';
+import ExamsInfo from './components/Exams';
+import MenuItem from '@mui/material/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -83,9 +85,57 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row-reverse',
     },
+    modalForm: {
+        display: 'inline-block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'left'
+    }
 }));
 
 const baseurl = process.env.REACT_APP_BASE_URL;
+
+const semesterList = [
+    {
+      value: "1st",
+      label: "1"
+    },
+  
+    {
+      value: "2nd",
+      label: "2"
+    },
+  
+    {
+      value: "3rd",
+      label: "3"
+    },
+  
+    {
+      value: "4th",
+      label: "4"
+    },
+  
+    {
+      value: "5th",
+      label: "5"
+    },
+  
+    {
+      value: "6th",
+      label: "6"
+    },
+  
+    {
+      value: "7th",
+      label: "7"
+    },
+  
+    {
+      value: "8th",
+      label: "8"
+    }
+  ]
 
 
 export default function StudentProfile() {
@@ -286,6 +336,7 @@ export default function StudentProfile() {
                                     internship_info = {profile.internship_info}
                                     job_type = {profile.job_type}
                                 />
+                                <ExamsInfo />
                             </div>
                         </div>
                     </div>
@@ -347,7 +398,14 @@ export default function StudentProfile() {
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Current Semester" value={currentSem} onChange={e => setCurrentSem(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" select variant="outlined" placeholder="Current Semester" value={currentSem} onChange={e => setCurrentSem(e.target.value)}
+                                            >
+                                                {semesterList.map((option) => (
+                                                    <MenuItem key={option.value} value={option.value}>
+                                                        {option.label}
+                                                    </MenuItem>
+                                                ))}   
+                                            </TextField>
                                         </div>
 
                                         <div className={classes.input}>
