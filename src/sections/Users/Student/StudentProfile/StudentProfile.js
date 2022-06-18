@@ -115,6 +115,7 @@ export default function StudentProfile() {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
+            console.log("making request to : ",`${baseurl}/student/${roll}`)
             axios.get(`${baseurl}/student/${roll}`, headers)
             .then(response => {
                 response = response.data;
