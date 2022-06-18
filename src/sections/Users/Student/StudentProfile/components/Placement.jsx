@@ -232,19 +232,19 @@ export default function PlacementInfo(props) {
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>Name of the organization: {}</p>
+                    <p>Name of the organization: {props.job_info.company_name || props.internship_info.company_name}</p>
                 </div>
                 <div>
                     <p>Type: {props.job_type}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Designation: {} </p>
+                    <p>Designation: {props.job_info.designation || props.internship_info.company_name} </p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Salary Package: 10LPA</p>
+                    <p>Salary Package: {props.job_info.salary || props.internship_info.salary}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Offer Letter Link: https://google.com</p>
+                    <p>Offer Letter Link: {props.job_info.offer_link || props.internship_info.offer_link}</p>
                 </div>
             </div>
             <>
