@@ -21,7 +21,7 @@ import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import profilePic from "../StudentProfile/profile.jpeg"
 import axios from 'axios';
-import PlacementInfo from './components/Placement';
+import PlacementInfo from '../../../Placement/Placement';
 
 const useStyles = makeStyles((theme) => ({
     root: {
