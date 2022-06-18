@@ -8,6 +8,7 @@ import AddIcon from "@material-ui/icons/Add";
 import BackupOutlinedIcon from "@material-ui/icons/BackupOutlined";
 import { Button, Input } from "@mui/material";
 import uploadScoreCard from "../../../../../Services/storage";
+import { PropaneSharp } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   editBtn: {
@@ -98,7 +99,7 @@ const scorecard = {
   // 7: { name: "Sem 8", url: "" },
 };
 
-const ScoreBadge = ({ sem }) => {
+const ScoreBadge = ({ sem , student_id }) => {
   const classes = useStyles();
   return (
     <div>
@@ -112,7 +113,7 @@ const ScoreBadge = ({ sem }) => {
             style={{ width:"0px" }}
             onChange={(e) => {
                 let file = e.target.files[0];
-                uploadScoreCard(file, 123 , sem);
+                uploadScoreCard(file, student_id , sem);
             }}
         />
         <Button variant="contained" component="span">
@@ -127,7 +128,7 @@ const ScoreBadge = ({ sem }) => {
   );
 };
 
-export default function ScoreCard() {
+export default function ScoreCard(props) {
   const classes = useStyles();
 
   return (
@@ -139,7 +140,7 @@ export default function ScoreCard() {
         {Object.keys(scorecard).map((index) => {
           return (
             <div key={index}>
-              <ScoreBadge sem={scorecard[index].name} />
+              <ScoreBadge sem={scorecard[index].name} student_id={props.student_id} />
             </div>
           );
         })}

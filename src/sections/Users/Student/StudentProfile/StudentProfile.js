@@ -267,7 +267,9 @@ export default function StudentProfile() {
                                     permanent_address={profile.permanent_address}
                                     student_id = {profile.student_id}
                                 />
-                                <ScoreCard />
+                                <ScoreCard 
+                                    student_id={profile.student_id}
+                                />
                                 <AdditionalInfo 
                                     profile={profile}
                                 />
