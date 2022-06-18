@@ -78,8 +78,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const jobList = [
     {
@@ -144,7 +143,7 @@ export default function PlacementInfo(props) {
 
         console.log(data)
 
-        axios.put(`http://${ipAddress}:${port}/student/update/job`,data, headers )
+        axios.put(`${baseurl}/student/update/job`,data, headers )
         .then(response => {
             console.log(response)
         })
@@ -184,7 +183,7 @@ export default function PlacementInfo(props) {
 
         console.log(data)
 
-        axios.put(`http://${ipAddress}:${port}/student/update/job`,data, headers )
+        axios.put(`${baseurl}/student/update/job`,data, headers )
         .then(response => {
             console.log(response)
         })
@@ -233,13 +232,13 @@ export default function PlacementInfo(props) {
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>Name of the organization: {props.job_info.company_name || props.internship_info.company_name}</p>
+                    <p>Name of the organization: {}</p>
                 </div>
                 <div>
                     <p>Type: {props.job_type}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Designation: {props.job_info.designation || props.internship_info.designation} </p>
+                    <p>Designation: {} </p>
                 </div>
                 <div className={classes.fieldBox}>
                     <p>Salary Package: 10LPA</p>
