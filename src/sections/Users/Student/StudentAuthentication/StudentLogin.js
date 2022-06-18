@@ -39,7 +39,7 @@ export default function SignIn() {
             "password": password
         }
 
-        console.log(data)
+        console.log(data , `http://${ipAddress}:${port}/student/login`)
 
         axios.post(`http://${ipAddress}:${port}/student/login`, data)
         .then(response => {
