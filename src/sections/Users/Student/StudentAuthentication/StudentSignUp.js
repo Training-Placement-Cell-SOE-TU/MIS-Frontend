@@ -17,8 +17,7 @@ import axios from "axios"
 const theme = createTheme();
 
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const genderList = [
   {
@@ -128,7 +127,7 @@ export default function SignUp() {
 
     console.log(data)
 
-    axios.post(`https://${ipAddress}:${port}/student/add`, data)
+    axios.post(`${baseurl}/student/add`, data)
     .then(response => {
         console.log(response);
     })

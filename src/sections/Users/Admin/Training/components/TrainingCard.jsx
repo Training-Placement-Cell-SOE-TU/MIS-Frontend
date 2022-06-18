@@ -8,8 +8,7 @@ import { Button } from '@material-ui/core';
 import axios from 'axios';
 
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const useStyles = makeStyles((theme) => ({
     cardContainer: {
@@ -135,7 +134,7 @@ export default function TrainingCard(props) {
 
                         <Button variant="contained" color="secondary" className={classes.deleteBtn} onClick={() => {
                             console.log(props.training_id);
-                            axios.delete(`https://${ipAddress}:${port}/training/delete`, {data, headers}
+                            axios.delete(`${baseurl}/training/delete`, {data, headers}
                             ).then(res => {
                                 console.log(res);
                                 props.updateTrainingState();
@@ -149,11 +148,11 @@ export default function TrainingCard(props) {
                         <Button variant="contained" color="secondary" className={classes.saveDataBtn} onClick={() => {
                             console.log(props.training_id)
                     
-                            axios.post(`https://${ipAddress}:${port}/training/student/data`, data, headers)
+                            axios.post(`${baseurl}/training/student/data`, data, headers)
                             .then(response => {
                                 console.log(response)
                                 // open url in new tab
-                                window.open(`https://${ipAddress}:${port}/training/student/data/`, '_blank');
+                                window.open(`${baseurl}/training/student/data/`, '_blank');
                             })
                             .catch(e => {
                                 console.log(e.message)

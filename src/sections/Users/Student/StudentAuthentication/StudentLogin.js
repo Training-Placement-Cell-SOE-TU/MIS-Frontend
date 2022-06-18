@@ -16,8 +16,7 @@ import { Redirect } from "react-router-dom";
 
 import axios from 'axios'
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const theme = createTheme();
 
@@ -39,9 +38,9 @@ export default function SignIn() {
             "password": password
         }
 
-        console.log(data , `http://${ipAddress}:${port}/student/login`)
+        console.log(data , `${baseurl}/student/login`)
 
-        axios.post(`https://${ipAddress}:${port}/student/login`, data)
+        axios.post(`${baseurl}/student/login`, data)
         .then(response => {
             console.log(response);
             setToken(localStorage.setItem('access-token', response.data.token))

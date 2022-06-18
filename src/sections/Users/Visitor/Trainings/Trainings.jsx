@@ -25,8 +25,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { id } from 'date-fns/locale';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const drawerWidth = 240;
 
@@ -136,7 +135,7 @@ function Trainings(props) {
 
         console.log(data);
 
-        axios.post(`https://${ipAddress}:${port}/training/register/student`, data)
+        axios.post(`${baseurl}/training/register/student`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -153,7 +152,7 @@ function Trainings(props) {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get(`https://${ipAddress}:${port}/training/all`)
+            axios.get(`${baseurl}/training/all`)
             .then(response => {
                 response = response.data;
                 console.log(response.result);

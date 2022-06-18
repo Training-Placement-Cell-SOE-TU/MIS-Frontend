@@ -61,8 +61,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 export default function AddressInfo(props) {
     console.log(props)
@@ -126,7 +125,7 @@ export default function AddressInfo(props) {
 
         console.log(data)
 
-        axios.put(`https://${ipAddress}:${port}/student/update/address`,data, headers )
+        axios.put(`${baseurl}/student/update/address`,data, headers )
         .then(response => {
             console.log(response)
         })

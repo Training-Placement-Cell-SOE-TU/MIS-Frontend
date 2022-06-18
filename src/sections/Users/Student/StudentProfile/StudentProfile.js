@@ -85,8 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 
 export default function StudentProfile() {
@@ -116,7 +115,7 @@ export default function StudentProfile() {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get(`https://${ipAddress}:${port}/student/${roll}`, headers)
+            axios.get(`${baseurl}/student/${roll}`, headers)
             .then(response => {
                 response = response.data;
                 console.log(response);
@@ -163,7 +162,7 @@ export default function StudentProfile() {
         }
         console.log(data);
 
-        axios.put(`https://${ipAddress}:${port}/student/update/personal`,data, headers )
+        axios.put(`${baseurl}/student/update/personal`,data, headers )
         .then(response => {
             console.log(response);
         })
@@ -205,7 +204,7 @@ export default function StudentProfile() {
 
         const fetch = () => {
             setLoading(true);
-            axios.get(`https://${ipAddress}:${port}/student/${rollNo}`, headers)
+            axios.get(`${baseurl}/student/${rollNo}`, headers)
             .then(response => {
                 response = response.data;
                 console.log(response.result);
@@ -278,11 +277,11 @@ export default function StudentProfile() {
                                     higher_studies={profile.higher_studies}
                                     student_id = {profile.student_id}
                                 /> */}
-                                <PlacementInfo 
+                                {/* <PlacementInfo 
                                     student_id = {profile.student_id}
                                     job_info = {profile.job_info}
                                     internship_info = {profile.internship_info}
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>

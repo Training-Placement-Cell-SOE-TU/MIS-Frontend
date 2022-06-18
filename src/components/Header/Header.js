@@ -15,8 +15,8 @@ const Header = () => {
     profilePic:profilePic,
   }
 
-  const ipAddress = process.env.REACT_APP_IP;
-  const port = process.env.REACT_APP_PORT;
+  const baseurl = process.env.REACT_APP_BASE_URL;
+
   const [registered , setRegistered] = React.useState(false);
   const [overUserImg , setOverUserImg] = React.useState(false);
 
@@ -25,7 +25,7 @@ const Header = () => {
       setRegistered(true);
     }
 
-    axios.get(`https://${ipAddress}:${port}/user/profile`, {})
+    axios.get(`${baseurl}/user/profile`, {})
   });
 
   const location = useLocation();

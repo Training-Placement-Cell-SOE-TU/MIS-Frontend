@@ -17,8 +17,7 @@ import axios from 'axios';
 
 const drawerWidth = 240;
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -263,10 +262,10 @@ function Students(props) {
                 </div>
             </div>
             <Button variant="contained" color="secondary" className={classes.saveDataBtn} onClick={() => {
-                axios.post(`https://${ipAddress}:${port}/admin/student/data`)
+                axios.post(`${baseurl}/admin/student/data`)
                 .then(response => {
                     console.log(response)
-                    window.open(`https://${ipAddress}:${port}/admin/student/data`, '_blank')
+                    window.open(`${baseurl}/admin/student/data`, '_blank')
                 }).catch(e => {
                     console.log(e.message)
                 })
