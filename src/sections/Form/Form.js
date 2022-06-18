@@ -42,7 +42,7 @@ const Form = props => {
 
     console.log(data)
 
-    axios.post(`http://${ipAddress}:${port}/admin/login`, data)
+    axios.post(`https://${ipAddress}:${port}/admin/login`, data)
     .then(response => {
         console.log(response);
         setToken(

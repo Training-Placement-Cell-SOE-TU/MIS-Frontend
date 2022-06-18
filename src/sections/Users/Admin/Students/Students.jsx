@@ -157,7 +157,7 @@ function Students(props) {
     const [year_list , setYearList] = useState({});
 
     useEffect(() => {
-        axios.get(`http://${process.env.REACT_APP_IP+":"+process.env.REACT_APP_PORT}/admin/all_student`)
+        axios.get(`https://${process.env.REACT_APP_IP+":"+process.env.REACT_APP_PORT}/admin/all_student`)
         .then(res => {
             setData(res.data);
 
@@ -263,10 +263,10 @@ function Students(props) {
                 </div>
             </div>
             <Button variant="contained" color="secondary" className={classes.saveDataBtn} onClick={() => {
-                axios.post(`http://${ipAddress}:${port}/admin/student/data`)
+                axios.post(`https://${ipAddress}:${port}/admin/student/data`)
                 .then(response => {
                     console.log(response)
-                    window.open(`http://${ipAddress}:${port}/admin/student/data`, '_blank')
+                    window.open(`https://${ipAddress}:${port}/admin/student/data`, '_blank')
                 }).catch(e => {
                     console.log(e.message)
                 })

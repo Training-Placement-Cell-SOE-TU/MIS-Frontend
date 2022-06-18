@@ -25,7 +25,7 @@ const Header = () => {
       setRegistered(true);
     }
 
-    axios.get(`http://${ipAddress}:${port}/user/profile`, {})
+    axios.get(`https://${ipAddress}:${port}/user/profile`, {})
   });
 
   const location = useLocation();

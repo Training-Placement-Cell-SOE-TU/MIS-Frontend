@@ -41,7 +41,7 @@ export default function SignIn() {
 
         console.log(data , `http://${ipAddress}:${port}/student/login`)
 
-        axios.post(`http://${ipAddress}:${port}/student/login`, data)
+        axios.post(`https://${ipAddress}:${port}/student/login`, data)
         .then(response => {
             console.log(response);
             setToken(localStorage.setItem('access-token', response.data.token))

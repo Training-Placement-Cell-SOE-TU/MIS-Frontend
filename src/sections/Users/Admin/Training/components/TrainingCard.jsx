@@ -135,7 +135,7 @@ export default function TrainingCard(props) {
 
                         <Button variant="contained" color="secondary" className={classes.deleteBtn} onClick={() => {
                             console.log(props.training_id);
-                            axios.delete(`http://${ipAddress}:${port}/training/delete`, {data, headers}
+                            axios.delete(`https://${ipAddress}:${port}/training/delete`, {data, headers}
                             ).then(res => {
                                 console.log(res);
                                 props.updateTrainingState();
@@ -149,11 +149,11 @@ export default function TrainingCard(props) {
                         <Button variant="contained" color="secondary" className={classes.saveDataBtn} onClick={() => {
                             console.log(props.training_id)
                     
-                            axios.post(`http://${ipAddress}:${port}/training/student/data`, data, headers)
+                            axios.post(`https://${ipAddress}:${port}/training/student/data`, data, headers)
                             .then(response => {
                                 console.log(response)
                                 // open url in new tab
-                                window.open(`http://${ipAddress}:${port}/training/student/data/`, '_blank');
+                                window.open(`https://${ipAddress}:${port}/training/student/data/`, '_blank');
                             })
                             .catch(e => {
                                 console.log(e.message)

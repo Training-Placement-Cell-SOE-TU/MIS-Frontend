@@ -128,7 +128,7 @@ export default function SignUp() {
 
     console.log(data)
 
-    axios.post(`http://${ipAddress}:${port}/student/add`, data)
+    axios.post(`https://${ipAddress}:${port}/student/add`, data)
     .then(response => {
         console.log(response);
     })

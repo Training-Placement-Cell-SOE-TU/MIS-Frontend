@@ -84,7 +84,7 @@ export default function AdditionalInfo(props) {
         
         console.log(data)
 
-        axios.put(`http://${ipAddress}:${port}/student/update/additional`,data, headers )
+        axios.put(`https://${ipAddress}:${port}/student/update/additional`,data, headers )
         .then(response => {
             console.log(response)
         })

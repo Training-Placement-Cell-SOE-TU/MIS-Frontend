@@ -121,7 +121,7 @@ export default function HigherStudiesInfo(props) {
 
         console.log(data)
 
-        axios.put(`http://${ipAddress}:${port}/student/update/studies`,data, headers )
+        axios.put(`https://${ipAddress}:${port}/student/update/studies`,data, headers )
         .then(response => {
             console.log(response)
         })

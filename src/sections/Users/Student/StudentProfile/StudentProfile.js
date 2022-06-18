@@ -116,7 +116,7 @@ export default function StudentProfile() {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get(`http://${ipAddress}:${port}/student/${roll}`, headers)
+            axios.get(`https://${ipAddress}:${port}/student/${roll}`, headers)
             .then(response => {
                 response = response.data;
                 console.log(response);
@@ -163,7 +163,7 @@ export default function StudentProfile() {
         }
         console.log(data);
 
-        axios.put(`http://${ipAddress}:${port}/student/update/personal`,data, headers )
+        axios.put(`https://${ipAddress}:${port}/student/update/personal`,data, headers )
         .then(response => {
             console.log(response);
         })
@@ -205,7 +205,7 @@ export default function StudentProfile() {
 
         const fetch = () => {
             setLoading(true);
-            axios.get(`http://${ipAddress}:${port}/student/${rollNo}`, headers)
+            axios.get(`https://${ipAddress}:${port}/student/${rollNo}`, headers)
             .then(response => {
                 response = response.data;
                 console.log(response.result);

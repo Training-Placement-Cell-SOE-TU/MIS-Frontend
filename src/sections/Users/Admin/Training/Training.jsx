@@ -168,7 +168,7 @@ function Training(props) {
 
         console.log(data);
 
-        axios.post(`http://${ipAddress}:${port}/training/add`, data)
+        axios.post(`https://${ipAddress}:${port}/training/add`, data)
         .then(response => {
             console.log(response);
             setSnackOpen(true);
@@ -199,7 +199,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.post(`http://${ipAddress}:${port}/training/add/attendance`, data)
+        axios.post(`https://${ipAddress}:${port}/training/add/attendance`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -236,7 +236,7 @@ function Training(props) {
         }
         console.log(data);
 
-        axios.put(`http://${ipAddress}:${port}/training/update/training`,data )
+        axios.put(`https://${ipAddress}:${port}/training/update/training`,data )
         .then(response => {
             console.log(response);
         })
@@ -261,7 +261,7 @@ function Training(props) {
 
             const fetch = () => {
                 setLoading(true);
-                axios.get(`http://${ipAddress}:${port}/training/all`)
+                axios.get(`https://${ipAddress}:${port}/training/all`)
                 .then(response => {
                     response = response.data;
                     console.log(response.result);

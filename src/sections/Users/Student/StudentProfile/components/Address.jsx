@@ -126,7 +126,7 @@ export default function AddressInfo(props) {
 
         console.log(data)
 
-        axios.put(`http://${ipAddress}:${port}/student/update/address`,data, headers )
+        axios.put(`https://${ipAddress}:${port}/student/update/address`,data, headers )
         .then(response => {
             console.log(response)
         })

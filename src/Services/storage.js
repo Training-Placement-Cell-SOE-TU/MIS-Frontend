@@ -35,7 +35,7 @@ export default function uploadScoreCard(file , student_id , fileNo){
                 scorecard_link: url
         }
         console.log(data)
-        axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/student/add/scorecard`, data , headers)
+        axios.post(`https://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/student/add/scorecard`, data , headers)
         .then(res => {
             console.log(res);
         })

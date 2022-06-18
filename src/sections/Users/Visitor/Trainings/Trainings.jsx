@@ -136,7 +136,7 @@ function Trainings(props) {
 
         console.log(data);
 
-        axios.post(`http://${ipAddress}:${port}/training/register/student`, data)
+        axios.post(`https://${ipAddress}:${port}/training/register/student`, data)
         .then(response => {
             response = response.data;
             console.log(response);
@@ -153,7 +153,7 @@ function Trainings(props) {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            axios.get(`http://${ipAddress}:${port}/training/all`)
+            axios.get(`https://${ipAddress}:${port}/training/all`)
             .then(response => {
                 response = response.data;
                 console.log(response.result);
