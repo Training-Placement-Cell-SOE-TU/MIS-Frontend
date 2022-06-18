@@ -10,22 +10,24 @@ import profilePic from "../../sections/Users/Student/StudentProfile/profile.jpeg
 
 const Header = () => {
 
-  const data = {
+  let data = {
     name : "Yoda Yo",
     profilePic:profilePic,
   }
 
-  const ipAddress = process.env.REACT_APP_IP;
-  const port = process.env.REACT_APP_PORT;
+  const baseurl = process.env.REACT_APP_BASE_URL;
+
   const [registered , setRegistered] = React.useState(false);
   const [overUserImg , setOverUserImg] = React.useState(false);
 
   useEffect(() => {
     if(localStorage.getItem("access-token")){
+      data["name"] = localStorage.getItem("student_roll");
+      console.log(data.name);
       setRegistered(true);
     }
 
-    axios.get(`http://${ipAddress}:${port}/user/profile`, {})
+    axios.get(`${baseurl}/user/profile`, {})
   });
 
   const location = useLocation();
@@ -167,8 +169,10 @@ const Header = () => {
                             setRegistered(false);
                           }
                         }>Logout</span>}
-                        {!overUserImg && <span className='userName'>{data.name}</span>}
-                        <a href="/profile"><img src={data.profilePic} alt={data.name} /></a>
+                        {!overUserImg && <span className='userName'>{
+                          localStorage.getItem("student_roll") ? localStorage.getItem("student_roll") : data.name
+                        }</span>}
+                        <a href={`/student/${localStorage.getItem("student_roll")}`}><img src={data.profilePic} alt={data.name} /></a>
                       </div>
                     }
                       

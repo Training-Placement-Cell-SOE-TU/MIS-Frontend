@@ -10,14 +10,14 @@ const News = () => {
             </div>
             <Jobcard
             title="Academic progression 2021 Batch"
-            link="http://www.tezu.ernet.in/event/2021/TPCell_Workshop_DrDeepakVohra.pdf"
+            link="https://www.tezu.ernet.in/event/2021/TPCell_Workshop_DrDeepakVohra.pdf"
             date="05/01/2022"
             btn="Know More"
             />
             
             <Jobcard
             title="Organize a Workshop by Dr. Deepak Vohra 24 Dec - 26 Dec"
-            link="http://www.tezu.ernet.in/event/2021/TPCell_Workshop_DrDeepakVohra.pdf"
+            link="https://www.tezu.ernet.in/event/2021/TPCell_Workshop_DrDeepakVohra.pdf"
             date="05/01/2022"
             btn="Know More"
             />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AdminNavbar from "../AdminNavbar";
-import "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
+// import "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
 import Style from "./DataCollect.module.css";
 import { Button, Divider, Switch, TextField } from "@mui/material";
 
@@ -66,7 +66,7 @@ function DataCollect(props) {
       <div style={{ width: "100%", height: "80vh" }}>
         {emptyState && (
           <div className={Style.EmptyState}>
-            <lottie-player
+            {/* <lottie-player
               src="https://assets1.lottiefiles.com/packages/lf20_ydo1amjm.json"
               background="transparent"
               speed="1"
@@ -76,7 +76,7 @@ function DataCollect(props) {
               }}
               loop
               autoplay
-            ></lottie-player>
+            ></lottie-player> */}
             <div className={Style.EmptyMsg}>
               <h3 className={Style.EmptyLabel}>
                 No Additional Data Is Being Collected

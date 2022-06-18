@@ -20,16 +20,13 @@ const theme = createTheme();
 var headers
 
 
-const ipAddress = process.env.REACT_APP_IP;
-const port = process.env.REACT_APP_PORT;
+const baseurl = process.env.REACT_APP_BASE_URL;
 
 const Form = props => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [token, setToken] = useState("")
-
-    console.log(ipAddress)
 
 
     const handleSubmit = (e) => {
@@ -42,7 +39,7 @@ const Form = props => {
 
     console.log(data)
 
-    axios.post(`http://${ipAddress}:${port}/admin/login`, data)
+    axios.post(`${baseurl}/admin/login`, data)
     .then(response => {
         console.log(response);
         setToken(

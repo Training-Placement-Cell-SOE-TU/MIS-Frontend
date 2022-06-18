@@ -24,8 +24,7 @@ To run this project, you need to install the required dependencies by running th
 Create a .env file in the root directory of the project and add the following lines:
 
 ```
-REACT_APP_IP = <YOUR_IP_ADDRESS>
-REACT_APP_PORT = <YOUR_PORT_NUMBER>
+REACT_BASE_URL = <YOUR_SERVER_URL>
 ```
 
 ```
