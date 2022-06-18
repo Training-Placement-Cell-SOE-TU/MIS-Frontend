@@ -41,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         fontWeight: '500',
         borderRadius: '5px',
-        marginRight: 'null.5rem',
-        marginBottom: 'null.5rem',
+        marginRight: '0.5rem',
+        marginBottom: '0.5rem',
         display: 'inline-block',
         padding: '10px',
-        fontSize: 'null.8rem',
+        fontSize: '0.8rem',
         lineHeight: '1',
         textAlign: 'center',
         whiteSpace: 'nowrap',
@@ -74,116 +74,107 @@ const useStyles = makeStyles((theme) => ({
 const ipAddress = process.env.REACT_APP_IP;
 const port = process.env.REACT_APP_PORT;
 
-export default function Education(props) {
+export default function HigherStudiesInfo(props) {
     const classes = useStyles();
 
     const [currStudentId, setCurrStudentId] = useState("")
 
+    const [institution, setInstitution] = useState(null)
+    const [programme, setProgramme] = useState(null)
+    const [branch, setBranch] = useState(null)
+    const [examCleared, setExamCleared] = useState(null)
+    const [institutionId, setInstitutionId] = useState(null)
+    const [fellowship, setFellowship] = useState(null)
+    const [offerLink, setOfferLink] = useState(null)
 
-    const [metricPercent, setMetricPercent] = useState(null);
-    const [metricYOP, setMetricYOP] = useState(null);
-    const [hsPercent, setHsPercent] = useState(null);
-    const [hsYOP, setHsYOP] = useState(null);
-    const [cgpa, setCGPA] = useState(null);
-    const [jeeScore, setJeeScore] = useState(null);
-    const [jeeAIR, setJeeAIR] = useState(null);
-
-    const [openEducationInfoModal, setOpenEducationalInfo] = useState(false);
+    const [openHigherStudiesInfoModal, setOpenHigherStudiesInfoModal] = useState(false)
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
-    const handleEducationInfoClose = () => {
-        setOpenEducationalInfo(false);
+    const handleExamInfoClose = () => {
+        setOpenHigherStudiesInfoModal(false)
 
-        setMetricPercent(null);
-        setMetricYOP(null);
-        setHsPercent(null);
-        setHsYOP(null);
-        setCGPA(null);
-        setJeeScore(null);
-        setJeeAIR(null);
+        setInstitution(null)
+        setProgramme(null)
+        setBranch(null)
+        setExamCleared(null)
+        setInstitutionId(null)
+        setFellowship(null)
+        setOfferLink(null)
     }
 
-    const handleUpdateEducationalInfo = (e) => {
-        e.preventDefault();
+    const handleUpdateHigherStudiesInfo = (e) => {
+        e.preventDefault()
 
         const data = {
             "student_id": currStudentId,
-            "matric_pcnt": metricPercent,
-            "yop_matric": metricYOP,
-            "hs_pcnt": hsPercent,
-            "yop_hs": hsYOP,
-            "sgpa": [0,0,0],
-            "cgpa": cgpa,
-            "jee_score": jeeScore,
-            "jee_air": jeeAIR,
+            "higher_studies": {
+                "institution": institution,
+                "programme": programme,
+                "branch": branch,
+                "exam_cleared": examCleared,
+                "institution_id": institutionId,
+                "fellowship": fellowship,
+                "offer_link": offerLink
+            }
         }
 
-        console.log(data);
+        console.log(data)
 
-        axios.put(`http://${ipAddress}:${port}/student/update/educational`,data, headers )
+        axios.put(`http://${ipAddress}:${port}/student/update/studies`,data, headers )
         .then(response => {
-            console.log(response);
+            console.log(response)
         })
-        .catch(e => {
-            console.log(e.message);
-        }).finally(() => {
-            setOpenEducationalInfo(false);
-            setHsYOP(null);
-            setHsPercent(null);
-            setMetricYOP(null);
-            setMetricPercent(null);
-            setCGPA(null);
-            setJeeScore(null);
-            setJeeAIR(null);
+        .catch(error => {
+            console.log(error)
         })
+        .finally(() => {
+            handleExamInfoClose()
+        }) 
     }
 
-    const handleOpenEducationalUpdate = () => {
-        setOpenEducationalInfo(true);
+    const handleOpenHigherStudiesUpdate = () => {
+        setOpenHigherStudiesInfoModal(true)
 
-        setCurrStudentId(props.profile.student_id);
-        setMetricPercent(props.profile.matric_pcnt);
-        setMetricYOP(props.profile.yop_matric);
-        setHsPercent(props.profile.hs_pcnt);
-        setHsYOP(props.profile.yop_hs);
-        setCGPA(props.profile.cgpa);
-        setJeeScore(props.profile.jee_score);
-        setJeeAIR(props.profile.jee_air);
+        setCurrStudentId(props.student_id)
+        setInstitution(props.higher_studies.institution)
+        setProgramme(props.higher_studies.programme)
+        setBranch(props.higher_studies.branch)
+        setExamCleared(props.higher_studies.exam_cleared)
+        setInstitutionId(props.higher_studies.institution_id)
+        setFellowship(props.higher_studies.fellowship)
+        setOfferLink(props.higher_studies.offer_link)
     }
 
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
-                <div className={classes.credHeader}>Educational Info</div>
-                <IconButton className={classes.iconBtn} onClick={() => handleOpenEducationalUpdate()}>
+                <div className={classes.credHeader}>Higher Studies Info</div>
+                <IconButton className={classes.iconBtn} onClick={() => handleOpenHigherStudiesUpdate()}>
                     <EditIcon className={classes.editIcon}/>
                 </IconButton>
             </div>
             <div className={classes.detailsBox}>
                 <div className={classes.fieldBox}>
-                    <p>10th or equivalent: {props.profile.matric_pcnt}</p>
+                    <p>Institution Name: {props.higher_studies.institution}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>10th Year of Passing: {props.profile.yop_matric}</p>
+                    <p>Competitive Exam Cleared: {props.higher_studies.exam_cleared}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Higher Secondary Percentage: {props.profile.hs_pcnt}</p>
+                    <p>Programme of Study: {props.higher_studies.programme}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Year of HS: {props.profile.yop_hs}</p>
-                </div>
-                {/* <div className={classes.fieldBox}>
-                    <p>SGPA: {props.profile.sgpa}</p>
-                </div> */}
-                <div className={classes.fieldBox}>
-                    <p>CGPA: {props.profile.cgpa}</p>
+                    <p>Branch or Topic of Study: {props.higher_studies.branch}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>JEE Score: {props.profile.jee_score}</p>
+                    <p>Enrollment/Apllication Number of the institution: {props.higher_studies.institution_id}</p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>JEE AIR: {props.profile.jee_air}</p>
+                    <p>Fellowship(if any): {props.higher_studies.fellowship} </p>
+                </div>
+                <div className={classes.fieldBox}>
+                    <p>Offer Letter Link: {props.higher_studies.study_offer_link}</p>
                 </div>
             </div>
             <>
@@ -195,19 +186,19 @@ export default function Education(props) {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}
-                    open={openEducationInfoModal}
-                    onClose={handleEducationInfoClose}
+                    open={openHigherStudiesInfoModal}
+                    onClose={handleExamInfoClose}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
                         timeout: 200,
                     }}
                 >
-                    <Fade in={openEducationInfoModal}>
+                    <Fade in={openHigherStudiesInfoModal}>
 
                         <div className={classes.InfoModal}>
                         <div className={classes.closeCont}>
-                                <IconButton onClick={handleEducationInfoClose}>
+                                <IconButton onClick={handleExamInfoClose}>
                                     <CloseIcon />
                                 </IconButton>
                             </div>
@@ -219,33 +210,33 @@ export default function Education(props) {
                                     display: 'block',
                                     textAlign: 'center'
                                 }}>
-                                    <form onSubmit={handleUpdateEducationalInfo } autoComplete='off' className={classes.modalForm}  >
+                                    <form onSubmit={handleUpdateHigherStudiesInfo } autoComplete='off' className={classes.modalForm}  >
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Metric Percent" variant="outlined" value={metricPercent} onChange={e => setMetricPercent(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Institution Name" variant="outlined" value={institution} onChange={e => setInstitution(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Metric Year Of Passing" value={metricYOP} onChange={e => setMetricYOP(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Competitive Exam Cleared" value={examCleared} onChange={e => setExamCleared(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="HS Percent" value={hsPercent} onChange={e => setHsPercent(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Programme" value={programme} onChange={e => setProgramme(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="HS Year of Passing" value={hsYOP} onChange={e => setHsYOP(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Branch Or Topic Of Study" value={branch} onChange={e => setBranch(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="CGPA" value={cgpa} onChange={e => setCGPA(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Enrollment or Application ID" value={institutionId} onChange={e => setInstitutionId(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="JEE Score" value={jeeScore} onChange={e => setJeeScore(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="fellowship(if any)" value={fellowship} onChange={e => setFellowship(e.target.value)} />
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="JEE AIR" value={jeeAIR} onChange={e => setJeeAIR(e.target.value)} />
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Offer letter link" value={offerLink} onChange={e => setOfferLink(e.target.value)} />
                                         </div>
 
                                         <Button
@@ -266,6 +257,5 @@ export default function Education(props) {
                 </Modal>
             </>
         </div>
-        
-    );
+    )
 }
