@@ -306,13 +306,13 @@ export default function StudentProfile() {
                         </div>
                         <div className='col-lg-8 details-main-container'>
                             <div className='row details-container'>
-                                <Skills />
+                                {/* <Skills /> */}
                                 <Education 
                                     profile={profile}
                                     updateInfoState={updateInfoState}
                                 />
-                                <JobExp />
-                                <Certifications />
+                                {/* <JobExp /> */}
+                                {/* <Certifications /> */}
                                 <AddressInfo 
                                     permanent_address={profile.permanent_address}
                                     student_id = {profile.student_id}
@@ -325,7 +325,7 @@ export default function StudentProfile() {
                                 <AdditionalInfo 
                                     profile={profile}
                                 />
-                                <SocialInfo />
+                                {/* <SocialInfo /> */}
                                 <HigherStudies 
                                     higher_studies={profile.higher_studies}
                                     student_id = {profile.student_id}
@@ -336,7 +336,10 @@ export default function StudentProfile() {
                                     internship_info = {profile.internship_info}
                                     job_type = {profile.job_type}
                                 />
-                                <ExamsInfo />
+                                <ExamsInfo 
+                                    student_id = {profile.student_id}
+                                    competitive_exams = {profile.competitive_exams}
+                                />
                             </div>
                         </div>
                     </div>
