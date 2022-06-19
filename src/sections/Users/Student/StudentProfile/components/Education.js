@@ -68,6 +68,12 @@ const useStyles = makeStyles((theme) => ({
     closeCont: {
         display: 'flex',
         flexDirection: 'row-reverse',
+    },
+    modalForm: {
+        display: 'inline-block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'left'
     }
 }));
 
