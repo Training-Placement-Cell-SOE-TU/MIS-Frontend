@@ -1,9 +1,9 @@
 import './Education.scss'
-import React, { useState, useEffect } from 'react';
-import { Avatar, IconButton, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
+import { IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from '@material-ui/core/Modal';
-import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import { Button, Backdrop, TextField } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';

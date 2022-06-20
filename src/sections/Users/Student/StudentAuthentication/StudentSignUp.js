@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from 'react-router-dom';
+import {v4 as uuidv4 } from "uuid";
 
 import axios from "axios"
 
@@ -113,6 +114,7 @@ export default function SignUp() {
     e.preventDefault();
     
     const data = {
+      "student_id": uuidv4(),
       "fname": fname,
       "lname": lname,
       "roll_no": rollNo,
@@ -130,11 +132,10 @@ export default function SignUp() {
     axios.post(`${baseurl}/student/add`, data)
     .then(response => {
         console.log(response);
+        setIsSigned(true)
     })
     .catch(e => {
         console.log(e.message);
-    }).finally(() => {
-      setIsSigned(true)
     })
   };
 
