@@ -171,6 +171,7 @@ export default function StudentProfile() {
                 response = response.data;
                 console.log(response);
                 setRollNo(response.roll_no)
+                console.log("first" + response.roll_no)
                 setProfile(response)
             })
             .catch(e => {
@@ -258,8 +259,7 @@ export default function StudentProfile() {
             axios.get(`${baseurl}/student/${rollNo}`, headers)
             .then(response => {
                 response = response.data;
-                console.log(response.result);
-                setRollNo(response.data.roll_no)
+                setRollNo(response.roll_no)
                 setProfile(response)
             })
             .catch(e => {
