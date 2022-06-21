@@ -130,17 +130,12 @@ export default function SignUp() {
       "programme": programme
     }
 
-    console.log(data)
-
     axios.post(`${baseurl}/student/add`, data)
     .then(response => {
-        console.log(response);
         setIsSigned(true)
     })
     .catch(e => {
-        console.log(e.message);
         setIsError(true)
-        // console.log(e.response.data)
         setErrorMessage(e.response.data)
     })
   };

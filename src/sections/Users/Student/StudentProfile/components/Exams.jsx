@@ -88,8 +88,6 @@ export default function ExamsInfo(props) {
 
     const [competitiveExam, setCompetitiveExam] = useState(props.competitive_exams)
 
-    console.log(competitiveExam)
-
     const [examName, setExamName] = useState(null)
     const [examYop, setExamYop] = useState(null)
     const [examId, setExamId] = useState(null)
@@ -128,8 +126,6 @@ export default function ExamsInfo(props) {
             }
         }
 
-        console.log(data)
-
         axios.put(`${baseurl}/student/update/exams`, data, headers)
         .then(response => {
             console.log(response)
@@ -152,8 +148,6 @@ export default function ExamsInfo(props) {
             "score": examScore,
             "air": examAIR
         }
-
-        console.log(data)
 
         axios.post(`${baseurl}/student/add/exams`, data, headers)
         .then(response => {

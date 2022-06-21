@@ -88,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
 const baseurl = process.env.REACT_APP_BASE_URL;
 
 export default function AddressInfo(props) {
-    console.log(props)
     const classes = useStyles();
 
     const [currStudentId, setCurrStudentId] = useState("")
@@ -154,8 +153,6 @@ export default function AddressInfo(props) {
                 "address_line_2": presentAddressInfo2
             }
         }
-
-        console.log(data)
 
         axios.put(`${baseurl}/student/update/address`,data, headers )
         .then(response => {

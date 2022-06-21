@@ -140,9 +140,7 @@ export default function PlacementInfo(props) {
                 "offer_link": ''
             }
         }
-
-        console.log(data)
-
+        
         axios.put(`${baseurl}/student/update/job`,data, headers )
         .then(response => {
             console.log(response)
@@ -181,8 +179,6 @@ export default function PlacementInfo(props) {
                 "offer_link": jobOfferLink
             }
         }
-
-        console.log(data)
 
         axios.put(`${baseurl}/student/update/job`,data, headers )
         .then(response => {
