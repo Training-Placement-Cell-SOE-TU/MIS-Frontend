@@ -6,6 +6,8 @@ import Modal from '@material-ui/core/Modal';
 import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/Save';
+
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -93,6 +95,8 @@ export default function AddressInfo(props) {
 
 
     const [permanentAddress, setPermanentAddress] = useState(props.permanent_address)
+    const [presentAddress, setPresentAddress] = useState(props.present_address)
+
     const [city, setCity] = useState(null)
     const [state, setState] = useState(null)
     const [country, setCountry] = useState(null)
@@ -104,13 +108,13 @@ export default function AddressInfo(props) {
     const [isPermanentEqualsPresent, setIsPermanentEqualsPresent] = useState(false)
     const [checked, setChecked] = useState(true)
 
-    const [presentCity, setPresentCity] = useState(null)
-    const [presentState, setPresentState] = useState(null)
-    const [presentCountry, setPresentCountry] = useState(null)
-    const [presentPincode, setPresentPincode] = useState(null)
-    const [presentDistrict, setPresentDistrict] = useState(null)
-    const [presentAddressInfo, setPresentAddressInfo] = useState(null)
-    const [presentAddressInfo2, setPresentAddressInfo2] = useState(null)
+    const [presentCity, setPresentCity] = useState("")
+    const [presentState, setPresentState] = useState("")
+    const [presentCountry, setPresentCountry] = useState("")
+    const [presentPincode, setPresentPincode] = useState("")
+    const [presentDistrict, setPresentDistrict] = useState("")
+    const [presentAddressInfo, setPresentAddressInfo] = useState("")
+    const [presentAddressInfo2, setPresentAddressInfo2] = useState("")
 
     const [openAddressInfoModal, setOpenAddressInfoModal] = useState(false)
     const [openPresentAddressInfoModal, setOpenPresentAddressInfoModal] = useState(false)
@@ -170,6 +174,7 @@ export default function AddressInfo(props) {
         setOpenAddressInfoModal(true)
 
         setCurrStudentId(props.student_id)
+
         setCity(props.permanent_address.city)
         setState(props.permanent_address.state)
         setCountry(props.permanent_address.country)
@@ -177,12 +182,29 @@ export default function AddressInfo(props) {
         setDistrict(props.permanent_address.district)
         setAddressInfo(props.permanent_address.address_line_1)
         setAddressInfo2(props.permanent_address.address_line_2)
+
+        setPresentCity(props.present_address.city)
+        setPresentState(props.present_address.state)
+        setPresentCountry(props.present_address.country)
+        setPresentPincode(props.present_address.pincode)
+        setPresentDistrict(props.present_address.district)
+        setPresentAddressInfo(props.present_address.address_line_1)
+        setPresentAddressInfo2(props.present_address.address_line_2)
     }
 
     const handleOpenPresentAddressUpdate = () => {
         setOpenPresentAddressInfoModal(true)
 
         setCurrStudentId(props.student_id)
+
+        setCity(props.permanent_address.city)
+        setState(props.permanent_address.state)
+        setCountry(props.permanent_address.country)
+        setPincode(props.permanent_address.pincode)
+        setDistrict(props.permanent_address.district)
+        setAddressInfo(props.permanent_address.address_line_1)
+        setAddressInfo2(props.permanent_address.address_line_2)
+
         setPresentCity(props.present_address.city)
         setPresentState(props.present_address.state)
         setPresentCountry(props.present_address.country)
@@ -223,7 +245,7 @@ export default function AddressInfo(props) {
                     </p>
 
                     <p className={classes.address}>Present Address <span className={classes.addressText}>
-                        
+                       {presentAddress.address_line_1}  {presentAddress.address_line_2},  City-{presentAddress.city} Dist-{presentAddress.district} Country- {presentAddress.country}, Pin - {presentAddress.pincode}
                     </span></p>
                 </div>
             </div>
