@@ -157,6 +157,7 @@ export default function PlacementInfo(props) {
             setJobDesignation(null)
             setJobSalary(null)
             setJobOfferLink(null)
+            props.updateInfoState()
         })
         
     }
@@ -197,6 +198,7 @@ export default function PlacementInfo(props) {
             setJobDesignation(null)
             setJobSalary(null)
             setJobOfferLink(null)
+            props.updateInfoState()
         })
     }
 

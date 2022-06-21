@@ -129,6 +129,7 @@ export default function HigherStudiesInfo(props) {
         })
         .finally(() => {
             handleExamInfoClose()
+            props.updateInfoState()
         }) 
     }
 

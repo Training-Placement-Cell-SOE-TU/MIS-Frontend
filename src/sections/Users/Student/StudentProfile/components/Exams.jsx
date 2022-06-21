@@ -137,6 +137,7 @@ export default function ExamsInfo(props) {
             console.log(error)
         }).finally(() => {
             handleExamInfoClose()
+            props.updateInfoState()
         })
     }
 
@@ -162,6 +163,7 @@ export default function ExamsInfo(props) {
             console.log(error)
         }).finally(() => {
             handleExamInfoClose()
+            props.updateInfoState()
         })
     }
 

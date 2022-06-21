@@ -91,6 +91,7 @@ export default function AdditionalInfo(props) {
             console.log(error)
         }).finally(() => {
             handleAddInfoClose();
+            props.updateInfoState()
         })
     }
 
