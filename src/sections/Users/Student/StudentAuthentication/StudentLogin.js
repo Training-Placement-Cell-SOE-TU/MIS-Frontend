@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from "react-router-dom";
+import AlertBox from '../../../../components/Alerts/Alert';
 
 import axios from 'axios'
 
@@ -30,6 +31,9 @@ export default function SignIn() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [rollNo, setRollNo] = useState("")
     
+    const [isError, setIsError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -42,7 +46,7 @@ export default function SignIn() {
 
         axios.post(`${baseurl}/student/login`, data)
         .then(response => {
-            console.log(response);
+            console.log("This is a response" + response);
             setToken(localStorage.setItem('access-token', response.data.token))
             headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
             setRollNo(response.data.roll_no)
@@ -51,8 +55,16 @@ export default function SignIn() {
         })
         .catch(e => {
             console.log(e.message);
+            setIsError(true)
+            setErrorMessage(e.response.data.message)
         })
     };
+
+    function errorCheck() {
+        if(isError) {
+            return <AlertBox message={errorMessage} />
+        }
+    }
 
     return (
         <>
@@ -61,6 +73,7 @@ export default function SignIn() {
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
+            {errorCheck()}
             <Box
             sx={{
                 marginTop: 8,
