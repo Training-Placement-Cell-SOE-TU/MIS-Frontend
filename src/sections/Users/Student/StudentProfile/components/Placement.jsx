@@ -288,7 +288,7 @@ export default function PlacementInfo(props) {
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" select placeholder="Type of Job" value={jobType} onChange={e => setJobType(e.target.value)}
+                                            <TextField label="Type of Job" className={classes.textField} id="outlined-basic" variant="outlined" select placeholder="Type of Job" value={jobType} onChange={e => setJobType(e.target.value)}
                                             >
                                                 {jobList.map((option) => (
                                                     <MenuItem key={option.value} value={option.value}>

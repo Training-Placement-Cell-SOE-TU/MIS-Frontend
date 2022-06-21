@@ -9,6 +9,9 @@ import { Backdrop } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import Fade from '@material-ui/core/Fade';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 const useStyles = makeStyles((theme) => ({
     editBtn: {
@@ -17,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     },
     detailsHeader: {
         display: 'flex',
+    },
+    textField: {
+        width: '500px'
     },
     credHeader: {
         alignSelf: 'center',
@@ -49,6 +55,18 @@ const useStyles = makeStyles((theme) => ({
 
 const baseurl = process.env.REACT_APP_BASE_URL;
 
+const chooseValueList = [
+    {
+      value: true,
+      label: "Yes"
+    },
+  
+    {
+      value: false,
+      label: "No"
+    },
+  ]
+
 export default function AdditionalInfo(props) {
     const classes = useStyles();
 
@@ -76,8 +94,8 @@ export default function AdditionalInfo(props) {
         const data = {
             "student_id": props.profile.student_id,
             "category": category,
-            "minority": minority === "Yes" || "yes" ? true : false,
-            "handicap": handicap === "Yes" || "yes" ? true : false,
+            "minority": minority,
+            "handicap": handicap,
             "dob": dateOfBirth
         }
         
@@ -99,8 +117,8 @@ export default function AdditionalInfo(props) {
         setOpenAddInfoModal(true);
 
         setCategory(props.profile.category);
-        setMinority(props.profile.minority ? "Yes" : "No");
-        setHandicap(props.profile.handicap ? "Yes" : "No");
+        setMinority(props.profile.minority);
+        setHandicap(props.profile.handicap);
         setDateOfBirth(props.profile.dob);
     }
 
@@ -165,11 +183,25 @@ export default function AdditionalInfo(props) {
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Minority(Yes/No)" value={minority} onChange={e => setMinority(e.target.value)} />
+                                            <TextField label="Minority" className={classes.textField} select id="outlined-basic" variant="outlined" value={minority} onChange={e => setMinority(e.target.value)}
+                                            >
+                                                {chooseValueList.map((option) => (
+                                                    <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                    </MenuItem>
+                                                ))}
+                                            </TextField>
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Handicap(Yes/No)" value={handicap} onChange={e => setHandicap(e.target.value)} />
+                                            <TextField label="Handicap" className={classes.textField} id="outlined-basic" select variant="outlined" value={handicap} onChange={e => setHandicap(e.target.value)}
+                                            >
+                                                {chooseValueList.map((option) => (
+                                                    <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                    </MenuItem>
+                                                ))}
+                                            </TextField>
                                         </div>
 
                                         <div className={classes.input}>
