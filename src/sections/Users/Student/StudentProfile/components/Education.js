@@ -128,7 +128,7 @@ export default function Education(props) {
 
         axios.put(`${baseurl}/student/update/educational`,data, headers )
         .then(response => {
-            console.log(response);
+            console.log("This is a educcation response: " + response);
         })
         .catch(e => {
             console.log(e.message);
@@ -141,6 +141,7 @@ export default function Education(props) {
             setCGPA(null);
             setJeeScore(null);
             setJeeAIR(null);
+            props.updateInfoState();
         })
     }
 

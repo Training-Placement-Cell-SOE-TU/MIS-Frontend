@@ -166,6 +166,7 @@ export default function AddressInfo(props) {
         }).finally(() => {
             handleAddressInfoClose()
             handlePresentAddressInfoClose()
+            props.updateInfoState()
         })
 
     }

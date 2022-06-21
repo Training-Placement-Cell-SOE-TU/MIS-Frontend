@@ -317,6 +317,7 @@ export default function StudentProfile() {
                                     permanent_address={profile.permanent_address}
                                     student_id = {profile.student_id}
                                     present_address={profile.present_address}
+                                    updateInfoState={updateInfoState}
                                 />
                                 <ScoreCard 
                                     student_id={profile.student_id}
@@ -324,21 +325,25 @@ export default function StudentProfile() {
                                 />
                                 <AdditionalInfo 
                                     profile={profile}
+                                    updateInfoState={updateInfoState}
                                 />
                                 {/* <SocialInfo /> */}
                                 <HigherStudies 
                                     higher_studies={profile.higher_studies}
                                     student_id = {profile.student_id}
+                                    updateInfoState={updateInfoState}
                                 />
                                 <PlacementInfo 
                                     student_id = {profile.student_id}
                                     job_info = {profile.job_info}
                                     internship_info = {profile.internship_info}
                                     job_type = {profile.job_type}
+                                    updateInfoState={updateInfoState}
                                 />
                                 <ExamsInfo 
                                     student_id = {profile.student_id}
                                     competitive_exams = {profile.competitive_exams}
+                                    updateInfoState={updateInfoState}
                                 />
                             </div>
                         </div>
