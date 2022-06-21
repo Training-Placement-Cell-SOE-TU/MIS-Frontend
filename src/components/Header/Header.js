@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import {Navbar, Nav, Dropdown} from 'react-bootstrap'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
-import Link from 'react-scroll/modules/components/Link'
+import {Link} from 'react-router-dom'
 import logo from "../tu.png"
 import './header.css'
 import profilePic from "../../sections/Users/Student/StudentProfile/profile.jpeg"
@@ -93,11 +93,11 @@ const Header = () => {
                         <Navbar.Brand  href="/" ><span className="logo" >Training and Placement Cell</span> <br/> <span className="logo2" >School of Engineering, Tezpur University</span> </Navbar.Brand>
                         
                         <Nav className='mx-auto naav'>
-                        <Nav.Link href="/events" ><span className="navlnk">Events</span></Nav.Link>
-                        <Nav.Link href="/placements" ><span className="navlnk">Placements</span></Nav.Link>
-                        <Nav.Link href="/jobs" ><span className="navlnk">Latest Job Postings</span></Nav.Link>
-                        <Nav.Link href="/news" ><span className="navlnk">News &amp; Notifications </span></Nav.Link>
-                        <Nav.Link href="/about" ><span className="navlnk">About Us </span></Nav.Link>
+                        <Link to="/events" ><span className="navlnk">Events</span></Link>
+                        <Link to="/placements" ><span className="navlnk">Placements</span></Link>
+                        <Link to="/jobs" ><span className="navlnk">Latest Job Postings</span></Link>
+                        <Link to="/news" ><span className="navlnk">News &amp; Notifications </span></Link>
+                        <Link to="/about" ><span className="navlnk">About Us </span></Link>
                         <Dropdown >
                         <Dropdown.Toggle variant='flat' size="l">
                           More
