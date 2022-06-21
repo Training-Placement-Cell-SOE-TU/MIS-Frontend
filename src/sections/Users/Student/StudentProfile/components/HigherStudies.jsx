@@ -118,8 +118,6 @@ export default function HigherStudiesInfo(props) {
             }
         }
 
-        console.log(data)
-
         axios.put(`${baseurl}/student/update/studies`,data, headers )
         .then(response => {
             console.log(response)

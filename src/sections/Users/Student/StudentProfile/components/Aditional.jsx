@@ -98,8 +98,6 @@ export default function AdditionalInfo(props) {
             "handicap": handicap,
             "dob": dateOfBirth
         }
-        
-        console.log(data)
 
         axios.put(`${baseurl}/student/update/additional`,data, headers )
         .then(response => {

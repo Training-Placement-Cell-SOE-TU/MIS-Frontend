@@ -124,11 +124,9 @@ export default function Education(props) {
             "jee_air": jeeAIR,
         }
 
-        console.log(data);
-
         axios.put(`${baseurl}/student/update/educational`,data, headers )
         .then(response => {
-            console.log("This is a educcation response: " + response);
+            console.log(response);
         })
         .catch(e => {
             console.log(e.message);

@@ -42,11 +42,8 @@ export default function SignIn() {
             "password": password
         }
 
-        console.log(data , `${baseurl}/student/login`)
-
         axios.post(`${baseurl}/student/login`, data)
         .then(response => {
-            console.log("This is a response" + response);
             setToken(localStorage.setItem('access-token', response.data.token))
             headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
             setRollNo(response.data.roll_no)
@@ -54,7 +51,6 @@ export default function SignIn() {
             setIsLoggedIn(true)
         })
         .catch(e => {
-            console.log(e.message);
             setIsError(true)
             setErrorMessage(e.response.data.message)
         })

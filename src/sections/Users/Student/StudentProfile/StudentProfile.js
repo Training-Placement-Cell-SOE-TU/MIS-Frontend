@@ -165,13 +165,10 @@ export default function StudentProfile() {
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
-            console.log("making request to : ",`${baseurl}/student/${roll}`)
             axios.get(`${baseurl}/student/${roll}`, headers)
             .then(response => {
                 response = response.data;
-                console.log(response);
                 setRollNo(response.roll_no)
-                console.log("first" + response.roll_no)
                 setProfile(response)
             })
             .catch(e => {
@@ -212,7 +209,6 @@ export default function StudentProfile() {
             "phone": phone,
             "current_sem": currentSem
         }
-        console.log(data);
 
         axios.put(`${baseurl}/student/update/personal`,data, headers )
         .then(response => {
@@ -249,8 +245,6 @@ export default function StudentProfile() {
         setPhone(profile.phone)
         setCurrentSem(profile.current_sem)
     }
-
-    console.log(profile.higher_studies)
 
     const updateInfoState = () => {
 
@@ -294,7 +288,6 @@ export default function StudentProfile() {
                                     </IconButton>
                                 </div>
                                 <div className='general'>
-                                    {/* {console.log(profile)} */}
                                     <div className='student-name'>{profile.fname} {profile.lname}</div>
                                     <div>{roll}</div>
                                     <div>{profile.branch}</div>
