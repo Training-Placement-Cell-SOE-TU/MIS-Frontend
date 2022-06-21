@@ -174,7 +174,7 @@ export default function HigherStudiesInfo(props) {
                     <p>Fellowship(if any): {props.higher_studies.fellowship} </p>
                 </div>
                 <div className={classes.fieldBox}>
-                    <p>Offer Letter Link: {props.higher_studies.study_offer_link}</p>
+                    <p>Offer Letter Link: {props.higher_studies.offer_link}</p>
                 </div>
             </div>
             <>

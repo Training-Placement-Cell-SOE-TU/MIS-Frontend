@@ -1,4 +1,4 @@
-import React from 'react';
+import  React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from 'react-router-dom';
 import {v4 as uuidv4 } from "uuid";
+import AlertBox from '../../../../components/Alerts/Alert';
 
 import axios from "axios"
 
@@ -95,19 +96,21 @@ export default function SignUp() {
 
   const date = new Date()
 
-  const [gender, setGender] = React.useState("");
-  const [fname, setFname] = React.useState("")
-  const [lname, setLname] = React.useState("")
-  const [email, setEmail] = React.useState("")
-  const [rollNo, setRollNo] = React.useState("")
-  const [batch, setBatch] = React.useState(date.getFullYear())
-  const [branch, setBranch] = React.useState("")
-  const [phone, setPhone] = React.useState("")
-  const [password, setPassword] = React.useState("")
-  const [programme, setProgramme] = React.useState("")
+  const [gender, setGender] = useState("");
+  const [fname, setFname] = useState("")
+  const [lname, setLname] = useState("")
+  const [email, setEmail] = useState("")
+  const [rollNo, setRollNo] = useState("")
+  const [batch, setBatch] = useState(date.getFullYear())
+  const [branch, setBranch] = useState("")
+  const [phone, setPhone] = useState("")
+  const [password, setPassword] = useState("")
+  const [programme, setProgramme] = useState("")
 
-  const [isSigned, setIsSigned] = React.useState(false)
+  const [isSigned, setIsSigned] = useState(false)
 
+  const [isError, setIsError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
 
   const handleSubmit = (e) => {
@@ -136,14 +139,24 @@ export default function SignUp() {
     })
     .catch(e => {
         console.log(e.message);
+        setIsError(true)
+        // console.log(e.response.data)
+        setErrorMessage(e.response.data)
     })
   };
+
+  function errorCheck() {
+    if(isError) {
+        return <AlertBox message={errorMessage} />
+    }
+}
 
   return (
     (!isSigned ) ? 
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {errorCheck()}
         <Box
           sx={{
             marginTop: 0,
@@ -194,6 +207,7 @@ export default function SignUp() {
                   name="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  helperText="Only Gmail Allowed"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -288,6 +302,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   onChange={e => setPassword(e.target.value)}
+                  helperText="Only use small letters and numbers"
                 />
               </Grid>
             </Grid>
