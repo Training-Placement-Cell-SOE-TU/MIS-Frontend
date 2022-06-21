@@ -406,7 +406,7 @@ export default function StudentProfile() {
                                         </div>
 
                                         <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" select variant="outlined" placeholder="Current Semester" value={currentSem} onChange={e => setCurrentSem(e.target.value)}
+                                            <TextField label="Semester" className={classes.textField} id="outlined-basic" select variant="outlined" placeholder="Current Semester" value={currentSem} onChange={e => setCurrentSem(e.target.value)}
                                             >
                                                 {semesterList.map((option) => (
                                                     <MenuItem key={option.value} value={option.value}>
