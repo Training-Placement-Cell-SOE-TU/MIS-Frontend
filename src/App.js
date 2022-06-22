@@ -54,13 +54,13 @@ function App() {
           <Route path="/student-login" component={StudentLogin}/>
           <Route path="/student/:roll" component={StudentProfile}/>
           <Route path="/trainings" component={Trainings}/>
-          <Route path="/admin-console/dashboard" component={Admin}/>
-          <Route path="/admin-console/students" component={Students}/>
-          <Route path="/admin-console/companies" component={Companies}/>
-          <Route path="/admin-console/settings" component={Settings}/>
-          <Route path="/admin-console/training" component={Training}/>
+          <Route path="/admin-console/:username/dashboard/" component={Admin}/>
+          <Route path="/admin-console/:username/students/" component={Students}/>
+          <Route path="/admin-console/:username/companies" component={Companies}/>
+          <Route path="/admin-console/:username/settings" component={Settings}/>
+          <Route path="/admin-console/:username/training" component={Training}/>
           <Route path="/admin-console/logout" component={AdminLogout}/>
-          <Route path="/admin-console/DataCollect" component={DataCollect}/>
+          <Route path="/admin-console/:username/DataCollect" component={DataCollect}/>
           
           <Route path="*" component={NotFound}/>
         </Switch>
