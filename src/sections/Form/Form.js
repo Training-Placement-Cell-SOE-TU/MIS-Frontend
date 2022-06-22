@@ -28,6 +28,8 @@ const Form = props => {
     const [password, setPassword] = useState("")
     const [token, setToken] = useState("")
 
+    const [username, setUsername] = useState("")
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,6 +47,7 @@ const Form = props => {
         setToken(
             localStorage.setItem('admin-access-token', response.data.token)
         )
+        setUsername(response.data.username)
         headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("admin-access-token")}`}}
         setLoggedIn(true)
     })
@@ -56,7 +59,7 @@ const Form = props => {
   return (
 
     <div className="formcon">
-      {loggedIn && <Redirect push to="/admin-console/dashboard/" />}
+      {loggedIn && <Redirect push to={`/admin-console/${username}/dashboard`} />}
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
