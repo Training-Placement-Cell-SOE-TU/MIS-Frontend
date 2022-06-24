@@ -9,7 +9,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 
-import  {uploadFile} from '../../../../../Services/storage';
+import VisibilityIcon from "@material-ui/icons/Visibility";
+
+import  {uploadJob} from '../../../../../Services/storage';
 
 const useStyles = makeStyles((theme) => ({
     editBtn: {
@@ -256,8 +258,32 @@ export default function PlacementInfo(props) {
                 <div className={classes.fieldBox}>
                     <p>Salary Package: {props.job_info.salary || props.internship_info.salary}</p>
                 </div>
-                <div className={classes.fieldBox}>
-                    <p>Offer Letter Link: {props.job_info.offer_link || props.internship_info.offer_link}</p>
+                <div>
+                    <label htmlFor="contained-button-file3">
+                        <Input
+                            accept="document/*"
+                            id="contained-button-file3"
+                            multiple
+                            type="file"
+                                style={{ width:"0px" }}
+                                onChange={(e) => {
+                                    let file = e.target.files[0];
+                                    let data = props.profile
+                                    uploadJob(file, data);
+                                }}
+                        />
+                        <Button variant="contained" component="span">
+                            Upload Offer Letter
+                        </Button>
+                    </label>
+                    <IconButton>
+                        <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
+                        onClick={() => {
+                            console.log(props.job_info.offer_link || props.internship_info.offer_link);
+                            window.open(props.job_info.offer_link || props.internship_info.offer_link, '_blank');
+                        }}
+                    />
+                    </IconButton>
                 </div>
             </div>
             <>
@@ -319,25 +345,6 @@ export default function PlacementInfo(props) {
 
                                         <div className={classes.input}>
                                             <TextField disabled className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Salary/month or Package/annum" value={jobOfferLink} onChange={e => setJobOfferLink(e.target.value)} />
-                                        </div>
-                                        
-                                        <div>
-                                            <label htmlFor="contained-button-file3">
-                                                <Input
-                                                    accept="document/*"
-                                                    id="contained-button-file3"
-                                                    multiple
-                                                    type="file"
-                                                        style={{ width:"0px" }}
-                                                        onChange={(e) => {
-                                                            let file = e.target.files[0];
-                                                            uploadFile(file, currStudentId, "job");
-                                                        }}
-                                                />
-                                                <Button variant="contained" component="span">
-                                                    Upload Offer Letter
-                                                </Button>
-                                            </label>
                                         </div>
                                             
                                         <Button

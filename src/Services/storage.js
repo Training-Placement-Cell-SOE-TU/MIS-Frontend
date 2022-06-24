@@ -21,24 +21,70 @@ const storage = getStorage(firebaseApp);
 const storageRef = ref(storage);
 var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
-function uploadFile(file , student_id, filetype){
+function uploadStudies(file , data){
     console.log("uploading ..")
-    console.log("test")
     // var offerLink
-    let spaceRef = ref(storageRef , `${filetype}/${student_id}_${filetype}.pdf`);
-    console.log(filetype)
+    let spaceRef = ref(storageRef , `Studies/${data.student_id}_studies.pdf`);
     // 'file' comes from the Blob or File API
     uploadBytes(spaceRef, file).then((snapshot) => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(spaceRef).then((url) => {
             console.log(url);
-            let data = {
-                student_id: student_id,
-                link: url,
-                name: filetype
+            let sendData = {
+                student_id: data.student_id,
+                higher_studies: {
+                    offer_link: url,
+                    fellowship: data.higher_studies.fellowship,
+                    programme: data.higher_studies.programme,
+                    branch: data.higher_studies.branch,
+                    institution: data.higher_studies.institution,
+                    exam_cleared: data.higher_studies.exam_cleared,
+                    institution_id: data.higher_studies.institution_id,
+                }
         }
-        console.log(data)
-        axios.post(`${process.env.REACT_APP_BASE_URL}/student/add/offer`, data , headers)
+        console.log(sendData)
+        axios.put(`${process.env.REACT_APP_BASE_URL}/student/update/studies`, sendData , headers)
+        .then(res => {
+            console.log(res);
+        }
+        ).catch(err => {
+            console.log(err);
+        })}
+        ).catch((error) => {
+            console.log(error);
+        }
+        );
+        console.log('Uploaded a blob or file!');
+    });
+}
+
+function uploadJob(file , data){
+    console.log("uploading ..")
+    // var offerLink
+    let spaceRef = ref(storageRef , `Job/${data.student_id}_job.pdf`);
+    // 'file' comes from the Blob or File API
+    uploadBytes(spaceRef, file).then((snapshot) => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(spaceRef).then((url) => {
+            console.log(url);
+            let sendData = {
+                student_id: data.student_id,
+                job_type: data.job_type,
+                job_info: {
+                    offer_link: url,
+                    company_name: data.job_info.company_name,
+                    designation: data.job_info.designation,
+                    salary: data.job_info.salary
+                },
+                internship_info: {
+                    offer_link: url,
+                    company_name: data.internship_info.company_name,
+                    designation: data.internship_info.designation,
+                    salary: data.internship_info.salary
+                }
+        }
+        console.log(sendData)
+        axios.put(`${process.env.REACT_APP_BASE_URL}/student/update/job`, sendData , headers)
         .then(res => {
             console.log(res);
         }
@@ -120,4 +166,4 @@ function uploadProfilePic(file , data){
   });
 }
 
-export { uploadFile, uploadProfilePic , uploadScoreCard }
+export { uploadStudies, uploadProfilePic , uploadScoreCard, uploadJob }

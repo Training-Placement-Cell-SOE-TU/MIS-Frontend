@@ -6,8 +6,9 @@ import Modal from '@material-ui/core/Modal';
 import { Button, Backdrop, Icon, TextField, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
-import  {uploadFile} from '../../../../../Services/storage';
+import  {uploadStudies} from '../../../../../Services/storage';
 
 import axios from 'axios';
 
@@ -92,10 +93,6 @@ export default function HigherStudiesInfo(props) {
     const [openHigherStudiesInfoModal, setOpenHigherStudiesInfoModal] = useState(false)
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
-
-    useEffect(() => {
-        handleLink()
-    })
 
     const handleExamInfoClose = () => {
         setOpenHigherStudiesInfoModal(false)
@@ -189,8 +186,33 @@ export default function HigherStudiesInfo(props) {
                 <div className={classes.fieldBox}>
                     <p>Fellowship(if any): {props.higher_studies.fellowship} </p>
                 </div>
-                <div className={classes.fieldBox}>
-                    <p>Offer Letter Link: {props.higher_studies.offer_link}</p>
+                <div>
+                    <label htmlFor="contained-button-file2">
+                        <Input
+                            accept="document/*"
+                            id="contained-button-file2"
+                            multiple
+                            type="file"
+                                style={{ width:"0px" }}
+                                onChange={(e) => {
+                                    let file = e.target.files[0];
+                                    let data = props.profile
+                                    uploadStudies(file, data);
+                                }}
+                        />
+                        <Button variant="contained" component="span">
+                            Upload Offer Letter
+                        </Button>
+                    </label>
+
+                    <IconButton>
+                        <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
+                        onClick={() => {
+                            console.log(props.higher_studies.offer_link);
+                            window.open( props.higher_studies.offer_link, '_blank');
+                        }}
+                    />
+                    </IconButton>
                 </div>
             </div>
             <>
@@ -251,11 +273,11 @@ export default function HigherStudiesInfo(props) {
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="fellowship(if any)" value={fellowship} onChange={e => setFellowship(e.target.value)} />
                                         </div>
 
-                                        <div className={classes.input}>
+                                        {/* <div className={classes.input}>
                                             <TextField disabled className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Offer letter link" value={offerLink} onChange={e => setOfferLink(e.target.value)} />
-                                        </div>
+                                        </div> */}
 
-                                        <div>
+                                        {/* <div>
                                         <label htmlFor="contained-button-file2">
                                             <Input
                                                 accept="document/*"
@@ -265,14 +287,15 @@ export default function HigherStudiesInfo(props) {
                                                     style={{ width:"0px" }}
                                                     onChange={(e) => {
                                                         let file = e.target.files[0];
-                                                        uploadFile(file, currStudentId, "higher_studies");
+                                                        let data = props.profile
+                                                        uploadStudies(file, data);
                                                     }}
                                             />
                                             <Button variant="contained" component="span">
                                                 Upload Offer Letter
                                             </Button>
                                         </label>
-                                        </div>
+                                        </div> */}
 
                                         <Button
                                             variant='outlined'

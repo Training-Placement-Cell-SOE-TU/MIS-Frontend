@@ -352,6 +352,7 @@ export default function StudentProfile() {
                                     student_id = {profile.student_id}
                                     updateInfoState={updateInfoState}
                                     offer_letters={profile.offer_letters}
+                                    profile={profile}
                                 />
                                 <PlacementInfo 
                                     student_id = {profile.student_id}
@@ -360,6 +361,7 @@ export default function StudentProfile() {
                                     job_type = {profile.job_type}
                                     updateInfoState={updateInfoState}
                                     offer_letters={profile.offer_letters}
+                                    profile={profile}
                                 />
                                 <ExamsInfo 
                                     student_id = {profile.student_id}
