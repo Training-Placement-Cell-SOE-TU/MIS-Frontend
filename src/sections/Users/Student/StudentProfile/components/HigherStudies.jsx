@@ -3,9 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from '@material-ui/core/Modal';
-import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import { Button, Backdrop, Icon, TextField, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
+
+import  {uploadFile} from '../../../../../Services/storage';
+
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -90,6 +93,10 @@ export default function HigherStudiesInfo(props) {
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
+    useEffect(() => {
+        handleLink()
+    })
+
     const handleExamInfoClose = () => {
         setOpenHigherStudiesInfoModal(false)
 
@@ -143,6 +150,17 @@ export default function HigherStudiesInfo(props) {
         setFellowship(props.higher_studies.fellowship)
         setOfferLink(props.higher_studies.offer_link)
     }
+
+    function handleLink() {
+        const letter = props.offer_letters.find(
+            offer => offer.name === "higher_studies"
+        )
+        if (letter) {
+            setOfferLink(letter.link)
+        }
+    }
+
+    // get the return value from handlelink
 
     return(
         <div className='col-lg-6 cred-box'>
@@ -233,8 +251,27 @@ export default function HigherStudiesInfo(props) {
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="fellowship(if any)" value={fellowship} onChange={e => setFellowship(e.target.value)} />
                                         </div>
 
-                                        <div className={classes.input}>
+                                        {/* <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Offer letter link" value={offerLink} onChange={e => setOfferLink(e.target.value)} />
+                                        </div> */}
+
+                                        <div>
+                                        <label htmlFor="contained-button-file2">
+                                            <Input
+                                                accept="document/*"
+                                                id="contained-button-file2"
+                                                multiple
+                                                type="file"
+                                                    style={{ width:"0px" }}
+                                                    onChange={(e) => {
+                                                        let file = e.target.files[0];
+                                                        uploadFile(file, currStudentId, "higher_studies");
+                                                    }}
+                                            />
+                                            <Button variant="contained" component="span">
+                                                Upload Offer Letter
+                                            </Button>
+                                        </label>
                                         </div>
 
                                         <Button

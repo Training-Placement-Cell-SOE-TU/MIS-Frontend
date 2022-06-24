@@ -1,13 +1,15 @@
 import './Education.scss'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from '@material-ui/core/Modal';
-import { Button, Backdrop, TextField } from '@material-ui/core';
+import { Button, Backdrop, TextField, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
+
+import  {uploadFile} from '../../../../../Services/storage';
 
 const useStyles = makeStyles((theme) => ({
     editBtn: {
@@ -111,6 +113,10 @@ export default function PlacementInfo(props) {
     const [openJobInfoModal, setOpenJobInfoModal] = useState(false)
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
+
+    useEffect(() => {
+        handleLink()
+    })
 
     const handleJobInfoClose = () => {
         setOpenJobInfoModal(false)
@@ -220,6 +226,15 @@ export default function PlacementInfo(props) {
         setJobType(props.job_type)
     }
 
+    function handleLink() {
+        const letter = props.offer_letters.find(
+            offer => offer.name === "job"
+        )
+        if (letter) {
+            setJobOfferLink(letter.link)
+        }
+    }
+
     return(
         <div className='col-lg-6 cred-box'>
             <div className={classes.detailsHeader}>
@@ -301,11 +316,26 @@ export default function PlacementInfo(props) {
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Salary/month or Package/annum" value={jobSalary} onChange={e => setJobSalary(e.target.value)} />
                                         </div>
-
-                                        <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Offer Letter Link" value={jobOfferLink} onChange={e => setJobOfferLink(e.target.value)} />
+                                        
+                                        <div>
+                                            <label htmlFor="contained-button-file3">
+                                                <Input
+                                                    accept="document/*"
+                                                    id="contained-button-file3"
+                                                    multiple
+                                                    type="file"
+                                                        style={{ width:"0px" }}
+                                                        onChange={(e) => {
+                                                            let file = e.target.files[0];
+                                                            uploadFile(file, currStudentId, "job");
+                                                        }}
+                                                />
+                                                <Button variant="contained" component="span">
+                                                    Upload Offer Letter
+                                                </Button>
+                                            </label>
                                         </div>
-
+                                            
                                         <Button
                                             variant='outlined'
                                             type='submit'
