@@ -286,7 +286,7 @@ export default function StudentProfile() {
                             <div className='profile-box'>
                                 <center>
                                     <div className='avatar'>
-                                        <img alt="Remy Sharp" className='img-fluid' src={profile.photo === '' ? profilePic : profile.photo} style={{width: '200px', height: 'auto'}} />
+                                        <img alt="Remy Sharp" className='img-fluid' src={profile.photo === '' ? profilePic : profile.photo} style={{width: '200px', height: 'height'}} />
                                     </div>
                                     <div className='upload-button'>
                                             <label htmlFor="contained-button-file4">
