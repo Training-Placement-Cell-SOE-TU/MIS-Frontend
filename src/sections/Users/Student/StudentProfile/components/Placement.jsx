@@ -316,6 +316,10 @@ export default function PlacementInfo(props) {
                                         <div className={classes.input}>
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Salary/month or Package/annum" value={jobSalary} onChange={e => setJobSalary(e.target.value)} />
                                         </div>
+
+                                        <div className={classes.input}>
+                                            <TextField disabled className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Salary/month or Package/annum" value={jobOfferLink} onChange={e => setJobOfferLink(e.target.value)} />
+                                        </div>
                                         
                                         <div>
                                             <label htmlFor="contained-button-file3">

@@ -83,14 +83,34 @@ function uploadScoreCard(file , student_id , fileNo){
   });
 }
 
-function uploadProfilePic(file , student_id){
+function uploadProfilePic(file , data){
     console.log("uploading ..")
-    let spaceRef = ref(storageRef , `profile/${student_id}.${file.extension}`);
+    let spaceRef = ref(storageRef , `profile/${data.student_id}.jpg`);
     // 'file' comes from the Blob or File API
     uploadBytes(spaceRef, file).then((snapshot) => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(spaceRef).then((url) => {
             console.log(url);
+            let sendData = {
+                student_id: data.student_id,
+                fname: data.fname,
+                lname: data.lname,
+                email: data.email,
+                phone: data.phone,
+                photo: url,
+                roll_no: data.roll_no,
+                branch: data.branch,
+                batch: data.batch,
+                gender: data.gender,
+                current_sem: data.current_sem
+        }
+        console.log(sendData)
+        axios.put(`${process.env.REACT_APP_BASE_URL}/student/update/personal`, sendData , headers)
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        })
         }
         ).catch((error) => {
             console.log(error);
