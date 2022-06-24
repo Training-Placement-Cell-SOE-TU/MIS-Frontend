@@ -7,7 +7,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import AddIcon from "@material-ui/icons/Add";
 import BackupOutlinedIcon from "@material-ui/icons/BackupOutlined";
 import { Button, Input } from "@mui/material";
-import uploadScoreCard from "../../../../../Services/storage";
+import  {uploadScoreCard} from "../../../../../Services/storage";
 import { PropaneSharp, WindowSharp } from "@mui/icons-material";
 import axios from "axios";
 

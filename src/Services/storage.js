@@ -21,7 +21,39 @@ const storage = getStorage(firebaseApp);
 const storageRef = ref(storage);
 var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
-export default function uploadScoreCard(file , student_id , fileNo){
+function uploadFile(file , student_id, filetype){
+    console.log("uploading ..")
+    console.log("test")
+    // var offerLink
+    let spaceRef = ref(storageRef , `${filetype}/${student_id}_${filetype}.pdf`);
+    console.log(filetype)
+    // 'file' comes from the Blob or File API
+    uploadBytes(spaceRef, file).then((snapshot) => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(spaceRef).then((url) => {
+            console.log(url);
+            let data = {
+                student_id: student_id,
+                link: url,
+                name: filetype
+        }
+        console.log(data)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/student/add/offer`, data , headers)
+        .then(res => {
+            console.log(res);
+        }
+        ).catch(err => {
+            console.log(err);
+        })}
+        ).catch((error) => {
+            console.log(error);
+        }
+        );
+        console.log('Uploaded a blob or file!');
+    });
+}
+
+function uploadScoreCard(file , student_id , fileNo){
     console.log("uploading ..")
     let spaceRef = ref(storageRef , `Scorecard/${student_id}_${fileNo}.pdf`);
     // 'file' comes from the Blob or File API
@@ -68,3 +100,4 @@ function uploadProfilePic(file , student_id){
   });
 }
 
+export { uploadFile, uploadProfilePic , uploadScoreCard }
