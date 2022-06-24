@@ -251,9 +251,9 @@ export default function HigherStudiesInfo(props) {
                                             <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="fellowship(if any)" value={fellowship} onChange={e => setFellowship(e.target.value)} />
                                         </div>
 
-                                        {/* <div className={classes.input}>
-                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Offer letter link" value={offerLink} onChange={e => setOfferLink(e.target.value)} />
-                                        </div> */}
+                                        <div className={classes.input}>
+                                            <TextField disabled className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Offer letter link" value={offerLink} onChange={e => setOfferLink(e.target.value)} />
+                                        </div>
 
                                         <div>
                                         <label htmlFor="contained-button-file2">

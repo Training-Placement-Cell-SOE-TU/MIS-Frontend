@@ -16,7 +16,7 @@ import AdditionalInfo from './components/Aditional';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import SocialInfo from './components/SocialInfo';
 import { useParams } from 'react-router-dom';
-import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import { Button, Backdrop, Icon, TextField, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import profilePic from "../StudentProfile/profile.jpeg"
@@ -24,6 +24,8 @@ import axios from 'axios';
 import PlacementInfo from './components/Placement';
 import ExamsInfo from './components/Exams';
 import MenuItem from '@mui/material/MenuItem';
+import  {uploadProfilePic} from "../../../../Services/storage";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -153,6 +155,7 @@ export default function StudentProfile() {
     const [email, setEmail] = useState(null)
     const [phone, setPhone] = useState(null)
     const [currentSem, setCurrentSem] = useState(null)
+    const [photo, setPhoto] = useState(null)
 
     const [personalInfo, setPersonalInfo] = useState(null)
 
@@ -161,7 +164,7 @@ export default function StudentProfile() {
 
     let { roll } = useParams();
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
-
+ 
     useEffect(() => {
         const fetch = () => {
             setLoading(true);
@@ -192,6 +195,7 @@ export default function StudentProfile() {
         setEmail(null)
         setPhone(null)
         setCurrentSem(null)
+        setPhoto(null)
     }
 
     const handleUpdatePersonalInfo = (e) => {
@@ -207,7 +211,8 @@ export default function StudentProfile() {
             "gender": gender,
             "email": email,
             "phone": phone,
-            "current_sem": currentSem
+            "current_sem": currentSem,
+            "photo": photo
         }
 
         axios.put(`${baseurl}/student/update/personal`,data, headers )
@@ -227,6 +232,7 @@ export default function StudentProfile() {
             setEmail(null);
             setPhone(null);
             setCurrentSem(null)
+            setPhoto(null)
             updateInfoState()
         })
     }
@@ -244,6 +250,7 @@ export default function StudentProfile() {
         setEmail(profile.email)
         setPhone(profile.phone)
         setCurrentSem(profile.current_sem)
+        setPhoto(profile.photo)
     }
 
     const updateInfoState = () => {
@@ -279,8 +286,27 @@ export default function StudentProfile() {
                             <div className='profile-box'>
                                 <center>
                                     <div className='avatar'>
-                                        <img alt="Remy Sharp" className='img-fluid' src={profilePic} style={{width: '200px', height: 'auto'}} />
+                                        <img alt="Remy Sharp" className='img-fluid' src={profile.photo === '' ? profilePic : profile.photo} style={{width: '200px', height: 'auto'}} />
                                     </div>
+                                    <div className='upload-button'>
+                                            <label htmlFor="contained-button-file4">
+                                                <Input
+                                                    accept="document/*"
+                                                    id="contained-button-file4"
+                                                    multiple
+                                                    type="file"
+                                                        style={{ width:"0px" }}
+                                                        onChange={(e) => {
+                                                            let file = e.target.files[0];
+                                                            let data = profile;
+                                                            uploadProfilePic(file, data);
+                                                        }}
+                                                />
+                                                <Button variant="contained" component="span">
+                                                    Upload Profile Picture
+                                                </Button>
+                                            </label>
+                                        </div>
                                 </center>
                                 <div className={classes.editBtn}>
                                     <IconButton className={classes.iconBtn} onClick={handleOpenUpdatePersonalInfo}>
