@@ -1,12 +1,13 @@
 import './Education.scss'
-import React, { useState, useEffect } from 'react';
-import { Avatar, IconButton, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
+import { IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from '@material-ui/core/Modal';
-import { Button, Backdrop, Icon, TextField, Input } from '@material-ui/core';
+import { Button, Backdrop,  TextField, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import  {uploadStudies} from '../../../../../Services/storage';
 
@@ -90,6 +91,8 @@ export default function HigherStudiesInfo(props) {
     const [fellowship, setFellowship] = useState(null)
     const [offerLink, setOfferLink] = useState(null)
 
+    const [loading, setLoading] = useState(false)
+
     const [openHigherStudiesInfoModal, setOpenHigherStudiesInfoModal] = useState(false)
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
@@ -148,73 +151,70 @@ export default function HigherStudiesInfo(props) {
         setOfferLink(props.higher_studies.offer_link)
     }
 
-    function handleLink() {
-        const letter = props.offer_letters.find(
-            offer => offer.name === "higher_studies"
-        )
-        if (letter) {
-            setOfferLink(letter.link)
-        }
-    }
-
-    // get the return value from handlelink
-
     return(
         <div className='col-lg-6 cred-box'>
-            <div className={classes.detailsHeader}>
-                <div className={classes.credHeader}>Higher Studies Info</div>
-                <IconButton className={classes.iconBtn} onClick={() => handleOpenHigherStudiesUpdate()}>
-                    <EditIcon className={classes.editIcon}/>
-                </IconButton>
-            </div>
-            <div className={classes.detailsBox}>
-                <div className={classes.fieldBox}>
-                    <p>Institution Name: {props.higher_studies.institution}</p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Competitive Exam Cleared: {props.higher_studies.exam_cleared}</p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Programme of Study: {props.higher_studies.programme}</p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Branch or Topic of Study: {props.higher_studies.branch}</p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Enrollment/Apllication Number of the institution: {props.higher_studies.institution_id}</p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Fellowship(if any): {props.higher_studies.fellowship} </p>
-                </div>
-                <div>
-                    <label htmlFor="contained-button-file2">
-                        <Input
-                            accept="document/*"
-                            id="contained-button-file2"
-                            multiple
-                            type="file"
-                                style={{ width:"0px" }}
-                                onChange={(e) => {
-                                    let file = e.target.files[0];
-                                    let data = props.profile
-                                    uploadStudies(file, data);
-                                }}
-                        />
-                        <Button variant="contained" component="span">
-                            Upload Offer Letter
-                        </Button>
-                    </label>
+            {
+                loading ? 
+                <CircularProgress /> :
+                <>
+                    <div className={classes.detailsHeader}>
+                        <div className={classes.credHeader}>Higher Studies Info</div>
+                        <IconButton className={classes.iconBtn} onClick={() => handleOpenHigherStudiesUpdate()}>
+                            <EditIcon className={classes.editIcon}/>
+                        </IconButton>
+                    </div>
+                    <div className={classes.detailsBox}>
+                        <div className={classes.fieldBox}>
+                            <p>Institution Name: {props.higher_studies.institution}</p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Competitive Exam Cleared: {props.higher_studies.exam_cleared}</p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Programme of Study: {props.higher_studies.programme}</p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Branch or Topic of Study: {props.higher_studies.branch}</p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Enrollment/Apllication Number of the institution: {props.higher_studies.institution_id}</p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Fellowship(if any): {props.higher_studies.fellowship} </p>
+                        </div>
+                        <div>
+                            <label htmlFor="contained-button-file2">
+                                <Input
+                                    accept="document/*"
+                                    id="contained-button-file2"
+                                    multiple
+                                    type="file"
+                                        style={{ width:"0px" }}
+                                        onChange={(e) => {
+                                            setLoading(true)
+                                            let file = e.target.files[0];
+                                            let data = props.profile
+                                            uploadStudies(file, data, setLoading);
+                                            console.log("Hello")
+                                        }}
+                                />
+                                <Button variant="contained" component="span">
+                                    Upload Offer Letter
+                                </Button>
+                            </label>
 
-                    <IconButton>
-                        <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
-                        onClick={() => {
-                            console.log(props.higher_studies.offer_link);
-                            window.open( props.higher_studies.offer_link, '_blank');
-                        }}
-                    />
-                    </IconButton>
-                </div>
-            </div>
+                            <IconButton>
+                                <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
+                                onClick={() => {
+                                    console.log(props.higher_studies.offer_link);
+                                    window.open( props.higher_studies.offer_link, '_blank');
+                                }}
+                            />
+                            </IconButton>
+                        </div>
+                    </div>
+                </>
+            }
             <>
                 <Modal
                     aria-labelledby="transition-modal-title"

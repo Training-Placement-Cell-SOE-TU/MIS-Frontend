@@ -1,5 +1,5 @@
 import './Education.scss'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from '@material-ui/core/Modal';
@@ -7,6 +7,7 @@ import { Button, Backdrop, TextField, Input } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@mui/material/MenuItem';
+import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -112,13 +113,11 @@ export default function PlacementInfo(props) {
     const [jobOfferLink, setJobOfferLink] = useState(null)
     const [jobType, setJobType] = useState(null)
 
+    const [loading, setLoading] = useState(false)
+
     const [openJobInfoModal, setOpenJobInfoModal] = useState(false)
 
     var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
-
-    useEffect(() => {
-        handleLink()
-    })
 
     const handleJobInfoClose = () => {
         setOpenJobInfoModal(false)
@@ -228,64 +227,62 @@ export default function PlacementInfo(props) {
         setJobType(props.job_type)
     }
 
-    function handleLink() {
-        const letter = props.offer_letters.find(
-            offer => offer.name === "job"
-        )
-        if (letter) {
-            setJobOfferLink(letter.link)
-        }
-    }
-
     return(
         <div className='col-lg-6 cred-box'>
-            <div className={classes.detailsHeader}>
-                <div className={classes.credHeader}>Job/Placement Info</div>
-                <IconButton className={classes.iconBtn} onClick={() => {handleOpenPlacementUpdate()}}>
-                    <EditIcon className={classes.editIcon}/>
-                </IconButton>
-            </div>
-            <div className={classes.detailsBox}>
-                <div className={classes.fieldBox}>
-                    <p>Name of the organization: {props.job_info.company_name || props.internship_info.company_name}</p>
-                </div>
-                <div>
-                    <p>Type: {props.job_type}</p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Designation: {props.job_info.designation || props.internship_info.company_name} </p>
-                </div>
-                <div className={classes.fieldBox}>
-                    <p>Salary Package: {props.job_info.salary || props.internship_info.salary}</p>
-                </div>
-                <div>
-                    <label htmlFor="contained-button-file3">
-                        <Input
-                            accept="document/*"
-                            id="contained-button-file3"
-                            multiple
-                            type="file"
-                                style={{ width:"0px" }}
-                                onChange={(e) => {
-                                    let file = e.target.files[0];
-                                    let data = props.profile
-                                    uploadJob(file, data);
+            {
+                loading ?
+                <CircularProgress /> : 
+                <>
+                    <div className={classes.detailsHeader}>
+                        <div className={classes.credHeader}>Job/Placement Info</div>
+                        <IconButton className={classes.iconBtn} onClick={() => {handleOpenPlacementUpdate()}}>
+                            <EditIcon className={classes.editIcon}/>
+                        </IconButton>
+                    </div>
+                    <div className={classes.detailsBox}>
+                        <div className={classes.fieldBox}>
+                            <p>Name of the organization: {props.job_info.company_name || props.internship_info.company_name}</p>
+                        </div>
+                        <div>
+                            <p>Type: {props.job_type}</p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Designation: {props.job_info.designation || props.internship_info.company_name} </p>
+                        </div>
+                        <div className={classes.fieldBox}>
+                            <p>Salary Package: {props.job_info.salary || props.internship_info.salary}</p>
+                        </div>
+                        <div>
+                            <label htmlFor="contained-button-file3">
+                                <Input
+                                    accept="document/*"
+                                    id="contained-button-file3"
+                                    multiple
+                                    type="file"
+                                        style={{ width:"0px" }}
+                                        onChange={(e) => {
+                                            setLoading(true)
+                                            let file = e.target.files[0];
+                                            let data = props.profile
+                                            uploadJob(file, data, setLoading);
+                                        }}
+                                />
+                                <Button variant="contained" component="span">
+                                    Upload Offer Letter
+                                </Button>
+                            </label>
+                            <IconButton>
+                                <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
+                                onClick={() => {
+                                    console.log(props.job_info.offer_link || props.internship_info.offer_link);
+                                    window.open(props.job_info.offer_link || props.internship_info.offer_link, '_blank');
                                 }}
-                        />
-                        <Button variant="contained" component="span">
-                            Upload Offer Letter
-                        </Button>
-                    </label>
-                    <IconButton>
-                        <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
-                        onClick={() => {
-                            console.log(props.job_info.offer_link || props.internship_info.offer_link);
-                            window.open(props.job_info.offer_link || props.internship_info.offer_link, '_blank');
-                        }}
-                    />
-                    </IconButton>
-                </div>
-            </div>
+                            />
+                            </IconButton>
+                        </div>
+                    </div>
+                </>
+            }   
             <>
                 <Modal
                     aria-labelledby="transition-modal-title"
