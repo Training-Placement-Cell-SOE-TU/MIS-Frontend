@@ -1,5 +1,5 @@
 import "./Education.scss";
-import React from "react";
+import React, {useState} from "react";
 import { Avatar, IconButton, makeStyles } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -8,6 +8,8 @@ import AddIcon from "@material-ui/icons/Add";
 import BackupOutlinedIcon from "@material-ui/icons/BackupOutlined";
 import { Button, Input } from "@mui/material";
 import  {uploadScoreCard} from "../../../../../Services/storage";
+import CircularProgress from '@mui/material/CircularProgress';
+
 import { PropaneSharp, WindowSharp } from "@mui/icons-material";
 import axios from "axios";
 
@@ -102,34 +104,44 @@ const scorecard = {
 
 const ScoreBadge = ({ url,sem , student_id }) => {
   const classes = useStyles();
+
+  const [loading, setLoading] = useState(false);
+
   return (
     <div>
-      <p className={classes.scoreBadge}>{sem}</p>
-      <label htmlFor="contained-button-file">
-        <Input
-          accept="document/*"
-          id="contained-button-file"
-          multiple
-          type="file"
-            style={{ width:"0px" }}
-            onChange={(e) => {
-                let file = e.target.files[0];
-                uploadScoreCard(file, student_id , sem);
-            }}
-        />
-        <Button variant="contained" component="span">
-          Upload
-        </Button>
-      </label>
+      {
+        loading ?
+        <CircularProgress /> :
+        <>
+          <p className={classes.scoreBadge}>{sem}</p>
+          <label htmlFor="contained-button-file">
+            <Input
+              accept="document/*"
+              id="contained-button-file"
+              multiple
+              type="file"
+                style={{ width:"0px" }}
+                onChange={(e) => {
+                  setLoading(true);
+                    let file = e.target.files[0];
+                    uploadScoreCard(file, student_id , sem, setLoading);
+                }}
+            />
+            <Button variant="contained" component="span">
+              Upload
+            </Button>
+          </label>
 
-      <IconButton>
-        <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
-          onClick={() => {
-            console.log(url);
-            window.open( url, '_blank');
-          }}
-        />
-      </IconButton>
+          <IconButton>
+            <VisibilityIcon color="enabled" style={{ cursor: "pointer" }} 
+              onClick={() => {
+                console.log(url);
+                window.open( url, '_blank');
+              }}
+            />
+          </IconButton>
+        </>
+      }
     </div>
   );
 };

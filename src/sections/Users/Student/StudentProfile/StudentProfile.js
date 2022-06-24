@@ -24,6 +24,8 @@ import axios from 'axios';
 import PlacementInfo from './components/Placement';
 import ExamsInfo from './components/Exams';
 import MenuItem from '@mui/material/MenuItem';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import  {uploadProfilePic} from "../../../../Services/storage";
 
 
@@ -157,6 +159,8 @@ export default function StudentProfile() {
     const [currentSem, setCurrentSem] = useState(null)
     const [photo, setPhoto] = useState(null)
 
+    const [uploadLoading, setUploadLoading] = useState(false)
+
     const [personalInfo, setPersonalInfo] = useState(null)
 
     const [openPerInfoModal, setOpenPerInfoModal] = useState(false)
@@ -285,9 +289,13 @@ export default function StudentProfile() {
                         <div className='col-lg-4'>
                             <div className='profile-box'>
                                 <center>
-                                    <div className='avatar'>
-                                        <img alt="Remy Sharp" className='img-fluid' src={profile.photo === '' ? profilePic : profile.photo} style={{width: '200px', height: 'height'}} />
-                                    </div>
+                                    {
+                                        uploadLoading ?
+                                        <CircularProgress /> :
+                                        <div className='avatar'>
+                                            <img alt="Remy Sharp" className='img-fluid' src={profile.photo === '' ? profilePic : profile.photo} style={{width: '200px', height: 'auto'}} />
+                                        </div>
+                                    }   
                                     <div className='upload-button'>
                                             <label htmlFor="contained-button-file4">
                                                 <Input
@@ -297,9 +305,10 @@ export default function StudentProfile() {
                                                     type="file"
                                                         style={{ width:"0px" }}
                                                         onChange={(e) => {
+                                                            setUploadLoading(true)
                                                             let file = e.target.files[0];
                                                             let data = profile;
-                                                            uploadProfilePic(file, data);
+                                                            uploadProfilePic(file, data, setUploadLoading);
                                                         }}
                                                 />
                                                 <Button variant="contained" component="span">

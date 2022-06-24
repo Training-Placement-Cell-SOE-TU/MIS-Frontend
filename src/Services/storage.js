@@ -21,7 +21,7 @@ const storage = getStorage(firebaseApp);
 const storageRef = ref(storage);
 var headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("access-token")}`}}
 
-function uploadStudies(file , data){
+function uploadStudies(file , data, fn){
     console.log("uploading ..")
     // var offerLink
     let spaceRef = ref(storageRef , `Studies/${data.student_id}_studies.pdf`);
@@ -54,11 +54,12 @@ function uploadStudies(file , data){
             console.log(error);
         }
         );
+        fn(false)
         console.log('Uploaded a blob or file!');
     });
 }
 
-function uploadJob(file , data){
+function uploadJob(file , data, fn){
     console.log("uploading ..")
     // var offerLink
     let spaceRef = ref(storageRef , `Job/${data.student_id}_job.pdf`);
@@ -95,11 +96,12 @@ function uploadJob(file , data){
             console.log(error);
         }
         );
+        fn(false)
         console.log('Uploaded a blob or file!');
     });
 }
 
-function uploadScoreCard(file , student_id , fileNo){
+function uploadScoreCard(file , student_id , fileNo, fn){
     console.log("uploading ..")
     let spaceRef = ref(storageRef , `Scorecard/${student_id}_${fileNo}.pdf`);
     // 'file' comes from the Blob or File API
@@ -125,11 +127,12 @@ function uploadScoreCard(file , student_id , fileNo){
             console.log(error);
         }
         );
+        fn(false)
         console.log('Uploaded a blob or file!');
   });
 }
 
-function uploadProfilePic(file , data){
+function uploadProfilePic(file , data, fn){
     console.log("uploading ..")
     let spaceRef = ref(storageRef , `profile/${data.student_id}.jpg`);
     // 'file' comes from the Blob or File API
@@ -162,6 +165,7 @@ function uploadProfilePic(file , data){
             console.log(error);
         }
         );
+        fn(false)
         console.log('Uploaded a blob or file!');
   });
 }
