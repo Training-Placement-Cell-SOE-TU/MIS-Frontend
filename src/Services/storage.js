@@ -5,12 +5,12 @@ import { getStorage , ref , uploadBytes , getDownloadURL } from "firebase/storag
 // Set the configuration for your app
 // TODO: Replace with your app's config object
 const firebaseConfig = {
-    apiKey: "AIzaSyCsIiyN6bdqpbu5cp-b_I7WeJE4Vv-Mjm4",
-    authDomain: "infra-odyssey-281901.firebaseapp.com",
-    projectId: "infra-odyssey-281901",
-    storageBucket: "infra-odyssey-281901.appspot.com",
-    messagingSenderId: "149416893725",
-    appId: "1:149416893725:web:7f33b1e10f7744ca3495f4"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 const firebaseApp = initializeApp(firebaseConfig);
 
