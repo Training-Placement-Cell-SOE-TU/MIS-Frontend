@@ -2,13 +2,20 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import {Navbar, Nav, Dropdown} from 'react-bootstrap'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
-import {Link} from 'react-router-dom'
+import {Link, Redirect, useHistory} from 'react-router-dom'
 import logo from "../tu.png"
 import './header.css'
 import profilePic from "../../sections/Users/Student/StudentProfile/profile.jpeg"
 // \sections\Users\Student\StudentProfile\profile.jpeg
 
 const Header = () => {
+
+  const history = useHistory()
+
+  const logOut = () =>{ 
+    let path = `/`; 
+    history.push(path);
+  }
 
   let data = {
     name : "Yoda Yo",
@@ -27,7 +34,7 @@ const Header = () => {
       setRegistered(true);
     }
 
-    axios.get(`${baseurl}/user/profile`, {})
+    // axios.get(`${baseurl}/user/profile`, {})
   });
 
   const location = useLocation();
@@ -165,8 +172,11 @@ const Header = () => {
                       onMouseLeave={() => setOverUserImg(false)} >
                         {overUserImg && <span className="userName logoutName" onClick={
                           () => {
+                            // <Redirect to="/" />
                             localStorage.removeItem('access-token');
+                            localStorage.removeItem('student_roll');
                             setRegistered(false);
+                            logOut();
                           }
                         }>Logout</span>}
                         {!overUserImg && <span className='userName'>{
