@@ -11,8 +11,8 @@ import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import Link from '@mui/material/Link';
 import axios from 'axios'
-
-
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import './form.css'
 import { Redirect } from "react-router-dom";
 
@@ -30,100 +30,117 @@ const Form = props => {
 
     const [username, setUsername] = useState("")
 
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-    const data = {
-        "email": email,
-        "password": password
+        const data = {
+            "email": email,
+            "password": password
+        }
+
+        console.log(data)
+
+        axios.post(`${baseurl}/admin/login`, data)
+            .then(response => {
+                console.log(response);
+                setToken(
+                    localStorage.setItem('admin-access-token', response.data.token)
+                )
+                setUsername(response.data.username)
+                localStorage.setItem('admin-username', response.data.username)
+                headers = { "headers": { "Authorization": `Bearer ${localStorage.getItem("admin-access-token")}` } }
+                setLoggedIn(true)
+            })
+            .catch(e => {
+                console.log(e.message);
+            }).finally(() => {
+                setLoading(false)
+            })
+    };
+
+    function loadingCheck() {
+        if(loading) {
+            return (
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={true}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>)
+        }
     }
 
-    console.log(data)
+    return (
 
-    axios.post(`${baseurl}/admin/login`, data)
-    .then(response => {
-        console.log(response);
-        setToken(
-            localStorage.setItem('admin-access-token', response.data.token)
-        )
-        setUsername(response.data.username)
-        localStorage.setItem('admin-username', response.data.username)
-        headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("admin-access-token")}`}}
-        setLoggedIn(true)
-    })
-    .catch(e => {
-        console.log(e.message);
-    })
-};
-
-  return (
-
-    <div className="formcon">
-      {loggedIn && <Redirect push to={`/admin-console/${username}/dashboard`} />}
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-            sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}
-            >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-                Sign in
-            </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                value={email}
-                autoComplete="email"
-                autoFocus
-                onChange={e => setEmail(e.target.value)}
-                />
-                <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                autoComplete="current-password"
-                />
-                <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                >
-                Sign In
-                </Button>
-                <Grid container>
-                <Grid item xs>
-                    <Link href="#" variant="body2">
-                    Forgot password?
-                    </Link>
-                </Grid>
-                </Grid>
-            </Box>
-            </Box>
-        </Container>
-        </ThemeProvider>
-    </div>
-  );
+        <div className="formcon">
+            {loggedIn && <Redirect push to={`/admin-console/${username}/dashboard`} />}
+            <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    {loadingCheck()}
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign in
+                        </Typography>
+                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                value={email}
+                                autoComplete="email"
+                                autoFocus
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                autoComplete="current-password"
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                                onClick={() => setLoading(true)}
+                            >
+                                Sign In
+                            </Button>
+                            <Grid container>
+                                <Grid item xs>
+                                    <Link href="#" variant="body2">
+                                        Forgot password?
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Box>
+                </Container>
+            </ThemeProvider>
+        </div>
+    );
 };
 
 export default Form;

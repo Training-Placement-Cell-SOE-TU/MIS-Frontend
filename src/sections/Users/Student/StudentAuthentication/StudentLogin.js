@@ -51,11 +51,12 @@ export default function SignIn() {
             setRollNo(response.data.roll_no)
             localStorage.setItem('student_roll', response.data.roll_no)
             setIsLoggedIn(true)
-            setLoading(false)
         })
         .catch(e => {
             setIsError(true)
             setErrorMessage(e.response.data.message)
+        }).finally(() => {
+            setLoading(false)
         })
     };
 
