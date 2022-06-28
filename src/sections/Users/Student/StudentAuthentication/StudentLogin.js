@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,6 +12,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from "react-router-dom";
 import AlertBox from '../../../../components/Alerts/Alert';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import axios from 'axios'
 
@@ -34,6 +34,8 @@ export default function SignIn() {
     const [isError, setIsError] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
 
+    const [loading, setLoading] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -49,6 +51,7 @@ export default function SignIn() {
             setRollNo(response.data.roll_no)
             localStorage.setItem('student_roll', response.data.roll_no)
             setIsLoggedIn(true)
+            setLoading(false)
         })
         .catch(e => {
             setIsError(true)
@@ -62,6 +65,18 @@ export default function SignIn() {
         }
     }
 
+    function loadingCheck() {
+        if(loading) {
+            return (
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={true}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>)
+        }
+    }
+
     return (
         <>
         { isLoggedIn ?
@@ -70,6 +85,7 @@ export default function SignIn() {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             {errorCheck()}
+            {loadingCheck()}
             <Box
             sx={{
                 marginTop: 8,
@@ -114,6 +130,7 @@ export default function SignIn() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={() => setLoading(true)}
                 >
                 Sign In
                 </Button>
