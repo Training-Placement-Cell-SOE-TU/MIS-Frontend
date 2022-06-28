@@ -48,6 +48,7 @@ const Form = props => {
             localStorage.setItem('admin-access-token', response.data.token)
         )
         setUsername(response.data.username)
+        localStorage.setItem('admin-username', response.data.username)
         headers = {"headers" : { "Authorization": `Bearer ${localStorage.getItem("admin-access-token")}`}}
         setLoggedIn(true)
     })

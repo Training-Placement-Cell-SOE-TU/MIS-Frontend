@@ -7,23 +7,25 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import WorkIcon from '@material-ui/icons/Work';
 import DataIcon from '@material-ui/icons/DataUsage';
 
+const username = localStorage.getItem('admin-username')
+
 export const tabs = [
     {
-        path: '/admin-console/dashboard',
+        path: `/admin-console/${username}/dashboard`,
         title: 'Dashboard',
         icon: <>
             <DashboardIcon />
         </>
     },
     {
-        path: '/admin-console/students',
+        path: `/admin-console/${username}/students`,
         title: 'Students',
         icon: <>
             <SupervisorAccountIcon />
         </>
     },
     {
-        path : '/admin-console/DataCollect',
+        path : `/admin-console/${username}/DataCollect`,
         title : 'Student Data',
         icon : <>
             <DataIcon />
@@ -31,21 +33,21 @@ export const tabs = [
 
     },
     {
-        path: '/admin-console/companies',
+        path: `/admin-console/${username}/companies`,
         title: 'Companies',
         icon: <>
             <BusinessIcon />
         </>
     },
     {
-        path: '/admin-console/training',
+        path: `/admin-console/${username}/training`,
         title: 'Trainings',
         icon: <>
             <WorkIcon />
         </>
     },
     {
-        path: '/admin-console/settings',
+        path: `/admin-console/${username}/settings`,
         title: 'Settings',
         icon: <>
             <SettingsIcon />
