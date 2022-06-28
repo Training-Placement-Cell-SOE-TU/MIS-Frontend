@@ -147,8 +147,10 @@ export default function SignUp() {
 
   function errorCheck() {
     if(isError) {
-        return <AlertBox message={errorMessage} />
+      if (errorMessage === "student already exists") {
+        return <AlertBox message={`Email Or Roll No. already exists`} />
     }
+  }
 }
 
 function loadingCheck() {
