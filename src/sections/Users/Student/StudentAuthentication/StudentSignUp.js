@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from 'react-router-dom';
 import {v4 as uuidv4 } from "uuid";
 import AlertBox from '../../../../components/Alerts/Alert';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import axios from "axios"
 
@@ -112,6 +114,7 @@ export default function SignUp() {
   const [isError, setIsError] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
 
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -137,6 +140,8 @@ export default function SignUp() {
     .catch(e => {
         setIsError(true)
         setErrorMessage(e.response.data)
+    }).finally(() => {
+        setLoading(false)
     })
   };
 
@@ -146,12 +151,25 @@ export default function SignUp() {
     }
 }
 
+function loadingCheck() {
+  if(loading) {
+      return (
+      <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+      >
+          <CircularProgress color="inherit" />
+      </Backdrop>)
+  }
+}
+
   return (
     (!isSigned ) ? 
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         {errorCheck()}
+        {loadingCheck()}
         <Box
           sx={{
             marginTop: 0,
@@ -306,6 +324,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => setLoading(true)}
             >
               Sign Up
             </Button>
