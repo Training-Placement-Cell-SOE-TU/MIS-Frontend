@@ -326,7 +326,7 @@ export default function StudentProfile() {
                                     <div className='student-name'>{profile.fname} {profile.lname}</div>
                                     <div>{roll}</div>
                                     <div>{profile.branch}</div>
-                                    <div>{profile.current_sem} Semester</div>
+                                    <div>{profile.current_sem !== '' ? profile.current_sem  + ' Semester' : null} </div>
                                     <div>{profile.phone}</div>
                                     <div className='email'>{profile.email}</div>
                                 </div>
