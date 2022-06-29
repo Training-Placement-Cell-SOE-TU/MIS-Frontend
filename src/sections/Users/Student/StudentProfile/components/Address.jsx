@@ -1,12 +1,11 @@
 import './Education.scss'
 import React, { useState } from 'react';
-import { Avatar, Checkbox, IconButton, makeStyles } from '@material-ui/core';
+import { Checkbox, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from '@material-ui/core/Modal';
-import { Button, Backdrop, Icon, TextField } from '@material-ui/core';
+import { Button, Backdrop, TextField } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
-import SaveIcon from '@material-ui/icons/Save';
 
 import axios from 'axios';
 
@@ -241,10 +240,16 @@ export default function AddressInfo(props) {
                             onChange={handleChecked}
                         />
                     </p>
-
-                    <p className={classes.address}>Present Address <span className={classes.addressText}>
-                       {presentAddress.address_line_1}  {presentAddress.address_line_2},  City-{presentAddress.city} Dist-{presentAddress.district} Country- {presentAddress.country}, Pin - {presentAddress.pincode}
-                    </span></p>
+                    
+                    {presentAddress === null ? <p></p> : 
+                        <>
+                            <p className={classes.address}>Present Address 
+                                <span className={classes.addressText}>
+                                    {presentAddress.address_line_1}  {presentAddress.address_line_2},  City-{presentAddress.city} Dist-{presentAddress.district} Country- {presentAddress.country}, Pin - {presentAddress.pincode}
+                                </span>
+                            </p>
+                        </>
+                    }
                 </div>
             </div>
             <>
