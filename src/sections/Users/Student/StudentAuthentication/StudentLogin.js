@@ -14,6 +14,8 @@ import { Redirect } from "react-router-dom";
 import AlertBox from '../../../../components/Alerts/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import axios from 'axios'
 
@@ -35,6 +37,7 @@ export default function SignIn() {
     const [errorMessage, setErrorMessage] = useState("")
 
     const [loading, setLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -65,6 +68,10 @@ export default function SignIn() {
             return <AlertBox message={errorMessage} />
         }
     }
+
+    function handleShowPassword() {
+        setShowPassword(!showPassword)
+      }
 
     function loadingCheck() {
         if(loading) {
@@ -120,11 +127,22 @@ export default function SignIn() {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showPassword}
+                      onChange={handleShowPassword}
+                      value="showPassword"
+                      color="primary"
+                    />
+                  }
+                  label="Show Password"
                 />
                 <Button
                 type="submit"
