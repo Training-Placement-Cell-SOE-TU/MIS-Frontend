@@ -324,7 +324,8 @@ function handleShowPassword() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   onChange={e => setPassword(e.target.value)}
-                  helperText="Only use small letters and numbers"
+                  helperText="At least 8 character long with at least one number, one special character 
+                              and one uppercase and lowercase letter"
                 />
               </Grid>
               <Grid item xs={12}>
