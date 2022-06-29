@@ -15,6 +15,8 @@ import {v4 as uuidv4 } from "uuid";
 import AlertBox from '../../../../components/Alerts/Alert';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import axios from "axios"
 
@@ -115,6 +117,7 @@ export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState("")
 
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -163,6 +166,10 @@ function loadingCheck() {
           <CircularProgress color="inherit" />
       </Backdrop>)
   }
+}
+
+function handleShowPassword() {
+  setShowPassword(!showPassword)
 }
 
   return (
@@ -314,10 +321,23 @@ function loadingCheck() {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   onChange={e => setPassword(e.target.value)}
                   helperText="Only use small letters and numbers"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showPassword}
+                      onChange={handleShowPassword}
+                      value="showPassword"
+                      color="primary"
+                    />
+                  }
+                  label="Show Password"
                 />
               </Grid>
             </Grid>
