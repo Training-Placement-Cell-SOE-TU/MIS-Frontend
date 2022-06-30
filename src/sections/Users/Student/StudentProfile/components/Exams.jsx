@@ -181,111 +181,124 @@ export default function ExamsInfo(props) {
         setExamAIR(exam.air)
     }
 
+    console.log(competitiveExam)
+
     return(
         
-            <>
-                {competitiveExam.map((exam, index) => (
+        <>
+            {competitiveExam.length === 0 ? 
                 <div className='col-lg-6 cred-box'>
                     <div className={classes.detailsHeader}>
                         <div className={classes.credHeader}>Exams Info</div>
-                        <IconButton className={classes.iconBtn} onClick={() => handleOpenExamUpdate(exam)}>
-                            <EditIcon className={classes.editIcon}/>
-                        </IconButton>
+                        <span className={classes.badge} onClick={() => handleOpenExamAdd()}>
+                                <div>Add Exam <AddIcon style={{fontSize: '20px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
+                        </span>
                     </div>
-                    <div className={classes.detailsBox}>
-                        <div className={classes.fieldBox}>
-                            <p>Exam Name: {exam.name}</p>
+                </div> 
+                :
+                competitiveExam.map((exam, index) => (
+                    <div className='col-lg-6 cred-box'>
+                        <div className={classes.detailsHeader}>
+                            <div className={classes.credHeader}>Exams Info</div>
+                            <IconButton className={classes.iconBtn} onClick={() => handleOpenExamUpdate(exam)}>
+                                <EditIcon className={classes.editIcon}/>
+                            </IconButton>
                         </div>
-                        <div className={classes.fieldBox}>
-                            <p>Year Of Passing: {exam.yop}</p>
+                        <div className={classes.detailsBox}>
+                            <div className={classes.fieldBox}>
+                                <p>Exam Name: {exam.name}</p>
+                            </div>
+                            <div className={classes.fieldBox}>
+                                <p>Year Of Passing: {exam.yop}</p>
+                            </div>
+                            <div className={classes.fieldBox}>
+                                <p>Application ID/Roll No.:  {exam.id}</p>
+                            </div>
+                            <div className={classes.fieldBox}>
+                                <p>Exam Score: {exam.score}</p>
+                            </div>
+                            <div className={classes.fieldBox}>
+                                <p>All India Rank(AIR): {exam.air}</p>
+                            </div>
                         </div>
-                        <div className={classes.fieldBox}>
-                            <p>Application ID/Roll No.: {exam.id} </p>
-                        </div>
-                        <div className={classes.fieldBox}>
-                            <p>Exam Score: {exam.score}</p>
-                        </div>
-                        <div className={classes.fieldBox}>
-                            <p>All India Rank(AIR): {exam.air}</p>
-                        </div>
+                        <span className={classes.badge} onClick={() => handleOpenExamAdd()}>
+                                <div>Add Exam <AddIcon style={{fontSize: '20px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
+                        </span>
                     </div>
-                    <span className={classes.badge} onClick={() => handleOpenExamAdd()}>
-                            <div>Add Exam <AddIcon style={{fontSize: '20px', marginLeft: '10px', color: 'white', cursor: 'pointer'}} /></div>
-                    </span>
-                    
-                    <>
-                        <Modal
-                            aria-labelledby="transition-modal-title"
-                            aria-describedby="transition-modal-description"
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                            open={openExamInfoModal}
-                            onClose={handleExamInfoClose}
-                            closeAfterTransition
-                            BackdropComponent={Backdrop}
-                            BackdropProps={{
-                                timeout: 200,
-                            }}
-                        >
-                            <Fade in={openExamInfoModal}>
+                ))
+            }
+            <>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    open={openExamInfoModal}
+                    onClose={handleExamInfoClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 200,
+                    }}
+                >
+                    <Fade in={openExamInfoModal}>
 
-                                <div className={classes.InfoModal}>
-                                <div className={classes.closeCont}>
-                                        <IconButton onClick={handleExamInfoClose}>
-                                            <CloseIcon />
-                                        </IconButton>
-                                    </div>
+                        <div className={classes.InfoModal}>
+                        <div className={classes.closeCont}>
+                                <IconButton onClick={handleExamInfoClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </div>
 
-                                    <div style={{
-                                        padding: '20px',
-                                    }}>
-                                        <div style={{
-                                            display: 'block',
-                                            textAlign: 'center'
-                                        }}>
-                                            <form onSubmit={addExam ? handleAddExamInfo : handleUpdateExamInfo } autoComplete='off' className={classes.modalForm}  >
-                                                <div className={classes.input}>
-                                                    <TextField className={classes.textField} id="outlined-basic" placeholder="Exam Name" variant="outlined" value={examName} onChange={e => setExamName(e.target.value)} />
-                                                </div>
-
-                                                <div className={classes.input}>
-                                                    <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Year Of Passing" value={examYop} onChange={e => setExamYop(e.target.value)} />
-                                                </div>
-
-                                                <div className={classes.input}>
-                                                    <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Application ID/Roll No" value={examId} onChange={e => setExamId(e.target.value)} />
-                                                </div>
-
-                                                <div className={classes.input}>
-                                                    <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Exam Score" value={examScore} onChange={e => setExamScore(e.target.value)} />
-                                                </div>
-
-                                                <div className={classes.input}>
-                                                    <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="All India Rank(Optional)" value={examAIR} onChange={e => setExamAIR(e.target.value)} />
-                                                </div>
-
-                                                <Button
-                                                    variant='outlined'
-                                                    type='submit'
-                                                    style={{
-                                                        marginRight: '1.2rem'
-                                                    }}
-                                                >
-                                                    Save
-                                                </Button>
-
-                                            </form>
+                            <div style={{
+                                padding: '20px',
+                            }}>
+                                <div style={{
+                                    display: 'block',
+                                    textAlign: 'center'
+                                }}>
+                                    <form onSubmit={addExam ? handleAddExamInfo : handleUpdateExamInfo } autoComplete='off' className={classes.modalForm}  >
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" placeholder="Exam Name" variant="outlined" value={examName} onChange={e => setExamName(e.target.value)} />
                                         </div>
-                                    </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Year Of Passing" value={examYop} onChange={e => setExamYop(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Application ID/Roll No" value={examId} onChange={e => setExamId(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="Exam Score" value={examScore} onChange={e => setExamScore(e.target.value)} />
+                                        </div>
+
+                                        <div className={classes.input}>
+                                            <TextField className={classes.textField} id="outlined-basic" variant="outlined" placeholder="All India Rank(Optional)" value={examAIR} onChange={e => setExamAIR(e.target.value)} />
+                                        </div>
+
+                                        <Button
+                                            variant='outlined'
+                                            type='submit'
+                                            style={{
+                                                marginRight: '1.2rem'
+                                            }}
+                                        >
+                                            Save
+                                        </Button>
+
+                                    </form>
                                 </div>
-                            </Fade>
-                        </Modal>
-                    </>
-                </div>
-                ))}
+                            </div>
+                        </div>
+                    </Fade>
+                </Modal>
             </>
+
+        </>
     )
 }
